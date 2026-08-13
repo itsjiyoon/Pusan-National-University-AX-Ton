@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전셈 | 계약서·등기부등본 분석하기</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .analyze-sec {
+            padding: 50px 0 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .analyze-card-wrapper {
+            width: 100%;
+            max-width: 620px;
+            background: #ffffff;
+            border-radius: var(--radius-lg, 28px);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-pop, 0 16px 40px rgba(36, 59, 100, 0.18));
+            border: 1px solid var(--gray-100, #F1F3F7);
+        }
+
+        .analyze-title-area h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.35;
+            margin: 8px 0 10px;
+            letter-spacing: -0.4px;
+            color: var(--ink, #1C263A);
+        }
+
+        .upload-group {
+            margin-bottom: 28px;
+        }
+
+        .upload-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--ink, #1C263A);
+            margin-bottom: 12px;
+        }
+
+        /* 기본 드래그 앤 드롭 업로드 영역 */
+        .drop-zone {
+            border: 2px dashed var(--gray-300, #D7DEE8);
+            border-radius: var(--radius-md, 18px);
+            padding: 36px 20px;
+            text-align: center;
+            background: var(--blue-50, #F4F6FA);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--blue, #243B64);
+            background: #EBF1F9;
+        }
+
+        /* 파일 선택 시 활성화되는 성공 스타일 */
+        .drop-zone.uploaded {
+            border: 2px solid #243B64;
+            background-color: #E6ECF5;
+        }
+
+        /* 기본 클립 아이콘 */
+        .drop-icon {
+            width: 32px;
+            height: 32px;
+            opacity: 0.6;
+        }
+
+        /* 성공 시 나타나는 전셈이성공 이미지 */
+        .success-img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            display: none;
+        }
+
+        .drop-text {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--gray-700, #4B5566);
+        }
+
+        .drop-zone.uploaded .drop-text {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1C263A;
+        }
+
+        /* 진단하기 버튼 */
+        .btn-analyze {
+            width: 100%;
+            background: var(--gray-300, #D7DEE8);
+            color: var(--gray-500, #7C879A);
+            font-weight: 800;
+            font-size: 18px;
+            padding: 18px;
+            border-radius: 16px;
+            border: none;
+            cursor: not-allowed;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .btn-analyze.active {
+            background: var(--navy, #243B64);
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(36, 59, 100, 0.2);
+        }
+
+        .btn-back-home {
+            display: block;
+            text-align: center;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--gray-500, #7C879A);
+            text-decoration: underline;
+            transition: color 0.15s;
+        }
+
+        .btn-back-home:hover {
+            color: var(--blue, #243B64);
+        }
+
+        @media (max-width: 620px) {
+            .analyze-card-wrapper {
+                padding: 32px 24px;
+            }
+
+            .analyze-title-area h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SVG MASCOT SYMBOLS -->
+
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrap nav">
+            <a href="../index.html" class="logo">
+                <img src="../images/전셈이로고.png" width="40">
+                전셈
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html#services">서비스 소개</a>
+                <a href="../index.html#diagnosis">안전진단</a>
+                <a href="../index.html#report">보증금 리포트</a>
+                <a href="../index.html#notice">고객지원</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CARD -->
+    <section class="analyze-sec">
+        <div class="wrap" style="display:flex; justify-content:center;">
+            <div class="analyze-card-wrapper">
+
+                <div class="analyze-title-area">
+                    <span class="hero-eyebrow" style="margin-bottom:8px;">STEP 02</span>
+                    <h1>계약서·등기부등본 분석하기</h1>
+                </div>
+
+                <p class="sub" style="margin-bottom:32px;">
+                    등기부등본, 계약서 중 하나만 올려도 분석할 수 있어요. 둘 다 올리면 더 정확하게 확인해드려요.
+                </p>
+
+                <!-- 1. 등기부등본 업로드 영역 -->
+                <div class="upload-group">
+                    <label class="upload-label">등기부등본</label>
+                    <div class="drop-zone" id="zone-registry"
+                        onclick="document.getElementById('file-registry').click();">
+                        <input type="file" id="file-registry" style="display:none;" accept=".pdf,image/*"
+                            onchange="checkFiles()">
+
+                        <!-- 기본 아이콘 -->
+                        <svg class="drop-icon" id="icon-registry" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
+                        </svg>
+
+                        <!-- 성공 시 나타나는 전셈이성공 이미지 -->
+                        <img src="../images/전셈이성공.png" id="img-registry" class="success-img" alt="업로드 완료">
+
+                        <span class="drop-text" id="text-registry">클릭하거나 파일을 끌어다 놓으세요 (이미지, PDF)</span>
+                    </div>
+                </div>
+
+                <!-- 2. 계약서 업로드 영역 -->
+                <div class="upload-group">
+                    <label class="upload-label">계약서</label>
+                    <div class="drop-zone" id="zone-contract"
+                        onclick="document.getElementById('file-contract').click();">
+                        <input type="file" id="file-contract" style="display:none;" accept=".pdf,image/*"
+                            onchange="checkFiles()">
+
+                        <!-- 기본 아이콘 -->
+                        <svg class="drop-icon" id="icon-contract" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
+                        </svg>
+
+                        <!-- 성공 시 나타나는 전셈이성공 이미지 -->
+                        <img src="../images/전셈이성공.png" id="img-contract" class="success-img" alt="업로드 완료">
+
+                        <span class="drop-text" id="text-contract">클릭하거나 파일을 끌어다 놓으세요 (이미지, PDF)</span>
+                    </div>
+                </div>
+
+                <!-- 진단하기 버튼 -->
+                <!-- 진단하기 버튼 수정 -->
+                <button type="button" id="btn-submit" class="btn-analyze" disabled
+                    onclick="location.href='result.html'">진단하기</button>
+
+                <a href="../index.html" class="btn-back-home">← 홈으로</a>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function checkFiles() {
+            const registry = document.getElementById('file-registry').files[0];
+            const contract = document.getElementById('file-contract').files[0];
+            const submitBtn = document.getElementById('btn-submit');
+
+            // 1. 등기부등본 파일 선택 처리
+            if (registry) {
+                document.getElementById('zone-registry').classList.add('uploaded');
+                document.getElementById('icon-registry').style.display = 'none';
+                document.getElementById('img-registry').style.display = 'block';
+                document.getElementById('text-registry').innerText = registry.name;
+            }
+
+            // 2. 계약서 파일 선택 처리
+            if (contract) {
+                document.getElementById('zone-contract').classList.add('uploaded');
+                document.getElementById('icon-contract').style.display = 'none';
+                document.getElementById('img-contract').style.display = 'block';
+                document.getElementById('text-contract').innerText = contract.name;
+            }
+
+            // 둘 중 하나라도 첨부되었을 경우 진단하기 버튼 활성화
+            if (registry || contract) {
+                submitBtn.classList.add('active');
+                submitBtn.removeAttribute('disabled');
+            }
+        }
+    </script>
+</body>
+
+</html>

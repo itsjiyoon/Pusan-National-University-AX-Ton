@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전셈 | AI 안심 상담</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 화면 전체 가로 스크롤 방지 */
+        html,
+        body {
+            overflow-x: hidden !important;
+        }
+
+        .chat-sec {
+            padding: 40px 0 60px;
+            display: flex;
+            justify-content: center;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 챗봇 전체 컨테이너 너비 절대 고정 */
+        .chat-container {
+            width: 100% !important;
+            max-width: 680px !important;
+            min-width: 320px !important;
+            height: 680px !important;
+            max-height: 85vh !important;
+            background: #FFFFFF;
+            border-radius: var(--radius-lg, 28px);
+            border: 1px solid var(--gray-100, #F1F3F7);
+            box-shadow: var(--shadow-pop, 0 16px 40px rgba(36, 59, 100, 0.12));
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 상단 헤더 */
+        .chat-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--gray-100, #F1F3F7);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFFFF;
+            flex-shrink: 0;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 파란 동그라미 배경 제거 수정 부분 */
+        .chat-header-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent !important;
+            /* 배경 원 제거 */
+            width: auto !important;
+            height: auto !important;
+            border-radius: 0 !important;
+        }
+
+        .chat-header-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--ink, #1C263A);
+            margin: 0 0 2px;
+        }
+
+        .chat-status {
+            font-size: 13px;
+            color: #2E7D32;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #2E7D32;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .btn-chat-home {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-500, #7C879A);
+            text-decoration: underline;
+            transition: color 0.15s;
+        }
+
+        .btn-chat-home:hover {
+            color: var(--blue, #243B64);
+        }
+
+        /* 메시지 대화창 */
+        .chat-body {
+            flex: 1 1 0% !important;
+            min-height: 0 !important;
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 24px 28px;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 18px;
+            background: #FAFAFC;
+            box-sizing: border-box !important;
+        }
+
+        /* 메시지 행 너비 제한 */
+        .msg-row {
+            display: flex !important;
+            gap: 10px;
+            max-width: 85% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        .msg-row.bot {
+            align-self: flex-start !important;
+        }
+
+        .msg-row.user {
+            align-self: flex-end !important;
+            flex-direction: row-reverse !important;
+        }
+
+        /* 말풍선 텍스트 가로 팽창 방지 스타일 */
+        .msg-bubble {
+            padding: 16px 20px !important;
+            border-radius: 20px !important;
+            font-size: 15px !important;
+            line-height: 1.6 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            white-space: normal !important;
+            word-break: break-all !important;
+            word-break: keep-all !important;
+            overflow-wrap: break-word !important;
+        }
+
+        .msg-row.bot .msg-bubble {
+            background: #EBF0F7 !important;
+            color: var(--ink, #1C263A) !important;
+            border-top-left-radius: 4px !important;
+        }
+
+        .msg-row.user .msg-bubble {
+            background: var(--navy, #243B64) !important;
+            color: #FFFFFF !important;
+            border-top-right-radius: 4px !important;
+        }
+
+        /* 생각하는 애니메이션 */
+        .thinking-bubble {
+            display: flex !important;
+            align-items: center;
+            gap: 5px;
+            padding: 16px 22px !important;
+            width: auto !important;
+        }
+
+        .dot-flashing {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--gray-500, #7C879A);
+            animation: dotFlashing 1s infinite alternate;
+        }
+
+        .dot-flashing:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot-flashing:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dotFlashing {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* 추천 칩 그룹 */
+        .chip-group {
+            display: flex;
+            gap: 8px;
+            padding: 12px 28px;
+            overflow-x: auto;
+            background: #FAFAFC;
+            flex-shrink: 0;
+            border-top: 1px dashed var(--gray-100, #F1F3F7);
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .chip-btn {
+            border: 1.5px solid var(--navy, #243B64);
+            background: #FFFFFF;
+            color: var(--navy, #243B64);
+            font-weight: 700;
+            font-size: 13.5px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .chip-btn:hover {
+            background: var(--navy, #243B64);
+            color: #FFFFFF;
+        }
+
+        /* 하단 입력 폼 고정 */
+        .chat-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--gray-100, #F1F3F7);
+            background: #FFFFFF;
+            flex-shrink: 0;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .chat-input-form {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .btn-attach {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--blue-50, #F4F6FA);
+            border: none;
+            font-size: 20px;
+            color: var(--gray-500, #7C879A);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .chat-input {
+            flex: 1 !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: var(--ink, #1C263A);
+            font-family: inherit;
+        }
+
+        .chat-input::placeholder {
+            color: var(--gray-300, #B0B8C5);
+        }
+
+        .btn-send {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--navy, #243B64);
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.15s, transform 0.15s;
+        }
+
+        .btn-send:hover {
+            background: var(--blue-900, #16233D);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 620px) {
+            .chat-container {
+                height: 90vh !important;
+                border-radius: 0 !important;
+            }
+
+            .chat-body {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrap nav">
+            <a href="../index.html" class="logo">
+                <img src="../images/전셈이로고.png" width="40" alt="전셈 로고">
+                전셈
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html#services">서비스 소개</a>
+                <a href="../index.html#diagnosis">안전진단</a>
+                <a href="../index.html#report">AI 챗봇</a>
+                <a href="../index.html#notice">고객지원</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="chat-sec">
+        <div class="wrap" style="display:flex; justify-content:center; width:100%;">
+            <div class="chat-container">
+
+                <!-- 상단 안심 상담 헤더 -->
+                <div class="chat-header">
+                    <div class="chat-header-info">
+                        <div class="chat-header-icon">
+                            <img src="../images/전셈이상담.png" width="40" alt="전셈이 상담">
+                        </div>
+                        <div>
+                            <h2 class="chat-header-title">전셈 안심 상담</h2>
+                            <div class="chat-status"><span class="status-dot"></span>실시간 답변 중</div>
+                        </div>
+                    </div>
+                    <a href="../index.html" class="btn-chat-home">← 홈으로</a>
+                </div>
+
+                <!-- 메시지 대화 창 -->
+                <div class="chat-body" id="chatBody">
+                    <div class="msg-row bot">
+                        <div class="msg-bubble">
+                            안녕하세요! 전세 계약 중 궁금한 점이나 걱정되는 상황을 편하게 말씀해주세요.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 추천 칩 질문 -->
+                <div class="chip-group">
+                    <button class="chip-btn" onclick="sendQuickMsg('등기부등본 분석 받기')">등기부등본 분석 받기</button>
+                    <button class="chip-btn" onclick="sendQuickMsg('특약 문구 알려줘')">특약 문구 알려줘</button>
+                    <button class="chip-btn" onclick="sendQuickMsg('보증금 못 받으면?')">보증금 못 받으면?</button>
+                </div>
+
+                <!-- 하단 입력창 -->
+                <div class="chat-footer">
+                    <form class="chat-input-form" onsubmit="handleSend(event)">
+                        <button type="button" class="btn-attach" onclick="location.href='upload.html'">+</button>
+                        <input type="text" id="userInput" class="chat-input" placeholder="상황을 입력해보세요 (예: 전세가율이 뭔가요?)"
+                            autocomplete="off">
+                        <button type="submit" class="btn-send">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+
+        let conversationStep = 0;
+
+        function handleSend(e) {
+            e.preventDefault();
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendUserMsg(text);
+            userInput.value = '';
+
+            processBotReply(text);
+        }
+
+        function sendQuickMsg(text) {
+            appendUserMsg(text);
+            processBotReply(text);
+        }
+
+        function appendUserMsg(text) {
+            const row = document.createElement('div');
+            row.className = 'msg-row user';
+            row.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div>`;
+            chatBody.appendChild(row);
+            scrollToBottom();
+        }
+
+        function processBotReply(userText) {
+            showThinking();
+
+            setTimeout(() => {
+                removeThinking();
+
+                let reply = "";
+
+                if (userText.includes("근저당이 있다는데") || userText.includes("괜찮아") || conversationStep === 0) {
+                    reply = "근저당이 있다고 해서 무조건 위험한 건 아니예요. 다만 근저당 금액과 주택 시세, 내 보증금을 함께 확인해야 안전성을 판단할 수 있어요. 전셈은 등기부등본을 올려주시면 위험요소를 확인해드려요.";
+                    conversationStep = 1;
+                } else if (userText.includes("어느 정도면 위험") || conversationStep === 1) {
+                    reply = "근저당만 단독으로 판단하기보다는 주택 시세 대비 선순위 채권과 보증금의 규모를 함께 봐야 해요. 등기부등본과 매물 주소를 확인하면 전세가율과 함께 위험도를 분석해드릴 수 있어요.";
+                    conversationStep = 2;
+                } else {
+                    reply = "네, 세입자님의 안전한 보증금을 위해 원본 등기부등본 분석이나 표준 특약 작성을 추천해 드려요. 상단 메뉴에서 바로 진단해 보실 수 있습니다!";
+                }
+
+                appendBotMsg(reply);
+            }, 1200);
+        }
+
+        function appendBotMsg(text) {
+            const row = document.createElement('div');
+            row.className = 'msg-row bot';
+            row.innerHTML = `<div class="msg-bubble">${text}</div>`;
+            chatBody.appendChild(row);
+            scrollToBottom();
+        }
+
+        function showThinking() {
+            const row = document.createElement('div');
+            row.className = 'msg-row bot';
+            row.id = 'thinkingRow';
+            row.innerHTML = `
+      <div class="msg-bubble thinking-bubble">
+        <div class="dot-flashing"></div>
+        <div class="dot-flashing"></div>
+        <div class="dot-flashing"></div>
+      </div>`;
+            chatBody.appendChild(row);
+            scrollToBottom();
+        }
+
+        function removeThinking() {
+            const thinkingRow = document.getElementById('thinkingRow');
+            if (thinkingRow) thinkingRow.remove();
+        }
+
+        function scrollToBottom() {
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"']/g, function (s) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전셈 | 매물 주소로 위험도 분석하기</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- 카카오/다음 우편번호 주소검색 서비스 API -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <style>
+        .address-sec {
+            padding: 50px 0 80px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 박스 너비 및 크기 완벽 고정 (가로/세로 늘어남 완전 차단) */
+        .address-card-wrapper {
+            width: 620px !important;
+            max-width: 100% !important;
+            background: #ffffff;
+            border-radius: var(--radius-lg, 28px);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-pop, 0 16px 40px rgba(36, 59, 100, 0.18));
+            border: 1px solid var(--gray-100, #F1F3F7);
+            box-sizing: border-box !important;
+            overflow: hidden;
+            /* 영역 밖 팽창 차단 */
+        }
+
+        .address-header .brand {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--blue, #243B64);
+            margin-bottom: 6px;
+        }
+
+        .address-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.35;
+            margin: 0 0 10px;
+            letter-spacing: -0.4px;
+            color: var(--ink, #1C263A);
+        }
+
+        .address-desc {
+            font-size: 15px;
+            color: var(--gray-500, #7C879A);
+            line-height: 1.6;
+            margin: 0 0 28px;
+            word-break: keep-all;
+        }
+
+        /* 설명 Accordion 박스 */
+        .info-box {
+            background: var(--blue-50, #F4F6FA);
+            border: 1px solid var(--blue-100, #E2E8F0);
+            border-radius: 20px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            box-sizing: border-box !important;
+            width: 100% !important;
+        }
+
+        .info-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--ink, #1C263A);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .arrow-icon {
+            font-size: 13px;
+            color: var(--gray-500, #7C879A);
+            display: inline-block;
+        }
+
+        .info-content {
+            margin-top: 14px;
+            display: block;
+        }
+
+        .info-content.collapsed {
+            display: none !important;
+        }
+
+        .info-subtext {
+            font-size: 14.5px;
+            color: var(--gray-700, #4B5566);
+            line-height: 1.6;
+            margin: 0 0 16px;
+            word-break: keep-all;
+        }
+
+        /* 전셈 TIP 박스 */
+        .tip-card {
+            background: var(--cream, #FFFDF5);
+            border: 1.5px solid var(--yellow-dark, #E3BD5C);
+            border-radius: 16px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .tip-head {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--blue, #243B64);
+            margin-bottom: 8px;
+        }
+
+        .tip-card p {
+            font-size: 14px;
+            color: var(--gray-700, #4B5566);
+            line-height: 1.6;
+            margin: 0;
+            word-break: keep-all;
+        }
+
+        /* 폼 입력 영역 */
+        .input-group {
+            margin-bottom: 24px;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--ink, #1C263A);
+            margin-bottom: 10px;
+        }
+
+        .address-input-wrap {
+            display: flex;
+            gap: 10px;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .custom-input {
+            height: 54px;
+            background: var(--blue-50, #F4F6FA);
+            border: 1.5px solid transparent;
+            border-radius: 14px;
+            padding: 0 18px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--ink, #1C263A);
+            outline: none;
+            transition: all 0.15s ease-in-out;
+            box-sizing: border-box !important;
+        }
+
+        /* 전세가 입력창 전체 너비 지정 */
+        .custom-input.full-width {
+            width: 100% !important;
+        }
+
+        .custom-input::placeholder {
+            color: var(--gray-300, #B0B8C5);
+        }
+
+        .custom-input:focus {
+            background: #FFFFFF;
+            border-color: var(--blue, #243B64);
+            box-shadow: 0 0 0 3px rgba(36, 59, 100, 0.1);
+        }
+
+        .btn-search-addr {
+            height: 54px;
+            padding: 0 20px;
+            background: #FFFFFF;
+            border: 1.5px solid var(--gray-300, #D7DEE8);
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--navy, #243B64);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s;
+            flex-shrink: 0;
+        }
+
+        .btn-search-addr:hover {
+            border-color: var(--navy, #243B64);
+            background: var(--blue-50, #F4F6FA);
+        }
+
+        /* 제출 버튼 */
+        .btn-analyze-submit {
+            width: 100% !important;
+            height: 58px;
+            background: var(--gray-300, #D7DEE8);
+            color: var(--gray-500, #7C879A);
+            font-weight: 800;
+            font-size: 18px;
+            border-radius: 16px;
+            border: none;
+            cursor: not-allowed;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+            box-sizing: border-box !important;
+        }
+
+        .btn-analyze-submit.active {
+            background: var(--navy, #243B64);
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(36, 59, 100, 0.2);
+        }
+
+        .btn-analyze-submit.active:hover {
+            background: var(--blue-900, #16233D);
+            transform: translateY(-2px);
+        }
+
+        .btn-back-home {
+            display: block;
+            text-align: center;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--gray-500, #7C879A);
+            text-decoration: underline;
+            transition: color 0.15s;
+        }
+
+        .btn-back-home:hover {
+            color: var(--blue, #243B64);
+        }
+
+        @media (max-width: 650px) {
+            .address-card-wrapper {
+                width: 100% !important;
+                padding: 32px 24px;
+            }
+
+            .address-header h1 {
+                font-size: 22px;
+            }
+
+            .address-input-wrap {
+                flex-direction: column;
+            }
+
+            .btn-search-addr {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrap nav">
+            <a href="../index.html" class="logo">
+                <img src="../images/전셈이로고.png" width="40" alt="전셈 로고">
+                전셈
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html#services">서비스 소개</a>
+                <a href="../index.html#diagnosis">안전진단</a>
+                <a href="../index.html#report">AI 챗봇</a>
+                <a href="../index.html#notice">고객지원</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section class="address-sec">
+        <div class="wrap" style="display:flex; justify-content:center;">
+            <div class="address-card-wrapper">
+
+                <!-- 상단 제목 영역 -->
+                <div class="address-header">
+                    <div class="brand"></div>
+                    <h1>매물 주소로 위험도 분석하기</h1>
+                </div>
+
+                <p class="address-desc">
+                    매물 주소와 전세가를 입력하시면 시세 대비 전세가율로 위험도를 확인해드려요.
+                </p>
+
+                <!-- 아코디언 설명 및 전셈 TIP -->
+                <div class="info-box">
+                    <div class="info-header" onclick="toggleAccordion()">
+                        <h3 class="info-title">
+                            <!-- 기본 화살표: ▶ -->
+                            <span id="arrowIcon" class="arrow-icon">▶</span>
+                            🏠 왜 매물 주소가 필요한가요?
+                        </h3>
+                    </div>
+
+                    <div id="infoContent" class="info-content collapsed">
+                        <p class="info-subtext">
+                            주소를 알려주시면 해당 매물의 주변 시세와 전세보증금 수준을 비교해 위험요소를 살펴볼 수 있어요.
+                        </p>
+
+                        <div class="tip-card">
+                            <div class="tip-head">💡 전셈 TIP</div>
+                            <p>
+                                전세보증금이 집값에 비해 너무 높으면 주의가 필요해요. 집값이 떨어지거나 경매로 넘어갔을 때, 보증금을 전부 돌려받지 못할 위험이 커질 수 있기 때문이에요.
+                                그래서 전셈은 주변 시세와 전세보증금을 함께 비교해볼게요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 입력 폼 -->
+                <form onsubmit="handleAnalyze(event)">
+                    <!-- 1. 매물 주소 -->
+                    <div class="input-group">
+                        <label class="input-label" for="addrInput">매물 주소</label>
+                        <div class="address-input-wrap">
+                            <input type="text" id="addrInput" class="custom-input" style="flex:1;"
+                                placeholder="주소 검색을 눌러 입력하세요" oninput="checkForm()">
+                            <button type="button" class="btn-search-addr" onclick="openAddressSearch()">주소 검색</button>
+                        </div>
+                    </div>
+
+                    <!-- 2. 전세가 (숫자만 제약: inputmode, pattern, keydown 방지) -->
+                    <div class="input-group">
+                        <label class="input-label" for="priceInput">전세가 (만원)</label>
+                        <input type="number" id="priceInput" class="custom-input full-width" step="100" min="0"
+                            inputmode="numeric" pattern="[0-9]*" placeholder="예: 35000"
+                            onkeydown="filterNonNumeric(event)" oninput="checkForm()">
+                    </div>
+
+                    <!-- 제출 버튼 -->
+                    <button type="submit" id="btnSubmit" class="btn-analyze-submit" disabled>위험도 분석하기</button>
+                </form>
+
+                <a href="../index.html" class="btn-back-home">← 홈으로</a>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 1. 아코디언 접기/펼치기 제어
+        function toggleAccordion() {
+            const content = document.getElementById('infoContent');
+            const arrow = document.getElementById('arrowIcon');
+
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                arrow.innerText = '▼';
+            } else {
+                content.classList.add('collapsed');
+                arrow.innerText = '▶';
+            }
+        }
+
+        // 2. 카카오/다음 우편번호 검색 팝업 실행
+        function openAddressSearch() {
+            if (typeof daum === 'undefined' || !daum.Postcode) {
+                alert('주소 검색 라이브러리를 로딩 중입니다. 잠시 후 다시 시도해 주세요.');
+                return;
+            }
+
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    let fullAddr = data.roadAddress || data.jibunAddress;
+                    document.getElementById('addrInput').value = fullAddr;
+                    checkForm();
+                }
+            }).open();
+        }
+
+        // 3. 전세가 입력창 숫자 이외 기호(e, +, -, .) 입력 차단
+        function filterNonNumeric(e) {
+            const invalidChars = ["e", "E", "+", "-", "."];
+            if (invalidChars.includes(e.key)) {
+                e.preventDefault();
+            }
+        }
+
+        // 4. 폼 입력 유효성 검사 (버튼 활성화)
+        function checkForm() {
+            const addr = document.getElementById('addrInput').value.trim();
+            const price = document.getElementById('priceInput').value.trim();
+            const submitBtn = document.getElementById('btnSubmit');
+
+            if (addr && price) {
+                submitBtn.classList.add('active');
+                submitBtn.removeAttribute('disabled');
+            } else {
+                submitBtn.classList.remove('active');
+                submitBtn.setAttribute('disabled', 'true');
+            }
+        }
+
+        // 5. 위험도 분석 제출
+        function handleAnalyze(e) {
+            e.preventDefault();
+
+            const addr = document.getElementById('addrInput').value.trim();
+            const price = document.getElementById('priceInput').value.trim();
+
+            // 정확한 키 이름으로 저장
+            sessionStorage.setItem('userAddr', addr);
+            sessionStorage.setItem('userPrice', price);
+
+            location.href = 'addr_result.html';
+        }
+    </script>
+</body>
+
+</html>

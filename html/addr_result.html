@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전셈 | 매물 주소 분석 결과</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .result-sec {
+            padding: 50px 0 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .result-card-wrapper {
+            width: 100%;
+            max-width: 540px;
+            background: #ffffff;
+            border-radius: var(--radius-lg, 28px);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-pop, 0 16px 40px rgba(36, 59, 100, 0.18));
+            border: 1px solid var(--gray-100, #F1F3F7);
+            box-sizing: border-box;
+        }
+
+        .result-header .brand {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--blue, #243B64);
+            margin-bottom: 6px;
+        }
+
+        .result-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.35;
+            margin: 0 0 24px;
+            color: var(--ink, #1C263A);
+        }
+
+        .result-hero-visual {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .result-hero-img {
+            width: 130px;
+            height: auto;
+            display: inline-block;
+        }
+
+        .info-list {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        .info-label {
+            color: var(--gray-500, #7C879A);
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: var(--ink, #1C263A);
+            font-weight: 800;
+            text-align: right;
+            max-width: 65%;
+            word-break: keep-all;
+        }
+
+        .status-badge-wrap {
+            margin-bottom: 16px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 800;
+        }
+
+        .status-badge.safe {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .status-badge.warning {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .result-desc {
+            font-size: 14.5px;
+            color: var(--gray-500, #7C879A);
+            line-height: 1.6;
+            margin: 0 0 32px;
+            word-break: keep-all;
+        }
+
+        .action-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-ask-ai {
+            width: 100%;
+            height: 56px;
+            background: var(--navy, #243B64);
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 800;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 16px rgba(36, 59, 100, 0.18);
+            transition: background 0.15s, transform 0.15s;
+            box-sizing: border-box;
+        }
+
+        .btn-ask-ai:hover {
+            background: var(--blue-900, #16233D);
+            transform: translateY(-2px);
+        }
+
+        .btn-retest {
+            width: 100%;
+            height: 56px;
+            background: #FFFFFF;
+            color: var(--navy, #243B64);
+            border: 1.5px solid var(--gray-300, #D7DEE8);
+            font-size: 17px;
+            font-weight: 800;
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: border-color 0.15s, transform 0.15s;
+            box-sizing: border-box;
+        }
+
+        .btn-retest:hover {
+            border-color: var(--navy, #243B64);
+            transform: translateY(-2px);
+        }
+
+        .btn-back-home {
+            display: block;
+            text-align: center;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--gray-500, #7C879A);
+            text-decoration: underline;
+            margin-top: 16px;
+            transition: color 0.15s;
+        }
+
+        .btn-back-home:hover {
+            color: var(--blue, #243B64);
+        }
+
+        @media (max-width: 620px) {
+            .result-card-wrapper {
+                padding: 32px 24px;
+            }
+
+            .result-header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrap nav">
+            <a href="../index.html" class="logo">
+                <img src="../images/전셈이로고.png" width="40" alt="전셈 로고">
+                전셈
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html#services">서비스 소개</a>
+                <a href="../index.html#diagnosis">안전진단</a>
+                <a href="../index.html#report">AI 챗봇</a>
+                <a href="../index.html#notice">고객지원</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN RESULT CONTENT -->
+    <section class="result-sec">
+        <div class="wrap" style="display:flex; justify-content:center;">
+            <div class="result-card-wrapper">
+
+                <div class="result-header">
+                    <div class="brand"></div>
+                    <h1>분석 결과</h1>
+                </div>
+
+                <!-- 캐릭터 이미지 (전세가율에 따라 동적 변경) -->
+                <div class="result-hero-visual">
+                    <img src="../images/전셈이안전.png" id="resHeroImg" alt="전셈이 분석 캐릭터" class="result-hero-img">
+                </div>
+
+                <!-- 이전 페이지 정보 연동 영역 -->
+                <div class="info-list">
+                    <div class="info-item">
+                        <span class="info-label">매물 주소</span>
+                        <span class="info-value" id="resAddr">정보 없음</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">입력한 전세가</span>
+                        <span class="info-value" id="resPrice">0만원</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">추정 시세</span>
+                        <span class="info-value" id="resEstimate">13,680만원</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">전세가율</span>
+                        <span class="info-value" id="resRatio">0%</span>
+                    </div>
+                </div>
+
+                <div class="status-badge-wrap">
+                    <span class="status-badge safe" id="resBadge">안전</span>
+                </div>
+
+                <p class="result-desc" id="resDesc">
+                    시세 대비 전세가율이 낮은 편이라 비교적 안전해요. 그래도 등기부등본은 꼭 확인하세요.
+                </p>
+
+                <div class="action-group">
+                    <a href="chat.html" class="btn-ask-ai">
+                        💬 추가 상담하러 가기
+                    </a>
+                    <a href="address.html" class="btn-retest">
+                        다시 분석하기
+                    </a>
+                </div>
+
+                <a href="../index.html" class="btn-back-home">← 홈으로</a>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // sessionStorage에서 저장된 매물 주소 및 전세가 불러오기
+            const userAddr = sessionStorage.getItem('userAddr');
+            const userPrice = sessionStorage.getItem('userPrice');
+
+            const estimatePrice = 13680; // 추정 시세 기준값 (만원)
+
+            // 1. 매물 주소 바인딩
+            if (userAddr && userAddr.trim() !== '') {
+                document.getElementById('resAddr').innerText = userAddr;
+            }
+
+            // 2. 전세가 및 전세가율 계산 및 바인딩
+            if (userPrice && !isNaN(userPrice)) {
+                const priceNum = parseInt(userPrice, 10);
+                document.getElementById('resPrice').innerText = priceNum.toLocaleString() + '만원';
+
+                // 전세가율 계산 (%)
+                const ratio = Math.round((priceNum / estimatePrice) * 100);
+                document.getElementById('resRatio').innerText = ratio + '%';
+
+                // 3. 전세가율 80% 이상 시 경고 상태(주의)로 화면 전환
+                if (ratio >= 80) {
+                    document.getElementById('resHeroImg').src = '../images/전셈이위험.png';
+
+                    const badge = document.getElementById('resBadge');
+                    badge.className = 'status-badge warning';
+                    badge.innerText = '주의';
+
+                    document.getElementById('resDesc').innerText = '시세 대비 전세가율이 높은 편이라 깡통전세 위험이 있어요. 보증보험 가입 가능 여부와 선순위 채권을 꼭 확인하세요.';
+                } else {
+                    document.getElementById('resHeroImg').src = '../images/전셈이안전.png';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전셈 | 전세입니다. 그래서, 전 셉니다.</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- SVG 심볼 정의 구역 (defs 태그 감싸기) -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <!-- 1. 등기부 쉬운 분석 -->
+      <symbol id="icon-analysis" viewBox="0 0 32 32">
+        <path d="M18 4H8C6.9 4 6 4.9 6 6V26C6 27.1 6.9 28 8 28H20C21.1 28 22 27.1 22 26V10L18 4Z" fill="none"
+          stroke="#16233D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M18 4V10H22" fill="none" stroke="#16233D" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <line x1="9.5" y1="12" x2="14.5" y2="12" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+        <line x1="9.5" y1="16" x2="16.5" y2="16" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+        <line x1="9.5" y1="20" x2="13.5" y2="20" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+        <circle cx="21" cy="22" r="3.5" fill="#FFF" stroke="#2563EB" stroke-width="2.2" />
+        <line x1="23.5" y1="24.5" x2="26.5" y2="27.5" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" />
+      </symbol>
+
+      <!-- 2. 계약 체크리스트 -->
+      <symbol id="icon-checklist" viewBox="0 0 32 32">
+        <rect x="6" y="7" width="20" height="21" rx="3" fill="none" stroke="#16233D" stroke-width="2.2" />
+        <path d="M11 7V5C11 4.4 11.4 4 12 4H20C20.6 4 21 4.4 21 5V7" fill="#2563EB" stroke="#2563EB" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M9.5 13.5L11.5 15.5L14.5 11.5" stroke="#2563EB" stroke-width="2.2" fill="none" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <line x1="16.5" y1="13.5" x2="22" y2="13.5" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+        <path d="M9.5 19.5L11.5 21.5L14.5 17.5" stroke="#2563EB" stroke-width="2.2" fill="none" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <line x1="16.5" y1="19.5" x2="22" y2="19.5" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+      </symbol>
+
+      <!-- 3. 법률 분쟁 가이드 -->
+      <symbol id="icon-law" viewBox="0 0 32 32">
+        <path d="M16 6V25" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+        <circle cx="16" cy="6" r="1.5" fill="#16233D" />
+        <line x1="7" y1="10" x2="25" y2="10" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
+        <path d="M7 10L4 17M7 10L10 17" stroke="#16233D" stroke-width="1.8" />
+        <path d="M4 17C4 18.5 5.3 19.5 7 19.5C8.7 19.5 10 18.5 10 17Z" fill="none" stroke="#16233D" stroke-width="2" />
+        <path d="M25 10L22 17M25 10L28 17" stroke="#16233D" stroke-width="1.8" />
+        <path d="M22 17C22 18.5 23.3 19.5 25 19.5C26.7 19.5 28 18.5 28 17Z" fill="none" stroke="#16233D"
+          stroke-width="2" />
+        <path d="M11 25H21" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" />
+      </symbol>
+
+      <!-- 4. AI 24시간 상담 -->
+      <symbol id="icon-aichat" viewBox="0 0 32 32">
+        <path
+          d="M6 15C6 10.0294 10.0294 6 15 6C19.9706 6 24 10.0294 24 15C24 19.9706 19.9706 24 15 24C13.2 24 11.5 23.5 10 22.6L5 24.5L6.6 20C5.6 18.5 5 16.8 5 15"
+          fill="none" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="14.5" y="18.5" font-family="'Pretendard', sans-serif" font-weight="800" font-size="8.5" fill="#2563EB"
+          text-anchor="middle">AI</text>
+        <path d="M25 5L26 8L29 9L26 10L25 13L24 10L21 9L24 8Z" fill="#2563EB" />
+        <path d="M20 2L20.6 3.4L22 4L20.6 4.6L20 6L19.4 4.6L18 4L19.4 3.4Z" fill="#2563EB" />
+      </symbol>
+
+      <!-- 추가 기재된 기타 아이콘들 -->
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 2 L20 5.5 V11 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 11 V5.5 Z" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linejoin="round" />
+        <circle cx="12" cy="12" r="2.4" fill="currentColor" />
+        <rect x="11" y="13.6" width="2" height="3.4" rx="1" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-doc" viewBox="0 0 24 24">
+        <path d="M6 3h9l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <line x1="9" y1="11" x2="16" y2="11" stroke="currentColor" stroke-width="1.8" />
+        <line x1="9" y1="15" x2="16" y2="15" stroke="currentColor" stroke-width="1.8" />
+      </symbol>
+      <symbol id="icon-calc" viewBox="0 0 24 24">
+        <rect x="4" y="2" width="16" height="20" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" />
+        <line x1="7" y1="7" x2="17" y2="7" stroke="currentColor" stroke-width="2" />
+        <circle cx="8" cy="13" r="1.4" fill="currentColor" />
+        <circle cx="12" cy="13" r="1.4" fill="currentColor" />
+        <circle cx="16" cy="13" r="1.4" fill="currentColor" />
+        <circle cx="8" cy="18" r="1.4" fill="currentColor" />
+        <circle cx="12" cy="18" r="1.4" fill="currentColor" />
+        <circle cx="16" cy="18" r="1.4" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-bell" viewBox="0 0 24 24">
+        <path d="M18 9a6 6 0 10-12 0c0 4-1.5 5.5-2 7h16c-.5-1.5-2-3-2-7z" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linejoin="round" />
+        <path d="M9.5 19a2.5 2.5 0 005 0" fill="none" stroke="currentColor" stroke-width="2" />
+      </symbol>
+      <symbol id="icon-house" viewBox="0 0 24 24">
+        <path d="M3 11 L12 3 L21 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path d="M5 10 V21 H19 V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+        <polyline points="13,6 19,12 13,18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </symbol>
+      <symbol id="mascot-check" viewBox="0 0 200 220">
+        <rect x="146" y="8" width="20" height="30" rx="7" fill="var(--navy)" />
+        <path
+          d="M100 6 C103.5 6 106.8 7.6 109 10.3 L180 70 C186.5 75.5 182.5 86 174 86 L26 86 C17.5 86 13.5 75.5 20 70 L91 10.3 C93.2 7.6 96.5 6 100 6 Z"
+          fill="var(--yellow)" />
+        <ellipse cx="100" cy="128" rx="64" ry="58" fill="var(--cream)" />
+        <circle cx="76" cy="120" r="9" fill="var(--ink)" />
+        <circle cx="124" cy="120" r="9" fill="var(--ink)" />
+      </symbol>
+      <symbol id="mascot-worry" viewBox="0 0 200 220">
+        <rect x="146" y="8" width="20" height="30" rx="7" fill="var(--navy)" />
+        <path
+          d="M100 6 C103.5 6 106.8 7.6 109 10.3 L180 70 C186.5 75.5 182.5 86 174 86 L26 86 C17.5 86 13.5 75.5 20 70 L91 10.3 C93.2 7.6 96.5 6 100 6 Z"
+          fill="var(--yellow)" />
+        <ellipse cx="100" cy="128" rx="64" ry="58" fill="var(--cream)" />
+      </symbol>
+      <symbol id="mascot-laptop" viewBox="0 0 200 220">
+        <rect x="146" y="8" width="20" height="30" rx="7" fill="var(--navy)" />
+        <path
+          d="M100 6 C103.5 6 106.8 7.6 109 10.3 L180 70 C186.5 75.5 182.5 86 174 86 L26 86 C17.5 86 13.5 75.5 20 70 L91 10.3 C93.2 7.6 96.5 6 100 6 Z"
+          fill="var(--yellow)" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="wrap nav">
+      <div class="logo">
+        <img src="images/전셈이로고.png" width="40">
+        전셈
+      </div>
+      <nav class="nav-menu">
+        <a href="#services">서비스 소개</a>
+        <a href="#diagnosis">안전진단</a>
+        <a href="#report">AI 챗봇</a>
+        <a href="#notice">고객지원</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-eyebrow">🏠 우리 보증금 안전 지킴이</span>
+        <h1>전세입니다. 그래서,<br><span class="accent">전 셉니다.</span></h1>
+        <p class="sub">당신의 소중한 전세 보증금, <strong>전셈</strong>이 든든하게 지켜드릴게요.<br>주소 하나로 등기부 위험요소부터 보증보험 가입 가능 여부까지 1초 진단!</p>
+        <div class="hero-ctas">
+          <a href="html/upload.html" class="btn-primary">안전 진단 시작하기</a>
+          </a>
+          <a href="html/chat.html" class="btn-ghost">AI 챗봇과 대화하기</a>
+        </div>
+        <div class="quickbar">
+          <a class="quick-item" href="#analysis">
+            <span class="qicon"><svg width="26" height="26">
+                <use href="#icon-analysis" />
+              </svg></span>
+            <span>등기부 쉬운 분석</span>
+          </a>
+          <a class="quick-item" href="#checklist">
+            <span class="qicon"><svg width="26" height="26">
+                <use href="#icon-checklist" />
+              </svg></span>
+            <span>계약 체크리스트</span>
+          </a>
+          <a class="quick-item" href="#law">
+            <span class="qicon"><svg width="26" height="26">
+                <use href="#icon-law" />
+              </svg></span>
+            <span>법률 분쟁 가이드</span>
+          </a>
+          <a class="quick-item" href="#aichat">
+            <span class="qicon"><svg width="26" height="26">
+                <use href="#icon-aichat" />
+              </svg></span>
+            <span>AI 24시간 상담</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="mascot-halo"></div>
+        <img src="images/전셈이따봉.png">
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL SECTION-->
+  <div class="testimonial">
+    <img src="images/테스티모니얼.png">
+  </div>
+
+
+  <!-- ============ SECTION: FRAUD TYPES ============ -->
+  <!-- ============ SECTION: FRAUD TYPES ============ -->
+  <section class="sec-fraud">
+    <div class="wrap">
+      <!-- 헤더 박스 (닫는 태그 확인) -->
+      <div class="fraud-head">
+        <h2>전세 사기 주요 유형</h2>
+        <div class="fraud-mascot">
+          <img src="images/전셈이궁금.png" alt="전셈이 캐릭터">
+        </div> <!-- 👈 요 닫는 태그 추가 -->
+      </div>
+
+      <!-- 카드 그리드 영역 -->
+      <div class="fraud-grid">
+        <div class="fraud-card">
+          <span class="fraud-badge danger">대표사기</span>
+          <p>깡통전세 사기</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge warning">주의</span>
+          <p>가짜 임대인과의 계약</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge warning">주의</span>
+          <p>신탁회사의 동의 없는 계약</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge warning">주의</span>
+          <p>월셋집을 전셋집으로 둔갑</p>
+        </div>
+
+        <div class="fraud-card">
+          <span class="fraud-badge danger">대표사기</span>
+          <p>이중계약</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge danger">대표사기</span>
+          <p>계약 당일 임대인 변경 및<br>주택담보대출 실행</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge warning">주의</span>
+          <p>선순위 임차보증금 및<br>근저당 허위 고지</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge danger">대표사기</span>
+          <p>임대인의 일방적인<br>보증금 미반환</p>
+        </div>
+
+        <div class="fraud-card">
+          <span class="fraud-badge warning">주의</span>
+          <p>당해세 및 임금채권 우선변제</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge danger">대표사기</span>
+          <p>세입자의 전출신고 후<br>벌어지는 전세사기</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge warning">주의</span>
+          <p>선순위 근저당, 신탁등기말소 등<br>특약 불이행</p>
+        </div>
+        <div class="fraud-card">
+          <span class="fraud-badge danger">대표사기</span>
+          <p>명의도용 대출 사기</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 1: SERVICES ============ -->
+  <section class="sec-services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">SAFETY SOLUTION</span>
+        <h2>전셈이 제공하는<br>든든한 보증금 방어 솔루션</h2>
+      </div>
+      <div class="card-scroll">
+        <div class="service-card shield-demo">
+          <span class="badge">계약 전</span>
+          <span class="risk-dot">!</span>
+          <svg class="shield-pop" viewBox="0 0 24 24">
+            <use href="#icon-shield" />
+          </svg>
+          <h3>등기부등본 위험요소<br>AI 즉시 분석</h3>
+          <p>근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
+          <svg class="card-icon" viewBox="0 0 24 24">
+            <use href="#icon-doc" />
+          </svg>
+        </div>
+        <div class="service-card">
+          <span class="badge">계약 중</span>
+          <h3>시세 변동 &amp;<br>집주인 체납 실시간 알림</h3>
+          <p>계약 기간 중에도 시세와 세금 체납 여부를 실시간으로 확인해 드려요.</p>
+          <svg class="card-icon" viewBox="0 0 24 24">
+            <use href="#icon-bell" />
+          </svg>
+        </div>
+        <div class="service-card">
+          <span class="badge">특약 작성</span>
+          <h3>전세사기 방지<br>표준 특약 생성기</h3>
+          <p>필요한 항목만 선택하면 안전한 특약 조항을 자동으로 완성해 드려요.</p>
+          <svg class="card-icon" viewBox="0 0 24 24">
+            <use href="#icon-house" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ============ SECTION 3: BANNER ============ -->
+  <section class="sec-banner" id="report">
+    <div class="wrap">
+      <div class="banner-box">
+        <div class="banner-text">
+          <h2>혹시, 이 집 계약해도<br>될지 고민 중이신가요?</h2>
+          <p>전셈이 주소 하나로 근저당, 선순위 채권, 악성 임대인 여부를<br>1초 만에 짚어드립니다!</p>
+          <a href="html/address.html" class="btn-primary">주소로 바로 진단하기</a>
+        </div>
+        <div class="banner-mascot">
+          <img src="images/전셈이돋보기.png" width="200" height="200">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4: NOTICE ============ -->
+  <section class="sec-notice" id="notice">
+    <div class="wrap">
+      <div class="notice-box">
+        <div class="notice-title">뚜둥, 집중해주세요! <span class="arrow">›</span></div>
+        <ul class="notice-list">
+          <li><a href="#"><span class="tag">[속보]</span>"나도 혹시 깡통전세?"… 계약 전 반드시 확인해야 할 위험 신호 3가지</a><span
+              class="date">2026-08-05</span></li>
+          <li><a href="#"><span class="tag">[단독]</span>"집주인이 세금 체납?"… 등기부등본 속 숨은 덫 1초 만에 가려내는 법</a><span
+              class="date">2026-07-22</span></li>
+          <li><a href="#"><span class="tag">[주의]</span>"계약서 쓰기 전 필수 체크"… 2026년 달라진 전세보증보험 가입 요건은?</a><span
+              class="date">2026-07-10</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer-cta">
+    <div class="wrap" style="position:relative;">
+      <div class="footer-cta-grid">
+        <div class="footer-cta-text">
+          <h2>어려움이<br>있으신가요?</h2>
+          <p>궁금증을 해결해 드려요. 즉시 부적합하다면 상단에 검색해보시고,<br>이용하시면 보다 빠르게 확인 가능하십니다.</p>
+        </div>
+        <div class="footer-btns">
+          <a href="#" class="footer-btn">자주 하는 질문</a>
+          <a href="#" class="footer-btn">1:1 상담 문의</a>
+          <a href="#" class="footer-btn">서식 다운로드</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-tel"><span class="dot"></span>고객센터는 없습니다.</div>
+        <div class="footer-info">
+          전셈 · 등기부등본 · 계약서 · 시세 분석 및 전세사기 위험도 안내 서비스
+          본 서비스의 분석 결과는 참고용 정보이며, 최종 계약 전 원본 서류와 전문가의 확인을 권장합니다.
+          <br>© Pusan National University Campus AX-Ton 오각지대
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
