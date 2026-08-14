@@ -977,6 +977,36 @@ section {
   }
 }
 
+.hero {
+  position: relative;
+  background-color: #F8FAFD;
+  padding: 60px 0 80px;
+  overflow: hidden;
+  /* 배경이 밖으로 삐져나가지 않도록 방지 */
+}
+
+/* 배경 이미지 전용 가상 레이어 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('images/hero-bg.svg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+  /* 👈 여기서 0.2 ~ 0.5 사이로 배경 진하기를 자유롭게 조절하세요! */
+  pointer-events: none;
+  /* 클릭 방해 방지 */
+  z-index: 0;
+}
+
+/* 내부 콘텐츠들을 배경보다 위로 올리기 */
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 620px) {
   .hero h1 {
     font-size: 32px;
