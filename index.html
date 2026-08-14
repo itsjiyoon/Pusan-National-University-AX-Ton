@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -9,14 +9,228 @@
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ========================================================
+       인터랙티브 TESTIMONIAL & MARQUEE 섹션 스타일
+       ======================================================== */
+    .jeonsem-hero,
+    .jeonsem-hero *,
+    .jeonsem-hero *::before,
+    .jeonsem-hero *::after {
+      box-sizing: border-box;
+    }
+
+    .jeonsem-hero {
+      font-family: "Pretendard", system-ui, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      padding: 30px 0 60px;
+    }
+
+    .jeonsem-main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .jeonsem-hero-wrap {
+      position: relative;
+    }
+
+    .jeonsem-hero-img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      overflow: hidden;
+      object-fit: cover;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      display: block;
+    }
+
+    .jeonsem-bubble-slot {
+      position: absolute;
+      inset-inline: 0;
+      top: 24px;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 768px) {
+      .jeonsem-bubble-slot {
+        top: 40px;
+      }
+    }
+
+    .jeonsem-bubble {
+      position: relative;
+      width: 100%;
+      max-width: 576px;
+      border-radius: 24px;
+      background: #fff;
+      padding: 24px 32px;
+      text-align: center;
+      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .jeonsem-bubble-text-wrap {
+      height: 64px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .jeonsem-bubble-text-wrap {
+        height: 56px;
+      }
+    }
+
+    .jeonsem-bubble-text {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.375;
+      color: #1e293b;
+    }
+
+    @media (min-width: 768px) {
+      .jeonsem-bubble-text {
+        font-size: 20px;
+      }
+    }
+
+    .jeonsem-bubble-text .jeonsem-highlight-pink {
+      color: #ec4899;
+    }
+
+    .jeonsem-bubble-text .jeonsem-highlight-blue {
+      color: #3b82f6;
+    }
+
+    .jeonsem-bubble-text.jeonsem-anim-out {
+      animation: jeonsem-bubble-out 0.45s ease-in-out forwards;
+    }
+
+    .jeonsem-bubble-text.jeonsem-anim-in {
+      animation: jeonsem-bubble-in 0.45s ease-in-out forwards;
+    }
+
+    @keyframes jeonsem-bubble-out {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-24px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes jeonsem-bubble-in {
+      from {
+        transform: translateY(24px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .jeonsem-bubble-tail {
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      height: 16px;
+      width: 16px;
+      transform: translate(-50%, -8px) rotate(45deg);
+      background: #fff;
+    }
+
+    /* 뉴스 마키 영역 */
+    .jeonsem-marquee {
+      overflow: hidden;
+      padding: 8px 0;
+      margin-top: 40px;
+    }
+
+    .jeonsem-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: jeonsem-marquee 40s linear infinite;
+    }
+
+    .jeonsem-marquee:hover .jeonsem-marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes jeonsem-marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .jeonsem-review-card {
+      margin: 0 12px;
+      display: flex;
+      width: 360px;
+      flex-shrink: 0;
+      flex-direction: column;
+      gap: 8px;
+      border-radius: 16px;
+      background: #fff;
+      padding: 20px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f1f5f9;
+    }
+
+    .jeonsem-review-stars {
+      color: #fbbf24;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+
+    .jeonsem-review-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+
+    .jeonsem-review-detail {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #64748b;
+      word-break: keep-all;
+    }
+
+    .jeonsem-review-source {
+      width: fit-content;
+      border-radius: 9999px;
+      background: #f1f5f9;
+      padding: 2px 8px;
+      font-size: 12px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- SVG 심볼 정의 구역 (defs 태그 감싸기) -->
+  <!-- SVG 심볼 정의 구역 -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
-      <!-- 1. 등기부 쉬운 분석 -->
       <symbol id="icon-analysis" viewBox="0 0 32 32">
         <path d="M18 4H8C6.9 4 6 4.9 6 6V26C6 27.1 6.9 28 8 28H20C21.1 28 22 27.1 22 26V10L18 4Z" fill="none"
           stroke="#16233D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -29,7 +243,6 @@
         <line x1="23.5" y1="24.5" x2="26.5" y2="27.5" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" />
       </symbol>
 
-      <!-- 2. 계약 체크리스트 -->
       <symbol id="icon-checklist" viewBox="0 0 32 32">
         <rect x="6" y="7" width="20" height="21" rx="3" fill="none" stroke="#16233D" stroke-width="2.2" />
         <path d="M11 7V5C11 4.4 11.4 4 12 4H20C20.6 4 21 4.4 21 5V7" fill="#2563EB" stroke="#2563EB" stroke-width="1.5"
@@ -42,7 +255,6 @@
         <line x1="16.5" y1="19.5" x2="22" y2="19.5" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
       </symbol>
 
-      <!-- 3. 법률 분쟁 가이드 -->
       <symbol id="icon-law" viewBox="0 0 32 32">
         <path d="M16 6V25" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
         <circle cx="16" cy="6" r="1.5" fill="#16233D" />
@@ -55,7 +267,6 @@
         <path d="M11 25H21" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" />
       </symbol>
 
-      <!-- 4. AI 24시간 상담 -->
       <symbol id="icon-aichat" viewBox="0 0 32 32">
         <path
           d="M6 15C6 10.0294 10.0294 6 15 6C19.9706 6 24 10.0294 24 15C24 19.9706 19.9706 24 15 24C13.2 24 11.5 23.5 10 22.6L5 24.5L6.6 20C5.6 18.5 5 16.8 5 15"
@@ -66,7 +277,6 @@
         <path d="M20 2L20.6 3.4L22 4L20.6 4.6L20 6L19.4 4.6L18 4L19.4 3.4Z" fill="#2563EB" />
       </symbol>
 
-      <!-- 추가 기재된 기타 아이콘들 -->
       <symbol id="icon-shield" viewBox="0 0 24 24">
         <path d="M12 2 L20 5.5 V11 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 11 V5.5 Z" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linejoin="round" />
@@ -78,16 +288,6 @@
         <line x1="9" y1="11" x2="16" y2="11" stroke="currentColor" stroke-width="1.8" />
         <line x1="9" y1="15" x2="16" y2="15" stroke="currentColor" stroke-width="1.8" />
       </symbol>
-      <symbol id="icon-calc" viewBox="0 0 24 24">
-        <rect x="4" y="2" width="16" height="20" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" />
-        <line x1="7" y1="7" x2="17" y2="7" stroke="currentColor" stroke-width="2" />
-        <circle cx="8" cy="13" r="1.4" fill="currentColor" />
-        <circle cx="12" cy="13" r="1.4" fill="currentColor" />
-        <circle cx="16" cy="13" r="1.4" fill="currentColor" />
-        <circle cx="8" cy="18" r="1.4" fill="currentColor" />
-        <circle cx="12" cy="18" r="1.4" fill="currentColor" />
-        <circle cx="16" cy="18" r="1.4" fill="currentColor" />
-      </symbol>
       <symbol id="icon-bell" viewBox="0 0 24 24">
         <path d="M18 9a6 6 0 10-12 0c0 4-1.5 5.5-2 7h16c-.5-1.5-2-3-2-7z" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linejoin="round" />
@@ -97,33 +297,6 @@
         <path d="M3 11 L12 3 L21 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" />
         <path d="M5 10 V21 H19 V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-      </symbol>
-      <symbol id="icon-arrow" viewBox="0 0 24 24">
-        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-        <polyline points="13,6 19,12 13,18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-          stroke-linejoin="round" />
-      </symbol>
-      <symbol id="mascot-check" viewBox="0 0 200 220">
-        <rect x="146" y="8" width="20" height="30" rx="7" fill="var(--navy)" />
-        <path
-          d="M100 6 C103.5 6 106.8 7.6 109 10.3 L180 70 C186.5 75.5 182.5 86 174 86 L26 86 C17.5 86 13.5 75.5 20 70 L91 10.3 C93.2 7.6 96.5 6 100 6 Z"
-          fill="var(--yellow)" />
-        <ellipse cx="100" cy="128" rx="64" ry="58" fill="var(--cream)" />
-        <circle cx="76" cy="120" r="9" fill="var(--ink)" />
-        <circle cx="124" cy="120" r="9" fill="var(--ink)" />
-      </symbol>
-      <symbol id="mascot-worry" viewBox="0 0 200 220">
-        <rect x="146" y="8" width="20" height="30" rx="7" fill="var(--navy)" />
-        <path
-          d="M100 6 C103.5 6 106.8 7.6 109 10.3 L180 70 C186.5 75.5 182.5 86 174 86 L26 86 C17.5 86 13.5 75.5 20 70 L91 10.3 C93.2 7.6 96.5 6 100 6 Z"
-          fill="var(--yellow)" />
-        <ellipse cx="100" cy="128" rx="64" ry="58" fill="var(--cream)" />
-      </symbol>
-      <symbol id="mascot-laptop" viewBox="0 0 200 220">
-        <rect x="146" y="8" width="20" height="30" rx="7" fill="var(--navy)" />
-        <path
-          d="M100 6 C103.5 6 106.8 7.6 109 10.3 L180 70 C186.5 75.5 182.5 86 174 86 L26 86 C17.5 86 13.5 75.5 20 70 L91 10.3 C93.2 7.6 96.5 6 100 6 Z"
-          fill="var(--yellow)" />
       </symbol>
     </defs>
   </svg>
@@ -153,7 +326,6 @@
         <p class="sub">당신의 소중한 전세 보증금, <strong>전셈</strong>이 든든하게 지켜드릴게요.<br>주소 하나로 등기부 위험요소부터 보증보험 가입 가능 여부까지 1초 진단!</p>
         <div class="hero-ctas">
           <a href="html/upload.html" class="btn-primary">안전 진단 시작하기</a>
-          </a>
           <a href="html/chat.html" class="btn-ghost">AI 챗봇과 대화하기</a>
         </div>
         <div class="quickbar">
@@ -191,25 +363,37 @@
     </div>
   </section>
 
-  <!-- TESTIMONIAL SECTION-->
-  <div class="testimonial">
-    <img src="images/testimonial.png">
-  </div>
+  <!-- ============ TESTIMONIAL & MARQUEE SECTION ============ -->
+  <section class="jeonsem-hero">
+    <main class="jeonsem-main">
+      <div class="jeonsem-hero-wrap">
+        <img class="jeonsem-hero-img" src="images/herotown.png" alt="번호가 매겨진 8개의 매물을 나타내는 3D 타운 일러스트" />
+        <div class="jeonsem-bubble-slot">
+          <div class="jeonsem-bubble">
+            <div class="jeonsem-bubble-text-wrap">
+              <p class="jeonsem-bubble-text" data-jeonsem-bubble-text></p>
+            </div>
+            <div class="jeonsem-bubble-tail"></div>
+          </div>
+        </div>
+      </div>
 
+      <div class="jeonsem-marquee">
+        <div class="jeonsem-marquee-track" data-jeonsem-track></div>
+      </div>
+    </main>
+  </section>
 
-  <!-- ============ SECTION: FRAUD TYPES ============ -->
   <!-- ============ SECTION: FRAUD TYPES ============ -->
   <section class="sec-fraud">
     <div class="wrap">
-      <!-- 헤더 박스 (닫는 태그 확인) -->
       <div class="fraud-head">
         <h2>전세 사기 주요 유형</h2>
         <div class="fraud-mascot">
           <img src="images/curious.png" alt="전셈이 캐릭터">
-        </div> <!-- 👈 요 닫는 태그 추가 -->
+        </div>
       </div>
 
-      <!-- 카드 그리드 영역 -->
       <div class="fraud-grid">
         <div class="fraud-card">
           <span class="fraud-badge danger">대표사기</span>
@@ -227,7 +411,6 @@
           <span class="fraud-badge warning">주의</span>
           <p>월셋집을 전셋집으로 둔갑</p>
         </div>
-
         <div class="fraud-card">
           <span class="fraud-badge danger">대표사기</span>
           <p>이중계약</p>
@@ -244,7 +427,6 @@
           <span class="fraud-badge danger">대표사기</span>
           <p>임대인의 일방적인<br>보증금 미반환</p>
         </div>
-
         <div class="fraud-card">
           <span class="fraud-badge warning">주의</span>
           <p>당해세 및 임금채권 우선변제</p>
@@ -305,9 +487,6 @@
     </div>
   </section>
 
-
-
-
   <!-- ============ SECTION 3: BANNER ============ -->
   <section class="sec-banner" id="report">
     <div class="wrap">
@@ -367,7 +546,155 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- 인터랙티브 말풍선 및 뉴스 마키 스크립트 -->
+  <script>
+    (function () {
+      var stats = [
+        '현재까지 5,741명이 ‘전셈’을 사용해서 계약중이에요',
+        '오늘 하루만 128명이 새로 상담을 신청했어요',
+        '전세사기 걱정, ‘전셈’이 계약 전에 미리 확인해드려요',
+      ];
+
+      var reviews = [
+        {
+          title: '부산 지역 전세사기 피해자, 4,000명 넘어섰다',
+          detail: '부산 누적 피해자가 4,087명으로, 한 달 새 32명이 늘었습니다.',
+          source: 'Knn',
+        },
+        {
+          title: '전국 피해자 10명 중 1명은 부산에 있다',
+          detail:
+            '전세사기 피해가 수도권(60.7%)에 집중된 가운데, 대전(11.1%)에 이어 부산(10.1%)이 전국에서 세 번째로 많은 피해 지역입니다.',
+          source: 'Ujnews',
+        },
+        {
+          title: '한 달에 30명 이상, 계속 늘어나는 피해자',
+          detail:
+            '부산의 누적 피해자는 한 달 사이 32명이 증가하며 여전히 진행 중인 문제임을 보여줍니다.',
+          source: 'Knn',
+        },
+        {
+          title: '피해자 대부분이 청년·서민층',
+          detail:
+            '전세사기 피해자의 75.9%가 40세 미만으로, 사회 초년생과 청년층이 집중 타격을 받고 있습니다.',
+          source: 'Knn',
+        },
+        {
+          title: '피해자 대부분 보증금 3억 원 이하 서민',
+          detail:
+            '전세사기 피해의 97.6%가 보증금 3억 원 이하 주택에서 발생해, 자산이 많지 않은 세입자들이 주로 피해를 입었습니다.',
+          source: 'Ujnews',
+        },
+        {
+          title: '피해 확산세, 상대적으로 안전했던 지역까지 번짐',
+          detail:
+            '그동안 피해가 적었던 부산 사하구에서도 140건의 전세사기 피해가 새로 확인됐습니다.',
+          source: 'B tv news',
+        },
+        {
+          title: '다세대·오피스텔 세입자, 가장 위험하다',
+          detail:
+            '주택 유형별로는 다세대주택(28.7%), 오피스텔(20.8%), 다가구(18.5%) 순으로 피해가 많아, 원룸·오피스텔 세입자가 특히 취약합니다.',
+          source: 'Tvseoul',
+        },
+        {
+          title: '전국 피해자, 이미 4만 명을 넘었다',
+          detail:
+            '2023년 전세사기피해자법 시행 이후 전국 누적 피해자는 4만 278명에 달합니다.',
+          source: 'Ujnews',
+        },
+        {
+          title: '피해 인정률조차 60%에 못 미친다',
+          detail:
+            '전세 피해 인정률은 59.6%에 불과해, 피해를 신고해도 절반 가까이는 공식 인정받지 못하고 있습니다.',
+          source: 'Ujnews',
+        },
+        {
+          title: '정부도 심각성을 인정, 매입 지원 1만 가구 돌파',
+          detail:
+            'LH가 매입한 전세사기 피해주택이 처음으로 1만 256가구를 넘어섰고, 관련 지원도 7만 2천여 가구에 이릅니다.',
+          source: 'Knn',
+        },
+      ];
+
+      function highlight(text) {
+        return text.replace(/(\d[\d,]*명|‘[^’]+’)/g, function (match) {
+          var cls = match.indexOf('명') !== -1 ? 'jeonsem-highlight-pink' : 'jeonsem-highlight-blue';
+          return '<span class="' + cls + '">' + match + '</span>';
+        });
+      }
+
+      function initBubble(root) {
+        var textEl = root.querySelector('[data-jeonsem-bubble-text]');
+        if (!textEl) return;
+        var index = 0;
+        textEl.innerHTML = highlight(stats[index]);
+
+        setInterval(function () {
+          textEl.classList.remove('jeonsem-anim-in');
+          textEl.classList.add('jeonsem-anim-out');
+
+          var onOut = function () {
+            textEl.removeEventListener('animationend', onOut);
+            index = (index + 1) % stats.length;
+            textEl.innerHTML = highlight(stats[index]);
+            textEl.classList.remove('jeonsem-anim-out');
+            textEl.classList.add('jeonsem-anim-in');
+          };
+          textEl.addEventListener('animationend', onOut);
+        }, 3500);
+      }
+
+      function renderCard(review) {
+        var card = document.createElement('div');
+        card.className = 'jeonsem-review-card';
+
+        var stars = document.createElement('div');
+        stars.className = 'jeonsem-review-stars';
+        stars.textContent = '★★★★★';
+
+        var title = document.createElement('p');
+        title.className = 'jeonsem-review-title';
+        title.textContent = review.title;
+
+        var detail = document.createElement('p');
+        detail.className = 'jeonsem-review-detail';
+        detail.textContent = review.detail;
+
+        var source = document.createElement('span');
+        source.className = 'jeonsem-review-source';
+        source.textContent = review.source;
+
+        card.appendChild(stars);
+        card.appendChild(title);
+        card.appendChild(detail);
+        card.appendChild(source);
+        return card;
+      }
+
+      function initMarquee(root) {
+        var track = root.querySelector('[data-jeonsem-track]');
+        if (!track) return;
+        var doubled = reviews.concat(reviews);
+        doubled.forEach(function (review) {
+          track.appendChild(renderCard(review));
+        });
+      }
+
+      function init() {
+        var root = document.querySelector('.jeonsem-hero');
+        if (!root) return;
+        initBubble(root);
+        initMarquee(root);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
 </body>
 
 </html>

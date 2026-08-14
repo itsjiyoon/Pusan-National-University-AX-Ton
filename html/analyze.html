@@ -37,7 +37,7 @@
         }
 
         .upload-group {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .upload-label {
@@ -97,6 +97,21 @@
             color: #1C263A;
         }
 
+        /* 배경 없는 깔끔한 보안 안내 텍스트 */
+        .security-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--gray-500, #7C879A);
+            margin-top: 24px;
+            margin-bottom: 16px;
+            word-break: keep-all;
+            text-align: center;
+        }
+
         .btn-analyze {
             width: 100%;
             background: var(--gray-300, #D7DEE8);
@@ -107,7 +122,6 @@
             border-radius: 16px;
             border: none;
             cursor: not-allowed;
-            margin-top: 10px;
             margin-bottom: 20px;
             transition: all 0.2s;
             box-sizing: border-box;
@@ -142,6 +156,10 @@
             .analyze-title-area h1 {
                 font-size: 22px;
             }
+
+            .security-notice {
+                font-size: 12.5px;
+            }
         }
     </style>
 </head>
@@ -151,7 +169,7 @@
     <header>
         <div class="wrap nav">
             <a href="../index.html" class="logo">
-                <img src="../images/logo.png" width="40" alt="전셈 로고">
+                <img src="../images/전셈이로고.png" width="40" alt="전셈 로고">
                 전셈
             </a>
             <nav class="nav-menu">
@@ -212,6 +230,11 @@
                         <img src="../images/complete.png" id="img-contract" class="success-img" alt="업로드 완료">
                         <span class="drop-text" id="text-contract">클릭하거나 파일을 끌어다 놓으세요 (이미지, PDF)</span>
                     </div>
+                </div>
+
+                <!-- 배경 없는 순수 텍스트 안내 -->
+                <div class="security-notice">
+                    🔒 업로드한 서류는 분석을 위해서만 사용되며, 안전하게 처리돼요.
                 </div>
 
                 <!-- 진단하기 버튼 -->
