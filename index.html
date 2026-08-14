@@ -502,10 +502,13 @@
 
     .jeonsem-hero-img {
       width: 100%;
+      aspect-ratio: 16 / 9;
+      /* 16:9 고정 비율 */
       height: auto;
       border-radius: 24px;
       overflow: hidden;
       object-fit: cover;
+      /* 비율 유지하며 영역 채움 */
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
       display: block;
     }
@@ -766,8 +769,6 @@
         <path d="M5 10 V21 H19 V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
       </symbol>
     </defs>
-
-
   </svg>
 
   <!-- ============ HEADER ============ -->
@@ -787,7 +788,6 @@
   </header>
 
   <!-- ============ HERO ============ -->
-
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -831,7 +831,46 @@
         <img src="images/hero.png" alt="전셈이 히어로">
       </div>
     </div>
+  </section>
 
+  <!-- ============ SECTION 1: SERVICES ============ -->
+  <section class="sec-services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">SAFETY SOLUTION</span>
+        <h2>전셈이 제공하는<br>든든한 보증금 방어 솔루션</h2>
+      </div>
+      <div class="card-scroll">
+        <div class="service-card shield-demo">
+          <span class="badge">계약 전</span>
+          <span class="risk-dot">!</span>
+          <svg class="shield-pop" viewBox="0 0 24 24">
+            <use href="#icon-shield" />
+          </svg>
+          <h3>등기부등본 위험요소<br>AI 즉시 분석</h3>
+          <p>근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
+          <svg class="card-icon" viewBox="0 0 24 24">
+            <use href="#icon-doc" />
+          </svg>
+        </div>
+        <div class="service-card">
+          <span class="badge">계약 중</span>
+          <h3>시세 변동 &amp;<br>집주인 체납 실시간 알림</h3>
+          <p>계약 기간 중에도 시세와 세금 체납 여부를 실시간으로 확인해 드려요.</p>
+          <svg class="card-icon" viewBox="0 0 24 24">
+            <use href="#icon-bell" />
+          </svg>
+        </div>
+        <div class="service-card">
+          <span class="badge">특약 작성</span>
+          <h3>전세사기 방지<br>표준 특약 생성기</h3>
+          <p>필요한 항목만 선택하면 안전한 특약 조항을 자동으로 완성해 드려요.</p>
+          <svg class="card-icon" viewBox="0 0 24 24">
+            <use href="#icon-house" />
+          </svg>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ SECTION: DIAGNOSIS & INTERACTIVE CHAT ENTRY ============ -->
@@ -932,27 +971,6 @@
     </div>
   </section>
 
-  <!-- ============ TESTIMONIAL & MARQUEE SECTION ============ -->
-  <section class="jeonsem-hero">
-    <main class="jeonsem-main">
-      <div class="jeonsem-hero-wrap">
-        <img class="jeonsem-hero-img" src="images/herotown.png" alt="번호가 매겨진 8개의 매물을 나타내는 3D 타운 일러스트" />
-        <div class="jeonsem-bubble-slot">
-          <div class="jeonsem-bubble">
-            <div class="jeonsem-bubble-text-wrap">
-              <p class="jeonsem-bubble-text" data-jeonsem-bubble-text></p>
-            </div>
-            <div class="jeonsem-bubble-tail"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="jeonsem-marquee">
-        <div class="jeonsem-marquee-track" data-jeonsem-track></div>
-      </div>
-    </main>
-  </section>
-
   <!-- ============ SECTION: FRAUD TYPES ============ -->
   <section class="sec-fraud">
     <div class="wrap">
@@ -1016,62 +1034,6 @@
     </div>
   </section>
 
-  <!-- ============ SECTION 1: SERVICES ============ -->
-  <section class="sec-services" id="services">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-tag">SAFETY SOLUTION</span>
-        <h2>전셈이 제공하는<br>든든한 보증금 방어 솔루션</h2>
-      </div>
-      <div class="card-scroll">
-        <div class="service-card shield-demo">
-          <span class="badge">계약 전</span>
-          <span class="risk-dot">!</span>
-          <svg class="shield-pop" viewBox="0 0 24 24">
-            <use href="#icon-shield" />
-          </svg>
-          <h3>등기부등본 위험요소<br>AI 즉시 분석</h3>
-          <p>근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
-          <svg class="card-icon" viewBox="0 0 24 24">
-            <use href="#icon-doc" />
-          </svg>
-        </div>
-        <div class="service-card">
-          <span class="badge">계약 중</span>
-          <h3>시세 변동 &amp;<br>집주인 체납 실시간 알림</h3>
-          <p>계약 기간 중에도 시세와 세금 체납 여부를 실시간으로 확인해 드려요.</p>
-          <svg class="card-icon" viewBox="0 0 24 24">
-            <use href="#icon-bell" />
-          </svg>
-        </div>
-        <div class="service-card">
-          <span class="badge">특약 작성</span>
-          <h3>전세사기 방지<br>표준 특약 생성기</h3>
-          <p>필요한 항목만 선택하면 안전한 특약 조항을 자동으로 완성해 드려요.</p>
-          <svg class="card-icon" viewBox="0 0 24 24">
-            <use href="#icon-house" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SECTION 3: BANNER ============ -->
-  <section class="sec-banner" id="report">
-    <div class="wrap">
-      <div class="banner-box">
-        <div class="banner-text">
-          <h2>혹시, 이 집 계약해도<br>될지 고민 중이신가요?</h2>
-          <p>전셈이 주소 하나로 근저당, 선순위 채권, 악성 임대인 여부를<br>1초 만에 짚어드립니다!</p>
-          <a href="html/address.html" class="btn-primary">주소로 바로 진단하기</a>
-        </div>
-        <div class="banner-mascot">
-          <img src="images/magnifier.png" width="200" height="200" alt="돋보기 전셈이">
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ SECTION 4: NOTICE ============ -->
   <section class="sec-notice" id="notice">
     <div class="wrap">
@@ -1087,6 +1049,27 @@
         </ul>
       </div>
     </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL & MARQUEE SECTION ============ -->
+  <section class="jeonsem-hero">
+    <main class="jeonsem-main">
+      <div class="jeonsem-hero-wrap">
+        <img class="jeonsem-hero-img" src="images/herotown.png" alt="번호가 매겨진 8개의 매물을 나타내는 3D 타운 일러스트" />
+        <div class="jeonsem-bubble-slot">
+          <div class="jeonsem-bubble">
+            <div class="jeonsem-bubble-text-wrap">
+              <p class="jeonsem-bubble-text" data-jeonsem-bubble-text></p>
+            </div>
+            <div class="jeonsem-bubble-tail"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jeonsem-marquee">
+        <div class="jeonsem-marquee-track" data-jeonsem-track></div>
+      </div>
+    </main>
   </section>
 
   <!-- ============ FOOTER ============ -->
