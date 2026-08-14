@@ -11,85 +11,68 @@
     <link rel="stylesheet" href="../styles.css">
     <style>
         .result-sec {
-            padding: 50px 0 80px;
+            padding: 40px 20px 80px;
             display: flex;
             justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
+        /* 쪼그라들지 않도록 확실한 가로폭 지정 (최대 680px) */
         .result-card-wrapper {
             width: 100%;
-            max-width: 540px;
+            max-width: 680px;
             background: #ffffff;
             border-radius: var(--radius-lg, 28px);
             padding: 48px 40px;
             box-shadow: var(--shadow-pop, 0 16px 40px rgba(36, 59, 100, 0.18));
             border: 1px solid var(--gray-100, #F1F3F7);
             box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .result-header {
+            margin-bottom: 24px;
         }
 
         .result-header .brand {
             font-size: 18px;
             font-weight: 800;
             color: var(--blue, #243B64);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .result-header h1 {
             font-size: 28px;
             font-weight: 800;
-            line-height: 1.35;
-            margin: 0 0 24px;
+            margin: 0;
             color: var(--ink, #1C263A);
         }
 
+        /* 캐릭터 & 뱃지 & 타이틀 영역 (중앙 정렬) */
         .result-hero-visual {
             text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .result-hero-img {
-            width: 130px;
-            height: auto;
-            display: inline-block;
-        }
-
-        .info-list {
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 15px;
         }
 
-        .info-label {
-            color: var(--gray-500, #7C879A);
-            font-weight: 600;
-        }
-
-        .info-value {
-            color: var(--ink, #1C263A);
-            font-weight: 800;
-            text-align: right;
-            max-width: 65%;
-            word-break: keep-all;
-        }
-
-        .status-badge-wrap {
-            margin-bottom: 16px;
+        /* 마스코트 1.3배 확대 (180px) */
+        .result-hero-img {
+            width: 180px;
+            height: auto;
+            display: block;
+            margin: 0 auto 16px;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 999px;
-            font-size: 13.5px;
+            font-size: 14px;
             font-weight: 800;
+            margin-bottom: 14px;
         }
 
         .status-badge.safe {
@@ -97,19 +80,76 @@
             color: #2E7D32;
         }
 
-        .status-badge.warning {
-            background: #FFF3E0;
-            color: #E65100;
+        .status-badge.danger {
+            background: #FFEBEE;
+            color: #E53935;
         }
 
-        .result-desc {
-            font-size: 14.5px;
+        .result-hero-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1C263A;
+            margin: 0 0 10px;
+            letter-spacing: -0.4px;
+        }
+
+        .result-hero-desc {
+            font-size: 15.5px;
             color: var(--gray-500, #7C879A);
-            line-height: 1.6;
-            margin: 0 0 32px;
+            line-height: 1.55;
+            margin: 0;
             word-break: keep-all;
         }
 
+        /* 분석 정보 리스트 */
+        .info-list {
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 12px 4px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .info-label {
+            color: #7C879A;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #1C263A;
+            font-weight: 800;
+            text-align: right;
+            max-width: 65%;
+            word-break: keep-all;
+            font-size: 17px;
+        }
+
+        /* 위험 시 노출되는 추가 안내 카드 */
+        .extra-warning-box {
+            background: #FFF8F6;
+            border-left: 4px solid #E53935;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            font-size: 14px;
+            color: #555F70;
+            line-height: 1.6;
+            word-break: keep-all;
+            display: none;
+        }
+
+        .extra-warning-box strong {
+            color: #C62828;
+        }
+
+        /* 하단 버튼 그룹 */
         .action-group {
             display: flex;
             flex-direction: column;
@@ -171,7 +211,7 @@
             font-weight: 700;
             color: var(--gray-500, #7C879A);
             text-decoration: underline;
-            margin-top: 16px;
+            margin-top: 18px;
             transition: color 0.15s;
         }
 
@@ -181,11 +221,7 @@
 
         @media (max-width: 620px) {
             .result-card-wrapper {
-                padding: 32px 24px;
-            }
-
-            .result-header h1 {
-                font-size: 22px;
+                padding: 32px 20px;
             }
         }
     </style>
@@ -211,95 +247,131 @@
 
     <!-- MAIN RESULT CONTENT -->
     <section class="result-sec">
-        <div class="wrap" style="display:flex; justify-content:center;">
-            <div class="result-card-wrapper">
+        <div class="result-card-wrapper">
 
-                <div class="result-header">
-                    <div class="brand"></div>
-                    <h1>분석 결과</h1>
-                </div>
-
-                <!-- 캐릭터 이미지 (전세가율에 따라 동적 변경) -->
-                <div class="result-hero-visual">
-                    <img src="../images/safe.png" id="resHeroImg" alt="전셈이 분석 캐릭터" class="result-hero-img">
-                </div>
-
-                <!-- 이전 페이지 정보 연동 영역 -->
-                <div class="info-list">
-                    <div class="info-item">
-                        <span class="info-label">매물 주소</span>
-                        <span class="info-value" id="resAddr">정보 없음</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">입력한 전세가</span>
-                        <span class="info-value" id="resPrice">0만원</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">추정 시세</span>
-                        <span class="info-value" id="resEstimate">13,680만원</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">전세가율</span>
-                        <span class="info-value" id="resRatio">0%</span>
-                    </div>
-                </div>
-
-                <div class="status-badge-wrap">
-                    <span class="status-badge safe" id="resBadge">안전</span>
-                </div>
-
-                <p class="result-desc" id="resDesc">
-                    시세 대비 전세가율이 낮은 편이라 비교적 안전해요. 그래도 등기부등본은 꼭 확인하세요.
-                </p>
-
-                <div class="action-group">
-                    <a href="chat.html" class="btn-ask-ai">
-                        💬 추가 상담하러 가기
-                    </a>
-                    <a href="address.html" class="btn-retest">
-                        다시 분석하기
-                    </a>
-                </div>
-
-                <a href="../index.html" class="btn-back-home">← 홈으로</a>
-
+            <div class="result-header">
+                <div class="brand"></div>
+                <h1>분석 결과</h1>
             </div>
+
+            <!-- 캐릭터 및 상단 진단 요약 영역 -->
+            <div class="result-hero-visual">
+                <img src="../images/safe.png" id="resHeroImg" alt="전셈이 분석 캐릭터" class="result-hero-img">
+                <div id="resBadge" class="status-badge safe">안전</div>
+                <h2 class="result-hero-title" id="resTitle">비교적 안전해요</h2>
+                <p class="result-hero-desc" id="resDesc">
+                    현재 확인한 시세 기준으로<br>전세보증금이 비교적 낮은 수준이에요.
+                </p>
+            </div>
+
+            <!-- 분석 항목 리스트 -->
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-label">매물 주소</span>
+                    <span class="info-value" id="resAddr">주소</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">입력한 전세가</span>
+                    <span class="info-value" id="resPrice">0원</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">추정 시세</span>
+                    <span class="info-value" id="resEstimate">5억 4,560만원</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">전세가율</span>
+                    <span class="info-value" id="resRatio">0%</span>
+                </div>
+            </div>
+
+            <!-- 위험 시 노출되는 추가 설명 박스 -->
+            <div class="extra-warning-box" id="extraWarningBox">
+                전세보증금이 집값에 비해 높은 편이에요. 만약 집값이 떨어지거나 집이 경매로 넘어가면 보증금을 다 돌려받지 못할 수도 있어요.<br>
+                <strong>계약하기 전에 집값과 등기부등본을 한 번 더 확인해보세요.</strong>
+            </div>
+
+            <!-- 버튼 영역 -->
+            <div class="action-group">
+                <a href="chat.html" class="btn-ask-ai">
+                    💬 전셈에게 더 물어보기
+                </a>
+                <a href="address.html" class="btn-retest">
+                    다시 분석하기
+                </a>
+            </div>
+
+            <a href="../index.html" class="btn-back-home">← 홈으로</a>
+
         </div>
     </section>
 
     <script>
+        // 만원 단위 숫자를 "X억 Y,YYY만원" 형태로 변환하는 포맷터 함수
+        function formatKoreanPrice(manwon) {
+            if (!manwon || manwon === 0) return '0원';
+            manwon = Math.floor(manwon);
+
+            const eok = Math.floor(manwon / 10000);
+            const remainder = manwon % 10000;
+
+            if (eok > 0) {
+                if (remainder > 0) {
+                    return `${eok}억 ${remainder.toLocaleString()}만원`;
+                }
+                return `${eok}억원`;
+            }
+            return `${remainder.toLocaleString()}만원`;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // sessionStorage에서 저장된 매물 주소 및 전세가 불러오기
             const userAddr = sessionStorage.getItem('userAddr');
             const userPrice = sessionStorage.getItem('userPrice');
 
-            const estimatePrice = 13680; // 추정 시세 기준값 (만원)
+            // 추정 시세 기준값: 5억 4,560만원 (54,560 만원)
+            const estimatePrice = 54560;
 
             // 1. 매물 주소 바인딩
             if (userAddr && userAddr.trim() !== '') {
                 document.getElementById('resAddr').innerText = userAddr;
             }
 
-            // 2. 전세가 및 전세가율 계산 및 바인딩
+            // 2. 추정 시세 표기
+            document.getElementById('resEstimate').innerText = formatKoreanPrice(estimatePrice);
+
+            // 3. 전세가 및 전세가율 계산 및 바인딩
             if (userPrice && !isNaN(userPrice)) {
                 const priceNum = parseInt(userPrice, 10);
-                document.getElementById('resPrice').innerText = priceNum.toLocaleString() + '만원';
+                document.getElementById('resPrice').innerText = formatKoreanPrice(priceNum);
 
                 // 전세가율 계산 (%)
                 const ratio = Math.round((priceNum / estimatePrice) * 100);
                 document.getElementById('resRatio').innerText = ratio + '%';
 
-                // 3. 전세가율 80% 이상 시 경고 상태(주의)로 화면 전환
-                if (ratio >= 80) {
-                    document.getElementById('resHeroImg').src = '../images/danger.png';
+                const heroImg = document.getElementById('resHeroImg');
+                const badge = document.getElementById('resBadge');
+                const title = document.getElementById('resTitle');
+                const desc = document.getElementById('resDesc');
+                const extraWarning = document.getElementById('extraWarningBox');
 
-                    const badge = document.getElementById('resBadge');
-                    badge.className = 'status-badge warning';
-                    badge.innerText = '주의';
+                // 전세가율 70% 이상일 때 '위험' 화면 처리
+                if (ratio >= 70) {
+                    heroImg.src = '../images/danger.png';
+                    badge.className = 'status-badge danger';
+                    badge.innerText = '위험';
 
-                    document.getElementById('resDesc').innerText = '시세 대비 전세가율이 높은 편이라 깡통전세 위험이 있어요. 보증보험 가입 가능 여부와 선순위 채권을 꼭 확인하세요.';
+                    title.innerText = '신중한 확인이 필요해요';
+                    desc.innerHTML = '현재 확인한 시세 기준으로<br>전세보증금이 시세보다 많이 높은 수준이에요.';
+
+                    extraWarning.style.display = 'block';
                 } else {
-                    document.getElementById('resHeroImg').src = '../images/safe.png';
+                    heroImg.src = '../images/safe.png';
+                    badge.className = 'status-badge safe';
+                    badge.innerText = '안전';
+
+                    title.innerText = '비교적 안전해요';
+                    desc.innerHTML = '현재 확인한 시세 기준으로<br>전세보증금이 비교적 낮은 수준이에요.';
+
+                    extraWarning.style.display = 'none';
                 }
             }
         });
