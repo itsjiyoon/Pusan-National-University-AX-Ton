@@ -498,17 +498,18 @@
 
     .jeonsem-hero-wrap {
       position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      /* 오버레이 요소들이 라운드 밖으로 나가지 않도록 설정 */
     }
 
+    /* 16:9 비율 적용 */
     .jeonsem-hero-img {
       width: 100%;
       aspect-ratio: 16 / 9;
-      /* 16:9 고정 비율 */
       height: auto;
       border-radius: 24px;
-      overflow: hidden;
       object-fit: cover;
-      /* 비율 유지하며 영역 채움 */
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
       display: block;
     }
@@ -525,7 +526,7 @@
 
     @media (min-width: 768px) {
       .jeonsem-bubble-slot {
-        top: 40px;
+        top: 36px;
       }
     }
 
@@ -534,10 +535,11 @@
       width: 100%;
       max-width: 576px;
       border-radius: 24px;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
       padding: 24px 32px;
       text-align: center;
-      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
 
     .jeonsem-bubble-text-wrap {
@@ -615,14 +617,18 @@
       height: 16px;
       width: 16px;
       transform: translate(-50%, -8px) rotate(45deg);
-      background: #fff;
+      background: rgba(255, 255, 255, 0.95);
     }
 
-    /* 뉴스 마키 영역 */
+    /* 뉴스 마키 영역 - 사진 하단 위로 오버레이 */
     .jeonsem-marquee {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      right: 0;
       overflow: hidden;
       padding: 8px 0;
-      margin-top: 40px;
+      z-index: 10;
     }
 
     .jeonsem-marquee-track {
@@ -645,6 +651,7 @@
       }
     }
 
+    /* 사진 위에서 잘 보이도록 반투명 블러 스타일 적용 */
     .jeonsem-review-card {
       margin: 0 12px;
       display: flex;
@@ -652,11 +659,12 @@
       flex-shrink: 0;
       flex-direction: column;
       gap: 8px;
-      border-radius: 16px;
-      background: #fff;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
       padding: 20px 24px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      border: 1px solid #f1f5f9;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
 
     .jeonsem-review-stars {
@@ -677,17 +685,17 @@
       margin: 0;
       font-size: 13.5px;
       line-height: 1.45;
-      color: #64748b;
+      color: #475569;
       word-break: keep-all;
     }
 
     .jeonsem-review-source {
       width: fit-content;
       border-radius: 9999px;
-      background: #f1f5f9;
-      padding: 2px 8px;
+      background: rgba(241, 245, 249, 0.9);
+      padding: 3px 9px;
       font-size: 12px;
-      color: #94a3b8;
+      color: #64748b;
       font-weight: 600;
     }
   </style>
@@ -1055,7 +1063,10 @@
   <section class="jeonsem-hero">
     <main class="jeonsem-main">
       <div class="jeonsem-hero-wrap">
+        <!-- 16:9 메인 일러스트 -->
         <img class="jeonsem-hero-img" src="images/herotown.png" alt="번호가 매겨진 8개의 매물을 나타내는 3D 타운 일러스트" />
+
+        <!-- 상단 실시간 통계 말풍선 -->
         <div class="jeonsem-bubble-slot">
           <div class="jeonsem-bubble">
             <div class="jeonsem-bubble-text-wrap">
@@ -1064,10 +1075,11 @@
             <div class="jeonsem-bubble-tail"></div>
           </div>
         </div>
-      </div>
 
-      <div class="jeonsem-marquee">
-        <div class="jeonsem-marquee-track" data-jeonsem-track></div>
+        <!-- 하단 사진 위에 오버레이된 움직이는 리뷰 마키 -->
+        <div class="jeonsem-marquee">
+          <div class="jeonsem-marquee-track" data-jeonsem-track></div>
+        </div>
       </div>
     </main>
   </section>
@@ -1133,7 +1145,7 @@
         btnExpand.innerText = '↗';
         btnExpand.title = '전체화면으로 확장하기';
 
-        // ★ 화면을 축소하면 웰컴 배너를 자동으로 즉시 숨김
+        // 화면을 축소하면 웰컴 배너를 자동으로 즉시 숨김
         if (mainWelcomeBanner) {
           mainWelcomeBanner.style.display = 'none';
         }
@@ -1151,7 +1163,6 @@
         </div>
       `;
 
-      // ★ 화면이 확대된 상태(isExpanded)에서만 웰컴 배너 노출
       if (isExpanded && mainWelcomeBanner) {
         mainWelcomeBanner.style.display = 'flex';
       } else if (mainWelcomeBanner) {
@@ -1168,7 +1179,6 @@
       const text = mainChatInput.value.trim();
       if (!text) return;
 
-      // 메시지 전송 시 웰컴 배너 숨김
       if (mainWelcomeBanner) {
         mainWelcomeBanner.style.display = 'none';
       }
