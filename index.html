@@ -15,6 +15,42 @@
     }
 
     /* ========================================================
+       HERO 섹션 높이 축소 및 캐릭터 비주얼 최적화
+       ======================================================== */
+    .hero {
+      padding: 30px 0 20px !important;
+      overflow: visible !important;
+    }
+
+    .hero-grid {
+      align-items: center;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-visual img {
+      width: 420px !important;
+      max-width: none !important;
+      height: auto;
+      margin-top: -30px;
+      margin-bottom: -40px;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.08));
+    }
+
+    .hero-grid h1 {
+      margin: 10px 0 14px;
+    }
+
+    .hero-grid p.sub {
+      margin-bottom: 20px;
+    }
+
+    /* ========================================================
        전셈 특장점 및 솔루션 섹션 (파스텔톤 4단 빅비주얼 카드)
        ======================================================== */
     .sec-services {
@@ -80,9 +116,11 @@
       border: 1px solid rgba(255, 255, 255, 0.7);
     }
 
+    .solution-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.07);
+    }
 
-
-    /* 파스텔 배경 색상 분기 */
     .solution-card.card-blue {
       background: #EDF5FF;
     }
@@ -105,7 +143,6 @@
       z-index: 2;
     }
 
-    /* 상단 영문 카테고리 라벨 */
     .solution-eng-label {
       font-size: 13.5px;
       font-weight: 700;
@@ -130,7 +167,6 @@
       color: #10B981;
     }
 
-    /* 카드 타이틀 */
     .card-main-title {
       font-size: 21px;
       font-weight: 800;
@@ -140,7 +176,6 @@
       line-height: 1.3;
     }
 
-    /* 카드 상세 설명 */
     .card-main-desc {
       font-size: 13.5px;
       color: #4B5563;
@@ -149,7 +184,6 @@
       word-break: keep-all;
     }
 
-    /* 하단 대형 3D 일러스트 그래픽 영역 */
     .solution-card-graphic {
       display: flex;
       justify-content: center;
@@ -645,7 +679,21 @@
     }
 
     /* ========================================================
-       SECTION: NOTICE (초밀착 여백 적용)
+       SECTION: FRAUD TYPES (옅은 노란색 배경)
+       ======================================================== */
+    .sec-fraud {
+      background-color: #FFFDF5 !important;
+      padding: 70px 0;
+    }
+
+    .fraud-card {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(245, 158, 11, 0.15) !important;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.04);
+    }
+
+    /* ========================================================
+       SECTION: NOTICE (초밀착 여백 및 자동 롤링)
        ======================================================== */
     .sec-notice {
       padding: 30px 0 20px !important;
@@ -1006,6 +1054,143 @@
       color: #64748b;
       font-weight: 600;
     }
+
+    /* ========================================================
+       NEW FOOTER STYLES (하이퍼링크 비활성화 & 텍스트 UI 고정)
+       ======================================================== */
+    .footer-custom {
+      background-color: #162B55;
+      color: #FFFFFF;
+      padding: 60px 0 36px;
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+      cursor: default;
+      user-select: none;
+    }
+
+    .footer-custom-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .footer-left-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-headline {
+      font-size: 30px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 0 0 12px;
+      letter-spacing: -0.6px;
+      line-height: 1.2;
+    }
+
+    .footer-subhead {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: #E2E8F0;
+      margin: 0 0 28px;
+      letter-spacing: -0.3px;
+    }
+
+    .footer-action-btns {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .btn-footer-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      user-select: none;
+    }
+
+    .footer-policy-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13.5px;
+      color: #94A3B8;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .footer-policy-item {
+      color: #94A3B8;
+      cursor: default;
+    }
+
+    .footer-policy-links .divider {
+      color: #475569;
+      font-size: 11px;
+    }
+
+    .footer-disclaimer-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #CBD5E1;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    /* 우측 대형 캐릭터 이미지 */
+    .footer-right-visual {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .footer-character-img {
+      width: 250px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.25));
+    }
+
+    .footer-bottom-copyright {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      color: #64748B;
+      letter-spacing: -0.2px;
+    }
+
+    @media (max-width: 900px) {
+      .footer-top-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-right-visual {
+        justify-content: center;
+      }
+
+      .footer-character-img {
+        width: 200px;
+      }
+    }
   </style>
 </head>
 
@@ -1341,28 +1526,46 @@
     </main>
   </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer-cta">
-    <div class="wrap" style="position:relative;">
-      <div class="footer-cta-grid">
-        <div class="footer-cta-text">
-          <h2>어려움이<br>있으신가요?</h2>
-          <p>궁금증을 해결해 드려요. 즉시 부적합하다면 상단에 검색해보시고,<br>이용하시면 보다 빠르게 확인 가능하십니다.</p>
+  <!-- ============ NEW FOOTER (하이퍼링크 비활성화) ============ -->
+  <footer class="footer-custom">
+    <div class="footer-custom-wrap">
+      <div class="footer-top-grid">
+
+        <!-- 좌측 텍스트 및 비활성 버튼 구역 -->
+        <div class="footer-left-content">
+          <h2 class="footer-headline">무엇을 도와드릴까요?</h2>
+          <p class="footer-subhead">전셈 이용 중 궁금한 점이나 도움이 필요한 내용을 찾아보세요</p>
+
+          <div class="footer-action-btns">
+            <div class="btn-footer-pill">자주 하는 질문</div>
+            <div class="btn-footer-pill">1:1 상담</div>
+          </div>
+
+          <div class="footer-policy-links">
+            <span class="footer-policy-item">고객센터 바로가기</span>
+            <span class="divider">|</span>
+            <span class="footer-policy-item">개인정보처리방침</span>
+            <span class="divider">|</span>
+            <span class="footer-policy-item">이용약관</span>
+          </div>
+
+          <p class="footer-disclaimer-text">
+            전셈이 제공하는 분석 결과는 입력된 자료와 공개된 시세 정보를 바탕으로 한 참고용 정보입니다.<br>
+            분석 결과가 임대차계약의 안전이나 보증금 반환을 보장하는 것은 아니며,<br>
+            계약 전 원본 서류와 최신정보를 직접 확인하시길 바랍니다.
+          </p>
         </div>
-        <div class="footer-btns">
-          <a href="#" class="footer-btn">자주 하는 질문</a>
-          <a href="#" class="footer-btn">1:1 상담 문의</a>
-          <a href="#" class="footer-btn">서식 다운로드</a>
+
+        <!-- 우측 열쇠 든 캐릭터 일러스트 -->
+        <div class="footer-right-visual">
+          <img src="images/chain.png" alt="전셈이 열쇠 마스코트" class="footer-character-img">
         </div>
+
       </div>
 
-      <div class="footer-bottom">
-        <div class="footer-tel"><span class="dot"></span>고객센터는 없습니다.</div>
-        <div class="footer-info">
-          전셈 · 등기부등본 · 계약서 · 시세 분석 및 전세사기 위험도 안내 서비스
-          본 서비스의 분석 결과는 참고용 정보이며, 최종 계약 전 원본 서류와 전문가의 확인을 권장합니다.
-          <br>© Pusan National University Campus AX-Ton 오각지대
-        </div>
+      <!-- 하단 카피라이트 -->
+      <div class="footer-bottom-copyright">
+        전셈 · 등기부등본 · 계약서 · 시세분석을 통한 전세계약 정보 제공 서비스 ©Pusan National University Campus AX-Ton 오각지대
       </div>
     </div>
   </footer>
@@ -1621,49 +1824,49 @@
         {
           title: '사회초년생 첫 자취방인데 안심하고 계약했어요!',
           detail:
-            '등기부등본 볼 줄도 몰라서 막막했는데, 전셈에서 근저당이랑 융자 상태를 1초 만에 깔끔하게 짚어줘서 너무 든든했습니다.',
+            '신혼집 빌라 깡통전세 위험 확인했어요. 매매가 대비 전세보증금이 높은 편이라 고민이 됐는데, 주소랑 보증금 넣어보니까 주변 시세랑 바로 비교해서 볼 수 있었습니다. 계약 전에 한 번 더 확인해보길 잘한 것 같아요.',
           source: '부산 장전동 원룸 세입자 (김*우)',
         },
         {
           title: '계약서에 빠진 필수 특약 바로 잡아냈습니다',
           detail:
-            '공인중개사가 준 계약서 올렸더니 전입신고 당일 효력 관련 특약이 빠져있다고 알려줘서 바로 특약 추가 요청했어요. 진짜 구세주!',
+            '복잡한 서류도 이해하기 쉬움. 압류나 근저당 같은 법률 용어가 많아서 볼 때마다 헷갈렸는데 서류 올리니까 중요한 내용을 쉽게 풀어서 설명해줘서 좋았음. 이런거 처음 해보는 사람도 확인하기 편할 듯.',
           source: '네이버 블로그 실사용 후기',
         },
         {
           title: '신혼집 빌라 전세, 깡통전세 위험 피했어요',
           detail:
-            '매매가 대비 전세가가 너무 높아 찝찝했는데 위험 점수 높게 뜨는 거 보고 미련 없이 다른 안전한 아파트로 돌렸습니다.',
+            '대리인 계약이라 서류 더 꼼꼼히 봤습니다. 대리인 통해서 계약하는 거라 좀 불안했는데 등기부등본이랑 계약서 같이 올려서 확인해봤습니다. 소유자 관련 내용도 같이 살펴볼 수 있어서 혼자 확인할 때보다 편했어요.',
           source: '직방/다방 실이용자 (이*진)',
         },
         {
           title: '복잡한 법률 용어 없어서 부모님도 쉽게 확인하심',
           detail:
-            '압류, 근저당 같은 어려운 용어 대신 안전/주의로 직관적으로 알려주니까 부동산 초보한테 이만한 서비스가 없네요.',
+            '가계약금 넣기 전에 무조건 돌려보는 거 추천함. 방 보고 마음에 들어서 바로 돈 보낼 뻔했는데 혹시 몰라서 주소랑 서류 다시 확인해봄. 계약 전에 종합적으로 한 번 더 생각해볼 수 있어서 다행이었음.',
           source: '대학가 자취방 계약자 (박*서)',
         },
         {
           title: '소유자랑 임대인 일치 여부 체크가 신의 한 수',
           detail:
-            '대리인 계약이라 불안했는데 서류 대조 분석으로 명의 확인법까지 차근차근 짚어줘서 사기 걱정 덜었습니다.',
+            '전세보증금이 시세랑 얼마나 차이 나는지 보기 편했습니다. 주변 시세를 직접 찾아서 비교하려니까 생각보다 번거로웠는데 보증금 입력하니까 같이 비교해서 보여줘서 편했어요. 계약 전에 가격 한번 확인해보고 싶을 때 괜찮은 서비스인 듯.',
           source: '에브리타임 부동산 게시판',
         },
         {
           title: '가계약금 넣기 전에 무조건 돌려봐야 함',
           detail:
-            '방 보고 마음에 들어서 돈 바로 보낼 뻔했는데 전셈으로 주소 검색해보고 선순위 채권 많은 거 발견해서 살았습니다.',
+            'AI 챗봇 상담까지 바로 연결돼서 좋음. 분석 결과 보고도 이해 안 되는 게 몇 개 있었는데 챗봇에 바로 물어볼 수 있어서 좋았음. 전세 용어나 특약 같은 것도 쉽게 설명해줘서 따로 찾아보는 수고를 덜었음.',
           source: '오피스텔 계약자 (정*훈)',
         },
         {
           title: '보증보험 가입 가능한 매물인지 바로 확인됨',
           detail:
-            'HUG 보증보험 가입 요건 충족되는지 혼자 계산하기 복잡했는데 한 번에 계산해 줘서 계약 진행이 수월했습니다.',
+            '첫 자취라 계약 전에 잘 이용했어요!	진짜 아무것도  몰라서 처음에 막막했는데 근저당이나 권리관계 같은 걸 쉽게 확인할 수 있어서 좋았습니다. 계약 전에 뭐부터 봐야 하는지도 정리돼 있어서 한 번 더 점검하기 좋았어요.',
           source: '직장인 커뮤니티 후기',
         },
         {
           title: 'AI 챗봇 상담까지 연계돼서 질문 다 해결했어요',
           detail:
-            '진단 결과 보고 헷갈리는 특약 문구를 챗봇한테 바로 물어봤는데 변호사 상담받는 것처럼 친절하게 설명해 줬어요.',
+            '계약서 올렸더니 특약까지 체크해줌. 공인중개사한테 받은 계약서 올려봤는데 전입신고나 확정일자 관련해서 확인해볼 내용이 있었음. 그냥 넘길 수도 있었는데 계약 전에 한 번 더 체크할 수 있어서 다행이었음.',
           source: '전셈 챗봇 이용 세입자 (최*영)',
         },
       ];
