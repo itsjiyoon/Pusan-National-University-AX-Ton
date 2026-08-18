@@ -558,7 +558,14 @@ section {
 /* ---------- Section: Fraud Types Redesign ---------- */
 .sec-fraud {
   background: var(--bg);
+  background-color: #FFFDF5 !important;
   padding: 80px 0;
+}
+
+.fraud-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(245, 158, 11, 0.15) !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.04);
 }
 
 .fraud-head {
