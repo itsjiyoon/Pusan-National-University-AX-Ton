@@ -163,12 +163,28 @@ header {
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative;
-  padding: clamp(32px, 6vw, 64px) 0 clamp(20px, 4vw, 40px);
-  overflow: hidden;
+  padding: 40px 0 !important;
+  overflow: visible !important;
 }
 
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.hero-visual img {
+  width: 420px !important;
+  /* 캐릭터 너비를 더 크게 확대 (기존 대비 확대) */
+  max-width: none !important;
+  height: auto;
+  margin-top: -30px;
+  /* 섹션 위쪽으로 살짝 올라오게 배치하여 높이 압축 */
+  margin-bottom: -40px;
+  /* 섹션 아래쪽으로 자연스럽게 넘어가게 처리 */
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.08));
+}
 
 .hero-grid {
   position: relative;
@@ -178,6 +194,18 @@ header {
   gap: 24px;
   align-items: center;
   text-align: center;
+}
+
+/* 좌측 텍스트 여백 정돈 */
+.hero-grid h1 {
+  font-size: 38px;
+  /* 텍스트 크기 미세 조절 */
+  margin: 12px 0 16px;
+}
+
+.hero-grid p.sub {
+  margin-bottom: 24px;
+  /* 버튼과의 간격 축소 */
 }
 
 .hero-eyebrow {
