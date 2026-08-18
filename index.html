@@ -15,6 +15,155 @@
     }
 
     /* ========================================================
+       신규 전세 사기 피해 예방 섹션 (파스텔톤 & 3D 비주얼 카드)
+       ======================================================== */
+    .sec-prevention {
+      padding: 80px 0 70px;
+      background: #FFFFFF;
+      text-align: center;
+    }
+
+    .prevention-title {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #111827;
+      margin: 0 0 48px;
+      letter-spacing: -0.6px;
+    }
+
+    .prevention-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .prevention-card {
+      border-radius: 24px;
+      min-height: 290px;
+      padding: 32px 26px 26px;
+      text-align: left;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .prevention-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 카드별 고유 파스텔 배경색 */
+    .prevention-card.card-blue {
+      background: #EDF5FF;
+    }
+
+    .prevention-card.card-purple {
+      background: #F4EFFD;
+    }
+
+    .prevention-card.card-yellow {
+      background: #FFF7EB;
+    }
+
+    .prevention-card.card-green {
+      background: #E8F8F5;
+    }
+
+    .prevention-card-top {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    /* 상단 영문 서브 레이블 */
+    .prevention-eng-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      margin-bottom: 2px;
+    }
+
+    .card-blue .prevention-eng-label {
+      color: #5B8DEF;
+    }
+
+    .card-purple .prevention-eng-label {
+      color: #8F6CEB;
+    }
+
+    .card-yellow .prevention-eng-label {
+      color: #D6903D;
+    }
+
+    .card-green .prevention-eng-label {
+      color: #2FA896;
+    }
+
+    .prevention-card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 4px;
+      letter-spacing: -0.4px;
+      line-height: 1.3;
+    }
+
+    .prevention-card-desc {
+      font-size: 13.5px;
+      color: #4B5563;
+      line-height: 1.55;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    /* 하단 우측 3D 그래픽 이모지 영역 */
+    .prevention-card-graphic {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-top: 16px;
+      z-index: 2;
+    }
+
+    .prevention-3d-icon {
+      font-size: 48px;
+      line-height: 1;
+      display: inline-block;
+      filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.12));
+      transition: transform 0.3s ease;
+    }
+
+    .prevention-card:hover .prevention-3d-icon {
+      transform: scale(1.12) rotate(4deg);
+    }
+
+    @media (max-width: 960px) {
+      .prevention-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .prevention-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prevention-title {
+        font-size: 26px;
+      }
+    }
+
+    /* ========================================================
        신규 진단 분기 & AI 챗봇 인터랙티브 실시간 대화 섹션
        ======================================================== */
     .sec-diagnosis-entry {
@@ -282,7 +431,6 @@
       box-sizing: border-box;
     }
 
-    /* 원본 그대로 선명하게 출력 */
     .chat-welcome-banner img {
       width: 125px;
       height: auto;
@@ -500,10 +648,8 @@
       position: relative;
       border-radius: 24px;
       overflow: hidden;
-      /* 오버레이 요소들이 라운드 밖으로 나가지 않도록 설정 */
     }
 
-    /* 16:9 비율 적용 */
     .jeonsem-hero-img {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -620,7 +766,6 @@
       background: rgba(255, 255, 255, 0.95);
     }
 
-    /* 뉴스 마키 영역 - 사진 하단 위로 오버레이 */
     .jeonsem-marquee {
       position: absolute;
       bottom: 24px;
@@ -651,7 +796,6 @@
       }
     }
 
-    /* 사진 위에서 잘 보이도록 반투명 블러 스타일 적용 */
     .jeonsem-review-card {
       margin: 0 12px;
       display: flex;
@@ -709,52 +853,6 @@
   <!-- SVG 심볼 정의 구역 -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
-      <symbol id="icon-analysis" viewBox="0 0 32 32">
-        <path d="M18 4H8C6.9 4 6 4.9 6 6V26C6 27.1 6.9 28 8 28H20C21.1 28 22 27.1 22 26V10L18 4Z" fill="none"
-          stroke="#16233D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M18 4V10H22" fill="none" stroke="#16233D" stroke-width="2.2" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <line x1="9.5" y1="12" x2="14.5" y2="12" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-        <line x1="9.5" y1="16" x2="16.5" y2="16" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-        <line x1="9.5" y1="20" x2="13.5" y2="20" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-        <circle cx="21" cy="22" r="3.5" fill="#FFF" stroke="#2563EB" stroke-width="2.2" />
-        <line x1="23.5" y1="24.5" x2="26.5" y2="27.5" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" />
-      </symbol>
-
-      <symbol id="icon-checklist" viewBox="0 0 32 32">
-        <rect x="6" y="7" width="20" height="21" rx="3" fill="none" stroke="#16233D" stroke-width="2.2" />
-        <path d="M11 7V5C11 4.4 11.4 4 12 4H20C20.6 4 21 4.4 21 5V7" fill="#2563EB" stroke="#2563EB" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M9.5 13.5L11.5 15.5L14.5 11.5" stroke="#2563EB" stroke-width="2.2" fill="none" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <line x1="16.5" y1="13.5" x2="22" y2="13.5" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-        <path d="M9.5 19.5L11.5 21.5L14.5 17.5" stroke="#2563EB" stroke-width="2.2" fill="none" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <line x1="16.5" y1="19.5" x2="22" y2="19.5" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-      </symbol>
-
-      <symbol id="icon-law" viewBox="0 0 32 32">
-        <path d="M16 6V25" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-        <circle cx="16" cy="6" r="1.5" fill="#16233D" />
-        <line x1="7" y1="10" x2="25" y2="10" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" />
-        <path d="M7 10L4 17M7 10L10 17" stroke="#16233D" stroke-width="1.8" />
-        <path d="M4 17C4 18.5 5.3 19.5 7 19.5C8.7 19.5 10 18.5 10 17Z" fill="none" stroke="#16233D" stroke-width="2" />
-        <path d="M25 10L22 17M25 10L28 17" stroke="#16233D" stroke-width="1.8" />
-        <path d="M22 17C22 18.5 23.3 19.5 25 19.5C26.7 19.5 28 18.5 28 17Z" fill="none" stroke="#16233D"
-          stroke-width="2" />
-        <path d="M11 25H21" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" />
-      </symbol>
-
-      <symbol id="icon-aichat" viewBox="0 0 32 32">
-        <path
-          d="M6 15C6 10.0294 10.0294 6 15 6C19.9706 6 24 10.0294 24 15C24 19.9706 19.9706 24 15 24C13.2 24 11.5 23.5 10 22.6L5 24.5L6.6 20C5.6 18.5 5 16.8 5 15"
-          fill="none" stroke="#16233D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-        <text x="14.5" y="18.5" font-family="'Pretendard', sans-serif" font-weight="800" font-size="8.5" fill="#2563EB"
-          text-anchor="middle">AI</text>
-        <path d="M25 5L26 8L29 9L26 10L25 13L24 10L21 9L24 8Z" fill="#2563EB" />
-        <path d="M20 2L20.6 3.4L22 4L20.6 4.6L20 6L19.4 4.6L18 4L19.4 3.4Z" fill="#2563EB" />
-      </symbol>
-
       <symbol id="icon-shield" viewBox="0 0 24 24">
         <path d="M12 2 L20 5.5 V11 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 11 V5.5 Z" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linejoin="round" />
@@ -800,43 +898,83 @@
     <div class="wrap hero-grid">
       <div>
         <span class="hero-eyebrow">🏠 우리집 보증금 안전 지킴이</span>
-        <h1>전세입니다. 그래서,<br><span class="accent">전 셉니다.</span></h1>
-        <p class="sub">당신의 소중한 전세 보증금, <strong>전셈</strong>이 든든하게 지켜드릴게요.<br>주소 하나로 등기부 위험요소부터 보증보험 가입 가능 여부까지 1초 진단!</p>
+        <h1>전세입니다.<br><span class="accent">그래서, 전 셉니다.</span></h1>
+        <p class="sub">당신의 소중한 전세 보증금, <strong>전셈</strong>이 든든하게 지켜드릴게요.<br>등기부등본과 계약서로 위험요소 한번에 확인!</p>
         <div class="hero-ctas">
           <a href="#diagnosis-section" class="btn-primary">안전 진단 시작하기</a>
           <a href="html/chat.html" class="btn-ghost">AI 챗봇과 대화하기</a>
-        </div>
-        <div class="quickbar">
-          <a class="quick-item" href="#analysis">
-            <span class="qicon"><svg width="26" height="26">
-                <use href="#icon-analysis" />
-              </svg></span>
-            <span>등기부 쉬운 분석</span>
-          </a>
-          <a class="quick-item" href="#checklist">
-            <span class="qicon"><svg width="26" height="26">
-                <use href="#icon-checklist" />
-              </svg></span>
-            <span>계약 체크리스트</span>
-          </a>
-          <a class="quick-item" href="#law">
-            <span class="qicon"><svg width="26" height="26">
-                <use href="#icon-law" />
-              </svg></span>
-            <span>법률 분쟁 가이드</span>
-          </a>
-          <a class="quick-item" href="html/chat.html">
-            <span class="qicon"><svg width="26" height="26">
-                <use href="#icon-aichat" />
-              </svg></span>
-            <span>AI 24시간 상담</span>
-          </a>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="mascot-halo"></div>
         <img src="images/hero.png" alt="전셈이 히어로">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION: 전세 사기 피해 예방 (컬러 & 3D 비주얼) ============ -->
+  <section class="sec-prevention">
+    <div class="wrap">
+      <h2 class="prevention-title">전세 사기 피해 예방<br>전셈에서!</h2>
+      <div class="prevention-grid">
+
+        <!-- 1. 등기부 쉬운 분석 (파스텔 스카이블루) -->
+        <div class="prevention-card card-blue">
+          <div class="prevention-card-top">
+            <span class="prevention-eng-label">Document Analysis</span>
+            <h3 class="prevention-card-title">등기부 쉬운 분석</h3>
+            <p class="prevention-card-desc">
+              근저당과 선순위 채권 등 복잡한 위험요소를 1초 만에 알기 쉽게 진단합니다.
+            </p>
+          </div>
+          <div class="prevention-card-graphic">
+            <span class="prevention-3d-icon">🪙</span>
+          </div>
+        </div>
+
+        <!-- 2. 계약 체크리스트 (파스텔 라벤더/퍼플) -->
+        <div class="prevention-card card-purple">
+          <div class="prevention-card-top">
+            <span class="prevention-eng-label">Checklist & Special Terms</span>
+            <h3 class="prevention-card-title">계약 체크리스트</h3>
+            <p class="prevention-card-desc">
+              놓치기 쉬운 필수 확인 사항과 보증금을 지키는 안전 특약 문구를 제공합니다.
+            </p>
+          </div>
+          <div class="prevention-card-graphic">
+            <span class="prevention-3d-icon">💵</span>
+          </div>
+        </div>
+
+        <!-- 3. 법률 분쟁 가이드 (파스텔 웜옐로우) -->
+        <div class="prevention-card card-yellow">
+          <div class="prevention-card-top">
+            <span class="prevention-eng-label">Legal Solutions</span>
+            <h3 class="prevention-card-title">법률 분쟁 가이드</h3>
+            <p class="prevention-card-desc">
+              보증금 미반환 및 임차권등기명령 등 분쟁 상황 시 명확한 법적 해결 절차를 안내합니다.
+            </p>
+          </div>
+          <div class="prevention-card-graphic">
+            <span class="prevention-3d-icon">📑</span>
+          </div>
+        </div>
+
+        <!-- 4. AI 24시간 상담 (파스텔 민트그린) -->
+        <div class="prevention-card card-green">
+          <div class="prevention-card-top">
+            <span class="prevention-eng-label">AI Real-time Assistant</span>
+            <h3 class="prevention-card-title">AI 24시간 상담</h3>
+            <p class="prevention-card-desc">
+              부동산 용어부터 불안한 계약 고민까지 언제든지 실시간으로 답변해 드립니다.
+            </p>
+          </div>
+          <div class="prevention-card-graphic">
+            <span class="prevention-3d-icon">💡</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -886,7 +1024,7 @@
     <div class="wrap">
       <div class="diagnosis-entry-grid">
 
-        <!-- 좌측 메인 카드: 서류 분석 & 주소 분석 분기 -->
+        <!-- 좌측 메인 카드 -->
         <div class="entry-main-card">
           <img src="images/thumbsup.png" alt="전셈이" class="entry-mascot">
 
@@ -899,14 +1037,12 @@
           </div>
 
           <div class="entry-buttons-grid">
-            <!-- 1. 계약서·등기부등본 분석하기 -> upload.html -->
             <a href="html/upload.html" class="btn-entry-action">
               <span class="btn-entry-icon">📄</span>
               <span class="btn-entry-title">계약서·등기부등본 분석하기</span>
               <span class="btn-entry-sub">내 계약 위험도 확인하기</span>
             </a>
 
-            <!-- 2. 매물 주소로 위험도 분석하기 -> address.html -->
             <a href="html/address.html" class="btn-entry-action">
               <span class="btn-entry-icon">📊</span>
               <span class="btn-entry-title">매물 주소로 위험도 분석하기</span>
@@ -915,18 +1051,14 @@
           </div>
         </div>
 
-        <!-- 우측 고정 슬롯 (카드가 커져도 좌측 카드가 밀리지 않게 고정) -->
+        <!-- 우측 고정 슬롯 -->
         <div class="entry-chat-slot">
-
           <div class="entry-chat-card" id="interactiveChatCard">
-
             <div class="preview-chat-head">
               <div class="preview-chat-title">
                 💬 전셈 안심 상담
                 <span class="preview-chat-status"><span class="status-dot-green"></span>실시간 답변 중</span>
               </div>
-
-              <!-- 우측 상단: 새 상담 버튼 + 확대/축소 버튼 -->
               <div class="preview-head-right">
                 <button type="button" class="btn-main-new-chat" onclick="resetMainChat()">+ 새 상담</button>
                 <button type="button" class="btn-expand-chat" id="btnExpand" onclick="toggleExpandChat()"
@@ -936,14 +1068,10 @@
 
             <!-- 대화 본문 영역 -->
             <div class="preview-chat-body" id="mainChatBody">
-
-              <!-- 확대 상태에서만 보이는 웰컴 배너 (원본 쨍한 이미지) -->
               <div class="chat-welcome-banner" id="mainWelcomeBanner">
                 <img src="images/relax.png" alt="전셈이 쉼">
                 <h3>전셈과 함께<br>안전하게 전세 계약해요</h3>
               </div>
-
-              <!-- 메시지 목록 -->
               <div class="main-messages-list" id="mainMessagesList">
                 <div class="msg-row-main bot">
                   <div class="preview-bubble">
@@ -951,7 +1079,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
             <!-- 추천 질문 칩 -->
@@ -970,9 +1097,7 @@
                 autocomplete="off" oninput="toggleMainSendBtn()">
               <button type="submit" id="mainSendBtn" class="preview-send-btn">↑</button>
             </form>
-
           </div>
-
         </div>
 
       </div>
@@ -1063,10 +1188,8 @@
   <section class="jeonsem-hero">
     <main class="jeonsem-main">
       <div class="jeonsem-hero-wrap">
-        <!-- 16:9 메인 일러스트 -->
         <img class="jeonsem-hero-img" src="images/herotown.png" alt="번호가 매겨진 8개의 매물을 나타내는 3D 타운 일러스트" />
 
-        <!-- 상단 실시간 통계 말풍선 -->
         <div class="jeonsem-bubble-slot">
           <div class="jeonsem-bubble">
             <div class="jeonsem-bubble-text-wrap">
@@ -1076,7 +1199,6 @@
           </div>
         </div>
 
-        <!-- 하단 사진 위에 오버레이된 움직이는 리뷰 마키 -->
         <div class="jeonsem-marquee">
           <div class="jeonsem-marquee-track" data-jeonsem-track></div>
         </div>
@@ -1110,7 +1232,7 @@
     </div>
   </footer>
 
-  <!-- 메인 인터랙티브 챗봇 & 독립 모달 확장 스크립트 -->
+  <!-- 메인 인터랙티브 챗봇 스크립트 -->
   <script>
     const mainChatBody = document.getElementById('mainChatBody');
     const mainMessagesList = document.getElementById('mainMessagesList');
@@ -1131,7 +1253,6 @@
       }
     }
 
-    // ↗/↙ 버튼 또는 배경 클릭 시 확대/축소 토글
     function toggleExpandChat() {
       isExpanded = !isExpanded;
       if (isExpanded) {
@@ -1145,7 +1266,6 @@
         btnExpand.innerText = '↗';
         btnExpand.title = '전체화면으로 확장하기';
 
-        // 화면을 축소하면 웰컴 배너를 자동으로 즉시 숨김
         if (mainWelcomeBanner) {
           mainWelcomeBanner.style.display = 'none';
         }
@@ -1153,7 +1273,6 @@
       scrollMainChatBottom();
     }
 
-    // + 새 상담 버튼 클릭 시 초기화
     function resetMainChat() {
       mainMessagesList.innerHTML = `
         <div class="msg-row-main bot">

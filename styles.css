@@ -202,7 +202,7 @@ header {
 }
 
 .hero h1 .accent {
-  color: var(--blue);
+  color: rgb(29, 87, 196)
 }
 
 .hero p.sub {
