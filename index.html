@@ -51,15 +51,15 @@
     }
 
     /* ========================================================
-       전셈 특장점 및 솔루션 섹션 (파스텔톤 4단 빅비주얼 카드)
+       전셈 특장점 및 솔루션 섹션 (파스텔톤 4단 빅비주얼 카드 - 독립 네임스페이스 적용)
        ======================================================== */
-    .sec-services {
+    .sec-features {
       padding: 90px 0 80px;
       background-color: #FFFFFF;
       text-align: center;
     }
 
-    .services-center-wrap {
+    .features-center-wrap {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
@@ -68,13 +68,13 @@
       align-items: center;
     }
 
-    .sec-head.text-center {
+    .sec-features .sec-head.text-center {
       text-align: center;
       margin-bottom: 52px;
     }
 
-    .sec-head.text-center h2 {
-      font-size: 38px;
+    .sec-features .sec-head.text-center h2 {
+      font-size: 36px;
       font-weight: 800;
       color: #0E387A;
       letter-spacing: -0.8px;
@@ -82,9 +82,9 @@
       line-height: 1.3;
     }
 
-    .sec-head.text-center .sec-sub-desc {
-      font-size: 19px;
-      font-weight: 700;
+    .sec-features .sec-head.text-center .sec-sub-desc {
+      font-size: 18px;
+      font-weight: 600;
       color: #1E293B;
       letter-spacing: -0.4px;
       margin: 0;
@@ -92,7 +92,7 @@
     }
 
     /* 4단 카드 그리드 레이아웃 */
-    .solution-grid {
+    .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
@@ -100,10 +100,10 @@
     }
 
     /* 개별 파스텔 빅비주얼 카드 */
-    .solution-card {
+    .feature-card {
       border-radius: 28px;
       min-height: 380px;
-      padding: 34px 26px 20px;
+      padding: 32px 24px 24px;
       text-align: left;
       box-sizing: border-box;
       display: flex;
@@ -116,53 +116,58 @@
       border: 1px solid rgba(255, 255, 255, 0.7);
     }
 
-    .solution-card.card-blue {
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-card.card-blue {
       background: #EDF5FF;
     }
 
-    .solution-card.card-purple {
+    .feature-card.card-purple {
       background: #F4EFFD;
     }
 
-    .solution-card.card-yellow {
+    .feature-card.card-yellow {
       background: #FFF7EB;
     }
 
-    .solution-card.card-green {
+    .feature-card.card-green {
       background: #EAF8F5;
     }
 
-    .solution-card-top {
+    .feature-card-top {
       display: flex;
       flex-direction: column;
       z-index: 2;
     }
 
-    .solution-eng-label {
-      font-size: 13.5px;
+    .feature-eng-label {
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.1px;
       margin-bottom: 8px;
       display: block;
     }
 
-    .card-blue .solution-eng-label {
+    .card-blue .feature-eng-label {
       color: #3B82F6;
     }
 
-    .card-purple .solution-eng-label {
+    .card-purple .feature-eng-label {
       color: #8B5CF6;
     }
 
-    .card-yellow .solution-eng-label {
+    .card-yellow .feature-eng-label {
       color: #D97706;
     }
 
-    .card-green .solution-eng-label {
+    .card-green .feature-eng-label {
       color: #10B981;
     }
 
-    .card-main-title {
+    .feature-main-title {
       font-size: 21px;
       font-weight: 800;
       color: #111827;
@@ -171,26 +176,26 @@
       line-height: 1.3;
     }
 
-    .card-main-desc {
-      font-size: 13.5px;
+    .feature-main-desc {
+      font-size: 14px;
       color: #4B5563;
       line-height: 1.6;
       margin: 0;
       word-break: keep-all;
     }
 
-    .solution-card-graphic {
+    .feature-card-graphic {
       display: flex;
       justify-content: center;
       align-items: flex-end;
       margin-top: 20px;
       z-index: 2;
-      min-height: 150px;
+      min-height: 140px;
     }
 
-    .solution-3d-img {
-      max-width: 140px;
-      max-height: 145px;
+    .feature-3d-img {
+      max-width: 130px;
+      max-height: 135px;
       width: auto;
       height: auto;
       object-fit: contain;
@@ -198,28 +203,207 @@
       transition: transform 0.35s ease;
     }
 
-    .solution-card:hover .solution-3d-img {
+    .feature-card:hover .feature-3d-img {
       transform: scale(1.08) rotate(3deg);
     }
 
     @media (max-width: 1024px) {
-      .solution-grid {
+      .feature-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
       }
     }
 
     @media (max-width: 580px) {
-      .solution-grid {
+      .feature-grid {
         grid-template-columns: 1fr;
       }
 
-      .sec-head.text-center h2 {
+      .sec-features .sec-head.text-center h2 {
         font-size: 28px;
       }
 
-      .sec-head.text-center .sec-sub-desc {
-        font-size: 16px;
+      .sec-features .sec-head.text-center .sec-sub-desc {
+        font-size: 15px;
+      }
+    }
+
+    /* ========================================================
+       단계별 보증금 방어 솔루션 (탭 UI & 카드 정렬)
+       ======================================================== */
+    .sec-services {
+      padding: 80px 0;
+      background-color: #F8FAFC;
+    }
+
+    .services-center-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sec-services .sec-head.text-center {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .sec-services .sec-head.text-center .sec-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: #2563EB;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .sec-services .sec-head.text-center h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    /* 상단 탭 버튼 그룹 */
+    .solution-tabs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      width: 100%;
+    }
+
+    .tab-btn {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      color: #475569;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .tab-btn:hover {
+      border-color: #CBD5E1;
+      background: #F1F5F9;
+    }
+
+    .tab-btn.active {
+      background: #1E293B;
+      color: #FFFFFF;
+      border-color: #1E293B;
+      box-shadow: 0 4px 12px rgba(30, 41, 59, 0.2);
+    }
+
+    /* 탭 패널 컨테이너 */
+    .solution-content-wrap {
+      width: 100%;
+    }
+
+    .solution-panel {
+      display: none;
+      animation: fadeInPanel 0.3s ease forwards;
+    }
+
+    .solution-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInPanel {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 카드 3단 그리드 */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* 개별 화이트 라운드 카드 */
+    .solution-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 30px 26px 32px;
+      border: 1px solid #EEF2F6;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      min-height: 210px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+
+    /* 타이틀 + 이모지 상단 통합 행 */
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      width: 100%;
+    }
+
+    .card-main-title {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.5px;
+      flex: 1;
+      word-break: keep-all;
+    }
+
+    /* 상단 우측 원형 아이콘 (글자 시작선과 정렬 최적화) */
+    .card-emoji-icon {
+      width: 38px;
+      height: 38px;
+      background: #E8EFF8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: -2px;
+      /* 타이틀 첫 글자 높이와 균일하게 보정 */
+    }
+
+    .card-main-desc {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    @media (max-width: 960px) {
+      .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .solution-tabs {
+        flex-wrap: wrap;
       }
     }
 
@@ -227,6 +411,7 @@
        신규 진단 분기 & AI 챗봇 인터랙티브 실시간 대화 섹션
        ======================================================== */
     .sec-diagnosis-entry {
+      scroll-margin-top: 90px;
       padding: 40px 0 60px;
       background: #F8FAFC;
     }
@@ -1263,70 +1448,209 @@
     </div>
   </section>
 
-  <!-- ============ SECTION 1: SERVICES (전셈은 뭐가 다른가요? & 4단 빅비주얼 카드) ============ -->
-  <section class="sec-services" id="services">
-    <div class="wrap services-center-wrap">
+  <!-- ============ SECTION 1: FEATURES (전셈은 뭐가 다른가요? & 4단 파스텔 빅비주얼 카드) ============ -->
+  <section class="sec-features" id="services">
+    <div class="wrap features-center-wrap">
       <div class="sec-head text-center">
         <h2>전셈은 뭐가 다른가요?</h2>
         <p class="sec-sub-desc">전세가 어렵게 느껴질 때, 궁금한 건 무엇이든 물어보고 쉽게 이해할 수 있어요.</p>
       </div>
 
       <!-- 4단 파스텔 빅비주얼 카드 그리드 -->
-      <div class="solution-grid">
+      <div class="feature-grid">
 
         <!-- 1. 서류 쉬운 분석 (파스텔 스카이블루) -->
-        <div class="solution-card card-blue">
-          <div class="solution-card-top">
-            <span class="solution-eng-label">Document Analysis</span>
-            <h3 class="card-main-title">서류 쉬운 분석</h3>
-            <p class="card-main-desc">
+        <div class="feature-card card-blue">
+          <div class="feature-card-top">
+            <span class="feature-eng-label">Document Analysis</span>
+            <h3 class="feature-main-title">서류 쉬운 분석</h3>
+            <p class="feature-main-desc">
               근저당과 선순위 채권 등 복잡한 위험요소를 1초 만에 알기 쉽게 진단합니다.
             </p>
           </div>
-          <div class="solution-card-graphic">
-            <img src="images/paper-icon.png" class="solution-3d-img" alt="서류 분석 아이콘">
+          <div class="feature-card-graphic">
+            <img src="images/paper-icon.png" class="feature-3d-img" alt="서류 분석 아이콘">
           </div>
         </div>
 
         <!-- 2. 계약 체크리스트 (파스텔 라벤더) -->
-        <div class="solution-card card-purple">
-          <div class="solution-card-top">
-            <span class="solution-eng-label">Checklist & Special Terms</span>
-            <h3 class="card-main-title">계약 체크리스트</h3>
-            <p class="card-main-desc">
+        <div class="feature-card card-purple">
+          <div class="feature-card-top">
+            <span class="feature-eng-label">Checklist & Special Terms</span>
+            <h3 class="feature-main-title">계약 체크리스트</h3>
+            <p class="feature-main-desc">
               놓치기 쉬운 필수 확인 사항과 보증금을 지키는 안전 특약 문구를 제공합니다.
             </p>
           </div>
-          <div class="solution-card-graphic">
-            <img src="images/checklist-icon.png" class="solution-3d-img" alt="체크리스트 아이콘">
+          <div class="feature-card-graphic">
+            <img src="images/checklist-icon.png" class="feature-3d-img" alt="체크리스트 아이콘">
           </div>
         </div>
 
         <!-- 3. 분쟁 대응 가이드 (파스텔 웜옐로우) -->
-        <div class="solution-card card-yellow">
-          <div class="solution-card-top">
-            <span class="solution-eng-label">Legal Solutions</span>
-            <h3 class="card-main-title">분쟁 대응 가이드</h3>
-            <p class="card-main-desc">
+        <div class="feature-card card-yellow">
+          <div class="feature-card-top">
+            <span class="feature-eng-label">Contract Support</span>
+            <h3 class="feature-main-title">분쟁 대응 가이드</h3>
+            <p class="feature-main-desc">
               보증금 미반환 및 임차권등기명령 등 분쟁 상황 시 명확한 법적 해결 절차를 안내합니다.
             </p>
           </div>
-          <div class="solution-card-graphic">
-            <img src="images/judge-icon.png" class="solution-3d-img" alt="분쟁 가이드 아이콘">
+          <div class="feature-card-graphic">
+            <img src="images/judge-icon.png" class="feature-3d-img" alt="분쟁 가이드 아이콘">
           </div>
         </div>
 
         <!-- 4. 24시간 AI 상담 (파스텔 민트그린) -->
-        <div class="solution-card card-green">
-          <div class="solution-card-top">
-            <span class="solution-eng-label">AI Real-time Assistant</span>
-            <h3 class="card-main-title">24시간 AI 상담</h3>
-            <p class="card-main-desc">
+        <div class="feature-card card-green">
+          <div class="feature-card-top">
+            <span class="feature-eng-label">AI Real-time Assistant</span>
+            <h3 class="feature-main-title">24시간 AI 상담</h3>
+            <p class="feature-main-desc">
               부동산 용어부터 불안한 계약 고민까지 언제든지 실시간으로 답변해 드립니다.
             </p>
           </div>
-          <div class="solution-card-graphic">
-            <img src="images/ai-icon.png" class="solution-3d-img" alt="AI 상담 아이콘">
+          <div class="feature-card-graphic">
+            <img src="images/ai-icon.png" class="feature-3d-img" alt="AI 상담 아이콘">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2: SAFETY SOLUTIONS (단계별 솔루션 탭) ============ -->
+  <section class="sec-services" id="safety-solutions">
+    <div class="wrap services-center-wrap">
+      <div class="sec-head text-center">
+        <span class="sec-tag">SAFETY SOLUTION</span>
+        <h2>단계별 든든 보증금 방어 솔루션</h2>
+      </div>
+
+      <!-- 상단 단계별 필터 탭 -->
+      <div class="solution-tabs">
+        <button type="button" class="tab-btn active" onclick="switchSolutionTab('before', this)">계약 전</button>
+        <button type="button" class="tab-btn" onclick="switchSolutionTab('during', this)">계약 중</button>
+        <button type="button" class="tab-btn" onclick="switchSolutionTab('after', this)">계약 만료</button>
+        <button type="button" class="tab-btn" onclick="switchSolutionTab('special', this)">특약 작성</button>
+      </div>
+
+      <!-- 카드 그리드 컨테이너 -->
+      <div class="solution-content-wrap">
+
+        <!-- 1. 계약 전 -->
+        <div class="solution-panel active" id="tab-before">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">등기부등본 위험요소<br>AI 즉시 분석</h3>
+                <span class="card-emoji-icon">📄</span>
+              </div>
+              <p class="card-main-desc">근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">매물 시세 비교로<br>보증금 위험 확인</h3>
+                <span class="card-emoji-icon">🏡</span>
+              </div>
+              <p class="card-main-desc">주변 매매 시세와 전세보증금을 비교해 보증금이 적정한지 확인해드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">전세사기 위험도<br>한눈에 확인</h3>
+                <span class="card-emoji-icon">🚨</span>
+              </div>
+              <p class="card-main-desc">주소와 보증금 정보를 바탕으로 계약 전 확인해야 할 위험 요소를 알려드려요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 계약 중 -->
+        <div class="solution-panel" id="tab-during">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">계약서 조항<br>AI 꼼꼼하게 확인</h3>
+                <span class="card-emoji-icon">✍️</span>
+              </div>
+              <p class="card-main-desc">계약서 내용을 분석해 놓치기 쉬운 위험 조항과 확인이 필요한 내용을 알려드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">계약 당일<br>꼭 챙길 것 체크</h3>
+                <span class="card-emoji-icon">✅</span>
+              </div>
+              <p class="card-main-desc">잔금·전입신고·확정일자 등 계약 과정에서 놓치기 쉬운 내용을 알려드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">집주인·권리관계<br>변경 여부 확인</h3>
+                <span class="card-emoji-icon">🔍</span>
+              </div>
+              <p class="card-main-desc">계약 과정에서 집주인이나 집의 권리관계가 바뀌었는지 다시 확인할 수 있어요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 계약 만료 -->
+        <div class="solution-panel" id="tab-after">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">보증금 반환<br>체크리스트</h3>
+                <span class="card-emoji-icon">📋</span>
+              </div>
+              <p class="card-main-desc">계약이 끝나기 전 보증금 반환을 위해 미리 확인해야 할 내용을 알려드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">보증금 반환<br>절차 안내</h3>
+                <span class="card-emoji-icon">🧭</span>
+              </div>
+              <p class="card-main-desc">집주인에게 보증금을 돌려받는 과정에서 필요한 절차를 쉽게 안내해드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">보증금 미반환 시<br>대응 방법</h3>
+                <span class="card-emoji-icon">⚠️</span>
+              </div>
+              <p class="card-main-desc">계약이 끝났는데도 보증금을 받지 못했다면 상황에 따라 확인해야 할 절차를 안내해드려요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 특약 작성 -->
+        <div class="solution-panel" id="tab-special">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">전세사기 방지<br>표준 특약 생성기</h3>
+                <span class="card-emoji-icon">🛡️</span>
+              </div>
+              <p class="card-main-desc">필요한 항목만 선택하면 계약 상황에 맞는 특약 문구를 쉽게 만들어드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">내 계약에 필요한<br>특약 추천</h3>
+                <span class="card-emoji-icon">💡</span>
+              </div>
+              <p class="card-main-desc">계약 조건을 바탕으로 보증금 보호에 도움이 되는 특약을 추천해드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-title-row">
+                <h3 class="card-main-title">작성한 특약<br>쉽게 확인하기</h3>
+                <span class="card-emoji-icon">📖</span>
+              </div>
+              <p class="card-main-desc">어려운 법률 용어 대신 특약의 의미와 주의할 점을 쉽게 설명해드려요.</p>
+            </div>
           </div>
         </div>
 
@@ -1573,6 +1897,25 @@
 
   <!-- 스크립트 영역 -->
   <script>
+    /* Safety Solution 탭 전환 함수 */
+    function switchSolutionTab(tabKey, btnElement) {
+      // 모든 탭 버튼 active 클래스 제거 후 선택된 버튼 활성화
+      const buttons = document.querySelectorAll('.solution-tabs .tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if (btnElement) {
+        btnElement.classList.add('active');
+      }
+
+      // 모든 탭 패널 감추기 후 선택된 패널 활성화
+      const panels = document.querySelectorAll('.solution-content-wrap .solution-panel');
+      panels.forEach(panel => panel.classList.remove('active'));
+
+      const targetPanel = document.getElementById('tab-' + tabKey);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    }
+
     /* 메인 인터랙티브 챗봇 스크립트 */
     const mainChatBody = document.getElementById('mainChatBody');
     const mainMessagesList = document.getElementById('mainMessagesList');
