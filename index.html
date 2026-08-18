@@ -52,7 +52,7 @@
     }
 
     /* ========================================================
-       전셈 특장점 및 솔루션 섹션 (파스텔톤 4단 빅비주얼 카드 - 독립 네임스페이스 적용)
+       전셈 특장점 및 솔루션 섹션 (파스텔톤 4단 빅비주얼 카드)
        ======================================================== */
     .sec-features {
       padding: 90px 0 80px;
@@ -92,7 +92,6 @@
       word-break: keep-all;
     }
 
-    /* 4단 카드 그리드 레이아웃 */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -100,7 +99,6 @@
       width: 100%;
     }
 
-    /* 개별 파스텔 빅비주얼 카드 */
     .feature-card {
       border-radius: 28px;
       min-height: 380px;
@@ -268,7 +266,6 @@
       margin: 0;
     }
 
-    /* 상단 탭 버튼 그룹 */
     .solution-tabs {
       display: flex;
       align-items: center;
@@ -303,7 +300,6 @@
       box-shadow: 0 4px 12px rgba(30, 41, 59, 0.2);
     }
 
-    /* 탭 패널 컨테이너 */
     .solution-content-wrap {
       width: 100%;
     }
@@ -329,7 +325,6 @@
       }
     }
 
-    /* 카드 3단 그리드 */
     .solution-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -337,7 +332,6 @@
       width: 100%;
     }
 
-    /* 개별 화이트 라운드 카드 */
     .solution-card {
       background: #FFFFFF;
       border-radius: 24px;
@@ -351,9 +345,6 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-
-
-    /* 타이틀 + 이모지 상단 통합 행 */
     .card-title-row {
       display: flex;
       justify-content: space-between;
@@ -374,7 +365,6 @@
       word-break: keep-all;
     }
 
-    /* 상단 우측 원형 아이콘 (글자 시작선과 정렬 최적화) */
     .card-emoji-icon {
       width: 38px;
       height: 38px;
@@ -386,7 +376,6 @@
       font-size: 18px;
       flex-shrink: 0;
       margin-top: -2px;
-      /* 타이틀 첫 글자 높이와 균일하게 보정 */
     }
 
     .card-main-desc {
@@ -692,53 +681,107 @@
     .main-messages-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       width: 100%;
       padding-top: 16px;
     }
 
     .msg-row-main {
-      display: flex;
-      width: 100%;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px;
+      max-width: 85% !important;
+      box-sizing: border-box !important;
     }
 
     .msg-row-main.bot {
-      justify-content: flex-start;
+      align-self: flex-start !important;
     }
 
     .msg-row-main.user {
-      justify-content: flex-end;
+      align-self: flex-end !important;
     }
 
     .preview-bubble {
-      padding: 13px 18px;
-      border-radius: 18px;
-      font-size: 14.5px;
-      line-height: 1.55;
-      max-width: 85%;
-      word-break: keep-all;
+      padding: 14px 18px !important;
+      border-radius: 18px !important;
+      font-size: 14.5px !important;
+      line-height: 1.6 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
     }
 
     .msg-row-main.bot .preview-bubble {
-      background: #EDF2F8;
-      color: #1E293B;
-      border-top-left-radius: 4px;
+      background: #EDF2F8 !important;
+      color: #1E293B !important;
+      border-top-left-radius: 4px !important;
     }
 
     .msg-row-main.user .preview-bubble {
-      background: #243B64;
-      color: #FFFFFF;
-      border-top-right-radius: 4px;
+      background: #243B64 !important;
+      color: #FFFFFF !important;
+      border-top-right-radius: 4px !important;
+    }
+
+    /* 챗봇 말풍선 내부 TIP 박스 및 액션 버튼 추가 */
+    .chat-tip-box {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #CBD5E1;
+    }
+
+    .chat-tip-title {
+      font-weight: 800;
+      color: #1C263A;
+      margin-bottom: 6px;
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chat-tip-desc {
+      font-size: 13px;
+      color: #4B5566;
+      line-height: 1.55;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    .btn-chat-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100% !important;
+      background-color: #243B64;
+      color: #FFFFFF !important;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      box-sizing: border-box !important;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(36, 59, 100, 0.15);
+    }
+
+    .btn-chat-action:hover {
+      background-color: #16233D;
+      transform: translateY(-1px);
     }
 
     .thinking-bubble {
-      display: flex;
+      display: flex !important;
       align-items: center;
       gap: 5px;
-      padding: 14px 18px;
+      padding: 14px 18px !important;
       background: #EDF2F8;
       border-radius: 18px;
       border-top-left-radius: 4px;
+      width: auto !important;
     }
 
     .dot-flashing {
@@ -820,6 +863,7 @@
       justify-content: center;
       cursor: pointer;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .preview-input-main {
@@ -846,6 +890,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      flex-shrink: 0;
       transition: background 0.15s;
     }
 
@@ -860,7 +905,7 @@
     }
 
     /* ========================================================
-       SECTION: FRAUD TYPES (옅은 노란색 배경)
+       SECTION: FRAUD TYPES
        ======================================================== */
     .sec-fraud {
       background-color: #FFFDF5 !important;
@@ -874,7 +919,7 @@
     }
 
     /* ========================================================
-       SECTION: NOTICE (초밀착 여백 및 자동 롤링)
+       SECTION: NOTICE
        ======================================================== */
     .sec-notice {
       padding: 30px 0 20px !important;
@@ -1237,7 +1282,7 @@
     }
 
     /* ========================================================
-       NEW FOOTER STYLES (이미지 기반 스타일 및 그라데이션 반영)
+       NEW FOOTER STYLES
        ======================================================== */
     .footer-custom {
       background: linear-gradient(to bottom, #1E3A75 0%, #102144 50%, #070D1A 100%);
@@ -1449,7 +1494,7 @@
     </div>
   </section>
 
-  <!-- ============ SECTION 1: FEATURES (전셈은 뭐가 다른가요? & 4단 파스텔 빅비주얼 카드) ============ -->
+  <!-- ============ SECTION 1: FEATURES ============ -->
   <section class="sec-features" id="services">
     <div class="wrap features-center-wrap">
       <div class="sec-head text-center">
@@ -1457,10 +1502,7 @@
         <p class="sec-sub-desc">전세가 어렵게 느껴질 때, 궁금한 건 무엇이든 물어보고 쉽게 이해할 수 있어요.</p>
       </div>
 
-      <!-- 4단 파스텔 빅비주얼 카드 그리드 -->
       <div class="feature-grid">
-
-        <!-- 1. 서류 쉬운 분석 (파스텔 스카이블루) -->
         <div class="feature-card card-blue">
           <div class="feature-card-top">
             <span class="feature-eng-label">Document Analysis</span>
@@ -1474,7 +1516,6 @@
           </div>
         </div>
 
-        <!-- 2. 계약 체크리스트 (파스텔 라벤더) -->
         <div class="feature-card card-purple">
           <div class="feature-card-top">
             <span class="feature-eng-label">Checklist & Special Terms</span>
@@ -1488,7 +1529,6 @@
           </div>
         </div>
 
-        <!-- 3. 분쟁 대응 가이드 (파스텔 웜옐로우) -->
         <div class="feature-card card-yellow">
           <div class="feature-card-top">
             <span class="feature-eng-label">Contract Support</span>
@@ -1502,7 +1542,6 @@
           </div>
         </div>
 
-        <!-- 4. 24시간 AI 상담 (파스텔 민트그린) -->
         <div class="feature-card card-green">
           <div class="feature-card-top">
             <span class="feature-eng-label">AI Real-time Assistant</span>
@@ -1515,12 +1554,11 @@
             <img src="images/ai-icon.png" class="feature-3d-img" alt="AI 상담 아이콘">
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ============ SECTION 2: SAFETY SOLUTIONS (단계별 솔루션 탭) ============ -->
+  <!-- ============ SECTION 2: SAFETY SOLUTIONS ============ -->
   <section class="sec-services" id="safety-solutions">
     <div class="wrap services-center-wrap">
       <div class="sec-head text-center">
@@ -1528,7 +1566,6 @@
         <h2>단계별 든든 보증금 방어 솔루션</h2>
       </div>
 
-      <!-- 상단 단계별 필터 탭 -->
       <div class="solution-tabs">
         <button type="button" class="tab-btn active" onclick="switchSolutionTab('before', this)">계약 전</button>
         <button type="button" class="tab-btn" onclick="switchSolutionTab('during', this)">계약 중</button>
@@ -1536,10 +1573,7 @@
         <button type="button" class="tab-btn" onclick="switchSolutionTab('special', this)">특약 작성</button>
       </div>
 
-      <!-- 카드 그리드 컨테이너 -->
       <div class="solution-content-wrap">
-
-        <!-- 1. 계약 전 -->
         <div class="solution-panel active" id="tab-before">
           <div class="solution-grid">
             <div class="solution-card">
@@ -1549,7 +1583,6 @@
               </div>
               <p class="card-main-desc">근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">매물 시세 비교로<br>보증금 위험 확인</h3>
@@ -1557,7 +1590,6 @@
               </div>
               <p class="card-main-desc">주변 매매 시세와 전세보증금을 비교해 보증금이 적정한지 확인해드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">전세사기 위험도<br>한눈에 확인</h3>
@@ -1568,7 +1600,6 @@
           </div>
         </div>
 
-        <!-- 2. 계약 중 -->
         <div class="solution-panel" id="tab-during">
           <div class="solution-grid">
             <div class="solution-card">
@@ -1578,7 +1609,6 @@
               </div>
               <p class="card-main-desc">계약서 내용을 분석해 놓치기 쉬운 위험 조항과 확인이 필요한 내용을 알려드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">계약 당일<br>꼭 챙길 것 체크</h3>
@@ -1586,7 +1616,6 @@
               </div>
               <p class="card-main-desc">잔금·전입신고·확정일자 등 계약 과정에서 놓치기 쉬운 내용을 알려드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">집주인·권리관계<br>변경 여부 확인</h3>
@@ -1597,7 +1626,6 @@
           </div>
         </div>
 
-        <!-- 3. 계약 만료 -->
         <div class="solution-panel" id="tab-after">
           <div class="solution-grid">
             <div class="solution-card">
@@ -1607,7 +1635,6 @@
               </div>
               <p class="card-main-desc">계약이 끝나기 전 보증금 반환을 위해 미리 확인해야 할 내용을 알려드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">보증금 반환<br>절차 안내</h3>
@@ -1615,7 +1642,6 @@
               </div>
               <p class="card-main-desc">집주인에게 보증금을 돌려받는 과정에서 필요한 절차를 쉽게 안내해드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">보증금 미반환 시<br>대응 방법</h3>
@@ -1626,7 +1652,6 @@
           </div>
         </div>
 
-        <!-- 4. 특약 작성 -->
         <div class="solution-panel" id="tab-special">
           <div class="solution-grid">
             <div class="solution-card">
@@ -1636,7 +1661,6 @@
               </div>
               <p class="card-main-desc">필요한 항목만 선택하면 계약 상황에 맞는 특약 문구를 쉽게 만들어드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">내 계약에 필요한<br>특약 추천</h3>
@@ -1644,7 +1668,6 @@
               </div>
               <p class="card-main-desc">계약 조건을 바탕으로 보증금 보호에 도움이 되는 특약을 추천해드려요.</p>
             </div>
-
             <div class="solution-card">
               <div class="card-title-row">
                 <h3 class="card-main-title">작성한 특약<br>쉽게 확인하기</h3>
@@ -1654,7 +1677,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1852,12 +1874,10 @@
     </main>
   </section>
 
-  <!-- ============ NEW FOOTER (이미지 스타일 및 그라데이션 적용) ============ -->
+  <!-- ============ NEW FOOTER ============ -->
   <footer class="footer-custom" id="footer">
     <div class="footer-custom-wrap">
       <div class="footer-top-grid">
-
-        <!-- 좌측 텍스트 및 버튼 구역 -->
         <div class="footer-left-content">
           <h2 class="footer-headline">무엇을 도와드릴까요?</h2>
           <p class="footer-subhead">전셈 이용 중 궁금한 점이나 도움이 필요한 내용을 찾아보세요</p>
@@ -1882,32 +1902,27 @@
           </p>
         </div>
 
-        <!-- 우측 열쇠 든 캐릭터 일러스트 -->
         <div class="footer-right-visual">
           <img src="images/chain.png" alt="전셈이 열쇠 마스코트" class="footer-character-img">
         </div>
-
       </div>
 
-      <!-- 하단 카피라이트 -->
       <div class="footer-bottom-copyright">
         전셈 · 등기부등본 · 계약서 · 시세분석을 통한 전세계약 정보 제공 서비스 ©Pusan National University Campus AX-Ton 오각지대
       </div>
     </div>
   </footer>
 
-  <!-- 스크립트 영역 -->
+  <!-- ============ SCRIPT AREA ============ -->
   <script>
     /* Safety Solution 탭 전환 함수 */
     function switchSolutionTab(tabKey, btnElement) {
-      // 모든 탭 버튼 active 클래스 제거 후 선택된 버튼 활성화
       const buttons = document.querySelectorAll('.solution-tabs .tab-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
       if (btnElement) {
         btnElement.classList.add('active');
       }
 
-      // 모든 탭 패널 감추기 후 선택된 패널 활성화
       const panels = document.querySelectorAll('.solution-content-wrap .solution-panel');
       panels.forEach(panel => panel.classList.remove('active'));
 
@@ -1917,7 +1932,165 @@
       }
     }
 
-    /* 메인 인터랙티브 챗봇 스크립트 */
+    /* ========================================================
+       부동산 및 전세 지식 베이스 (Knowledge Base)
+       ======================================================== */
+    const KNOWLEDGE_BASE = [
+      {
+        keywords: ["임대인이 뭐", "임대인이란", "임대인 뜻", "임대인?"],
+        reply: "임대인은 집(부동산)을 빌려주는 사람, 즉 집주인을 말해요. 계약서에는 '갑'으로 표시되는 경우가 많아요."
+      },
+      {
+        keywords: ["임차인이 뭐", "임차인이란", "임차인 뜻", "임차인?"],
+        reply: "임차인은 돈을 내고 집을 빌려 쓰는 사람, 즉 세입자를 말해요. 계약서에는 '을'로 표시되는 경우가 많아요."
+      },
+      {
+        keywords: ["전세가 뭐", "전세란", "전세 뜻"],
+        reply: "전세는 임차인이 큰 목돈(보증금)을 임대인에게 맡기고 별도의 월세 없이 집을 빌려 쓰는 임대차 방식이에요. 계약이 끝나면 보증금을 그대로 돌려받아요."
+      },
+      {
+        keywords: ["월세가 뭐", "월세란", "월세 뜻"],
+        reply: "월세는 임차인이 상대적으로 적은 보증금을 내고, 매달 정해진 임대료(월세)를 추가로 지불하며 집을 빌려 쓰는 방식이에요."
+      },
+      {
+        keywords: ["계약금이 뭐", "계약금이란", "계약금 뜻"],
+        reply: "계약금은 계약을 체결할 때 보증금의 일부(보통 10%)를 먼저 지급하는 돈으로, 계약이 성립되었다는 증거금 역할을 해요."
+      },
+      {
+        keywords: ["중도금이 뭐", "중도금이란", "중도금 뜻"],
+        reply: "중도금은 계약금과 잔금 사이에 추가로 지급하는 돈이에요. 전세 계약에서는 생략되는 경우도 많아요."
+      },
+      {
+        keywords: ["잔금이 뭐", "잔금이란", "잔금 뜻"],
+        reply: "잔금은 계약금(및 중도금)을 제외한 나머지 보증금 전액으로, 통상 입주(이사)일에 지급하고 이때 전입신고와 확정일자를 함께 받는 것이 안전해요."
+      },
+      {
+        keywords: ["임대차계약", "임대차 계약이란"],
+        reply: "임대차계약은 임대인이 집을 빌려주고 임차인이 그 대가(보증금·월세)를 지급하기로 약속하는 계약이에요. 전세와 월세 모두 임대차계약의 한 종류예요."
+      },
+      {
+        keywords: ["전세권"],
+        reply: "전세권은 임차인이 등기부에 직접 자신의 권리를 등록하는 물권으로, 집주인의 동의가 필요해요. 실무에서는 등기 없이도 대항력·우선변제권을 갖출 수 있어 전세권 등기까지 하는 경우는 드물어요."
+      },
+      {
+        keywords: ["공인중개사"],
+        reply: "공인중개사는 부동산 거래를 중개하는 자격을 가진 사람이에요. 계약 전 중개사 자격증과 등록번호를 국가공간정보포털 등에서 확인하면 무자격 중개 사기를 예방할 수 있어요."
+      },
+      {
+        keywords: ["표준임대차계약서", "표준계약서"],
+        reply: "표준임대차계약서는 국토교통부가 배포하는 공식 양식으로, 확정일자 부여 현황·선순위 채권 등 임차인 보호 조항이 기본 포함되어 있어 일반 양식보다 안전해요."
+      },
+      {
+        keywords: ["임대인 의무", "집주인 의무"],
+        reply: "임대인은 계약 기간 동안 집을 사용할 수 있게 해줄 의무, 하자를 수선할 의무, 계약 종료 시 보증금을 돌려줄 의무가 있어요."
+      },
+      {
+        keywords: ["임차인 의무", "세입자 의무"],
+        reply: "임차인은 월세(있는 경우)를 제때 낼 의무, 집을 계약된 용도로만 사용할 의무, 계약 종료 시 원상복구해서 반환할 의무가 있어요."
+      },
+      {
+        keywords: ["등기부등본", "갑구", "을구"],
+        reply: "등기부등본은 갑구(소유권)와 을구(근저당, 전세권)를 반드시 확인해야 해요. 왼쪽의 '계약서·등기부등본 분석하기'를 이용하시면 AI가 1초 만에 권리분석을 완료해 드려요!"
+      },
+      {
+        keywords: ["특약", "특약사항"],
+        reply: "가장 필수적인 특약은 '임대인은 잔금일 다음 날까지 담보권 설정을 하지 않는다'와 '전세대출 및 보증보험 미승인 시 계약금 전액 반환' 조항입니다."
+      },
+      {
+        keywords: ["보증금 못", "보증금 반환", "보증금 안", "보증금 미반환"],
+        reply: "보증금을 제때 돌려받지 못할 위험을 막기 위해 HUG/SGI 보증보험 가입과 입주 당일 전입신고·확정일자 확보가 가장 중요합니다."
+      },
+      {
+        keywords: ["전세가율"],
+        reply: "전세가율은 '전세보증금 ÷ 매매가(시세)'로 계산해요. 통상 70~80%를 넘으면 집값이 조금만 떨어져도 보증금을 돌려받기 어려운 '깡통전세' 위험이 커지니 주의하셔야 해요."
+      },
+      {
+        keywords: ["깡통전세"],
+        reply: "깡통전세란 집값이 전세 보증금보다 낮거나 비슷해서, 집이 경매로 넘어가도 보증금을 온전히 돌려받기 어려운 매물을 말해요. 전세가율과 선순위 채권을 꼭 함께 확인하세요."
+      },
+      {
+        keywords: ["전입신고"],
+        reply: "전입신고는 이사 후 14일 이내에 하는 것이 원칙이지만, 대항력을 갖추려면 '이사(입주) + 전입신고'를 최대한 빨리, 가능하면 잔금일 당일에 마치는 것이 안전해요."
+      },
+      {
+        keywords: ["확정일자"],
+        reply: "확정일자는 계약서에 도장을 찍어 계약일을 공적으로 증명받는 절차예요. 전입신고와 함께 받아야 '우선변제권'이 생겨서, 집이 경매에 넘어가도 후순위 채권자보다 먼저 보증금을 돌려받을 수 있어요."
+      },
+      {
+        keywords: ["대항력"],
+        reply: "대항력은 '전입신고 + 입주'를 마친 다음날 0시부터 발생하는 권리로, 집주인이 바뀌어도 새 집주인에게 임차권을 주장할 수 있게 해줘요. 근저당보다 대항력 확보 시점이 늦으면 보호받기 어려우니 순서가 중요해요."
+      },
+      {
+        keywords: ["우선변제권"],
+        reply: "우선변제권은 '대항력 요건 + 확정일자'를 모두 갖췄을 때 생기는 권리로, 집이 경매·공매로 넘어가도 후순위 권리자보다 먼저 보증금을 변제받을 수 있게 해줘요."
+      },
+      {
+        keywords: ["근저당"],
+        reply: "근저당은 집을 담보로 은행 등에서 돈을 빌렸다는 뜻이에요. 근저당 채권액과 전세보증금을 합친 금액이 집값의 70~80%를 넘으면 위험 신호로 봐야 해요."
+      },
+      {
+        keywords: ["선순위", "후순위"],
+        reply: "선순위 채권은 나보다 먼저 설정된 근저당·전세권 등을 말해요. 경매가 진행되면 선순위 채권자부터 돈을 받기 때문에, 선순위 채권액이 클수록 내 보증금을 돌려받기 어려워져요."
+      },
+      {
+        keywords: ["보증보험", "HUG", "SGI"],
+        reply: "전세보증금 반환보증(HUG, SGI)에 가입하면 임대인이 보증금을 돌려주지 않아도 보증기관이 먼저 지급해 줘요. 계약 전 가입 가능 여부(선순위 채권 한도 등)를 꼭 확인하세요."
+      },
+      {
+        keywords: ["임차권등기명령"],
+        reply: "임차권등기명령은 계약이 끝났는데 보증금을 못 받은 상태에서 이사를 나가야 할 때, 대항력과 우선변제권을 유지하면서도 이사할 수 있게 해주는 법적 절차예요."
+      },
+      {
+        keywords: ["묵시적 갱신", "자동 갱신"],
+        reply: "임대인이 계약 종료 6개월~2개월 전까지 갱신거절 통지를 하지 않으면 '묵시적 갱신'이 되어 동일 조건으로 2년 더 연장돼요. 이 경우 임차인은 언제든 계약을 해지할 수 있어요."
+      },
+      {
+        keywords: ["계약갱신청구권", "갱신요구"],
+        reply: "임차인은 계약 종료 6개월~2개월 전 사이에 1회에 한해 계약갱신을 요구할 수 있고, 임대인은 특별한 사유가 없으면 거절할 수 없어요(2년 추가 거주 가능)."
+      },
+      {
+        keywords: ["중개수수료", "중개비"],
+        reply: "전세 중개수수료는 지역별 조례에 따라 상한 요율이 정해져 있어요. 계약 전 공인중개사에게 요율표를 요청해 실제 청구 금액이 상한을 넘지 않는지 확인하세요."
+      },
+      {
+        keywords: ["전세사기"],
+        reply: "대표적인 전세사기 유형은 ① 깡통전세, ② 신탁 부동산 무단 임대, ③ 이중계약(동시에 여러 세입자와 계약), ④ 임대인 세금 체납 은닉이에요. 계약 전 등기부등본과 임대인 국세·지방세 완납증명서를 확인하세요."
+      },
+      {
+        keywords: ["신탁"],
+        reply: "등기부등본에 '신탁'이 기재된 집은 소유권이 신탁회사에 있을 수 있어요. 신탁원부를 확인해서 신탁회사의 동의 없이 임대차 계약이 체결된 경우 계약이 무효가 될 수 있으니 주의하세요."
+      },
+      {
+        keywords: ["이중계약"],
+        reply: "이중계약은 임대인(또는 공인중개사)이 한 집을 여러 세입자에게 동시에 계약하는 사기예요. 계약 전 등기부등본상 소유자와 실제 계약 상대방이 같은지, 위임장·인감증명서가 정상인지 확인하세요."
+      },
+      {
+        keywords: ["세금", "체납"],
+        reply: "임대인의 국세·지방세 체납이 있으면 경매 시 세금이 보증금보다 먼저 변제될 수 있어요. 계약 전 임대인에게 '미납세금 열람 동의서'를 요청해 체납 여부를 확인하는 것이 안전해요."
+      },
+      {
+        keywords: ["다가구", "다세대"],
+        reply: "다가구주택은 건물 전체가 1개의 등기로 되어 있어 여러 세입자의 선순위를 파악하기 어려워요. 계약 전 '임대차 정보 제공 요청'으로 다른 세입자들의 확정일자·보증금 현황을 꼭 확인하세요."
+      },
+      {
+        keywords: ["전세대출"],
+        reply: "전세대출은 보통 보증금의 최대 80%까지, 은행 및 HUG/SGI/HF 보증서 발급 조건에 따라 한도가 달라져요. 근저당이 있는 집은 대출이 거절되거나 한도가 줄 수 있으니 미리 은행과 상담하세요."
+      },
+      {
+        keywords: ["임대인 확인", "집주인 확인", "실소유자"],
+        reply: "등기부등본상 소유자, 계약서상 임대인, 실제 계약 자리에 나온 사람이 모두 일치하는지 확인하고, 대리인이 나온다면 위임장과 인감증명서, 임대인 본인 신분증 사본을 반드시 요청하세요."
+      },
+      {
+        keywords: ["계약 전 체크리스트", "체크리스트"],
+        reply: "핵심 체크리스트는 ① 등기부등본(갑구·을구) 확인, ② 전세가율 계산, ③ 임대인 세금 체납 확인, ④ 확정일자·전입신고 당일 처리, ⑤ 보증보험 가입 가능 여부예요. '계약 체크리스트' 메뉴에서 더 자세히 확인할 수 있어요."
+      },
+      {
+        keywords: ["분쟁", "소송"],
+        reply: "보증금 미반환이나 임차권등기명령 등 분쟁이 생기면 '분쟁 대응 가이드' 메뉴에서 상황별 법적 절차를 안내받을 수 있어요. 내용증명 발송, 임차권등기명령, 지급명령·보증금반환소송 순서로 진행하는 경우가 많아요."
+      }
+    ];
+
+    /* 메인 인터랙티브 챗봇 컨트롤 */
     const mainChatBody = document.getElementById('mainChatBody');
     const mainMessagesList = document.getElementById('mainMessagesList');
     const mainWelcomeBanner = document.getElementById('mainWelcomeBanner');
@@ -2013,26 +2186,101 @@
 
       setTimeout(() => {
         removeMainThinking();
-        let reply = "";
 
-        if (userText.includes("등기부등본") || userText.includes("서류")) {
-          reply = "등기부등본의 근저당권 및 가압류 설정 여부를 확인하는 것이 가장 중요해요. 왼쪽의 '계약서·등기부등본 분석하기'를 이용해보세요!";
-        } else if (userText.includes("특약")) {
-          reply = "추천 특약: '임대인은 잔금 지급일 익일까지 담보물권을 설정하지 않으며 위반 시 계약은 무효로 한다'를 꼭 기재하세요.";
-        } else if (userText.includes("보증금")) {
-          reply = "보증금을 안전하게 지키려면 입주 당일 전입신고 및 확정일자를 받고 HUG 전세보증금 반환보증에 가입하시는 것이 좋습니다.";
-        } else {
-          reply = "네! 세입자님의 안전한 계약을 위해 언제든 상담해 드릴게요. 더 자세한 질문도 편하게 남겨주세요!";
+        let replyHtml = "";
+        let hasActionButton = false;
+        const cleanText = userText.replace(/\s+/g, '');
+
+        // 1. 전용 시나리오: 등기부등본 분석 받기
+        if (userText.includes("등기부등본 분석") || userText === "등기부등본 분석 받기") {
+          replyHtml = `
+            <div style="line-height: 1.6; word-break: keep-all;">
+              <p style="margin: 0 0 10px;">네! 등기부등본을 분석하면 근저당권, 압류·가압류 등 주요 위험요소를 확인할 수 있어요.</p>
+              <p style="margin: 0;">등기부등본을 준비하셨다면 분석 페이지에서 바로 확인해볼까요?</p>
+            </div>
+          `;
+          hasActionButton = true;
+        }
+        // 2. 전용 시나리오: 특약 문구 알려줘
+        else if (userText.includes("특약 문구") || userText === "특약 문구 알려줘") {
+          replyHtml = `
+            <div style="line-height: 1.6; word-break: keep-all;">
+              <p style="margin: 0 0 10px;">전세 계약에서는 특약을 어떻게 넣느냐에 따라 나중에 문제가 생겼을 때 내 보증금을 지키는 데 도움이 될 수 있어요.</p>
+              <p style="margin: 0 0 10px;">특히 계약 후 집에 새로운 근저당권이 설정되거나 집주인이 바뀌는 상황을 대비한 특약을 확인해두는 게 좋아요.</p>
+              <p style="margin: 0 0 14px;">계약서가 있다면 보내주세요. 현재 들어가 있는 특약을 확인하고, 빠진 내용이 있는지도 함께 살펴드릴게요!</p>
+              
+              <div class="chat-tip-box">
+                <div class="chat-tip-title">💡 전셈 TIP</div>
+                <p class="chat-tip-desc" style="margin-bottom: 8px;">예를 들어 "임대인은 잔금 지급일 다음 날까지 새로운 근저당권 등 권리관계를 설정하지 않는다"와 같은 특약을 넣을 수 있어요.</p>
+                <p class="chat-tip-desc">또 잔금과 입주가 완료된 후 전입신고와 확정일자를 받을 수 있도록 관련 내용을 특약에 명확히 적는 방법도 있어요.</p>
+              </div>
+            </div>
+          `;
+        }
+        // 3. 전용 시나리오: 보증금 못 받으면?
+        else if (userText.includes("보증금 못 받으면") || userText === "보증금 못 받으면?") {
+          replyHtml = `
+            <div style="line-height: 1.6; word-break: keep-all;">
+              <p style="margin: 0 0 10px;">계약이 끝났는데도 집주인이 보증금을 돌려주지 않는다면, 바로 이사를 나가기보다 먼저 내 보증금을 지킬 수 있는 상태인지 확인하는 게 중요해요.</p>
+              <p style="margin: 0 0 10px;">아직 집을 비우지 않았다면 전입신고와 점유를 유지하면서 보증금을 돌려받을 때까지 기다리는 방법을 먼저 생각해볼 수 있어요.</p>
+              <p style="margin: 0 0 10px;">만약 꼭 이사를 가야 한다면 임차권등기명령을 신청해 대항력과 우선변제권을 유지할 수 있는지 확인해야 해요. 이후에도 보증금을 받지 못한다면 보증금 반환을 청구하는 절차를 진행할 수 있어요.</p>
+              <p style="margin: 0 0 14px;">지금 보증금을 못 받고 있는 상황이라면 계약 만료일과 전입신고 여부, 확정일자 여부를 알려주세요. 현재 상황에서 어떤 절차를 먼저 확인해야 하는지 같이 살펴볼게요.</p>
+              
+              <div class="chat-tip-box">
+                <div class="chat-tip-title">💡 전셈 TIP</div>
+                <p class="chat-tip-desc">보증금을 받기 전에 무작정 전출하거나 집을 비우지 않는 거예요. 상황에 따라 내 권리를 잃을 수 있기 때문에, 이사하기 전에 현재 계약 상태를 먼저 확인하는 게 좋아요.</p>
+              </div>
+            </div>
+          `;
+        }
+        // 4. KNOWLEDGE_BASE 키워드 매칭
+        else {
+          let matchedItem = null;
+          for (const item of KNOWLEDGE_BASE) {
+            const isMatch = item.keywords.some(kw => {
+              const cleanKw = kw.replace(/\s+/g, '');
+              return userText.includes(kw) || cleanText.includes(cleanKw);
+            });
+            if (isMatch) {
+              matchedItem = item;
+              break;
+            }
+          }
+
+          if (matchedItem) {
+            replyHtml = `
+              <div style="line-height: 1.6; word-break: keep-all;">
+                ${escapeHtml(matchedItem.reply)}
+              </div>
+            `;
+          } else {
+            replyHtml = `
+              <div style="line-height: 1.6; word-break: keep-all;">
+                네! 세입자님의 안전한 전세 계약을 위해 언제든 상담해 드릴게요. 궁금한 점이나 서류 분석이 필요하시면 편하게 말씀해 주세요.
+              </div>
+            `;
+          }
         }
 
-        appendMainBotMsg(reply);
-      }, 800);
+        appendMainBotMsg(replyHtml, hasActionButton);
+      }, 700);
     }
 
-    function appendMainBotMsg(text) {
+    function appendMainBotMsg(text, hasActionButton = false) {
       const row = document.createElement('div');
       row.className = 'msg-row-main bot';
-      row.innerHTML = `<div class="preview-bubble">${text}</div>`;
+
+      let content = `<div class="preview-bubble">${text}</div>`;
+
+      if (hasActionButton) {
+        content += `
+          <a href="html/upload.html" class="btn-chat-action">
+            등기부등본 분석하러 가기 →
+          </a>
+        `;
+      }
+
+      row.innerHTML = content;
       mainMessagesList.appendChild(row);
       scrollMainChatBottom();
     }
