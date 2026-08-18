@@ -116,11 +116,6 @@
       border: 1px solid rgba(255, 255, 255, 0.7);
     }
 
-    .solution-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.07);
-    }
-
     .solution-card.card-blue {
       background: #EDF5FF;
     }
@@ -1056,12 +1051,12 @@
     }
 
     /* ========================================================
-       NEW FOOTER STYLES (하이퍼링크 비활성화 & 텍스트 UI 고정)
+       NEW FOOTER STYLES (이미지 기반 스타일 및 그라데이션 반영)
        ======================================================== */
     .footer-custom {
-      background-color: #162B55;
+      background: linear-gradient(to bottom, #1E3A75 0%, #102144 50%, #070D1A 100%);
       color: #FFFFFF;
-      padding: 60px 0 36px;
+      padding: 64px 0 36px;
       position: relative;
       overflow: hidden;
       font-family: inherit;
@@ -1070,17 +1065,17 @@
     }
 
     .footer-custom-wrap {
-      max-width: 1140px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     .footer-top-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1.2fr 0.8fr;
       align-items: center;
       gap: 40px;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .footer-left-content {
@@ -1089,17 +1084,17 @@
     }
 
     .footer-headline {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 800;
       color: #FFFFFF;
-      margin: 0 0 12px;
-      letter-spacing: -0.6px;
+      margin: 0 0 10px;
+      letter-spacing: -0.7px;
       line-height: 1.2;
     }
 
     .footer-subhead {
-      font-size: 16.5px;
-      font-weight: 600;
+      font-size: 17px;
+      font-weight: 700;
       color: #E2E8F0;
       margin: 0 0 28px;
       letter-spacing: -0.3px;
@@ -1108,79 +1103,85 @@
     .footer-action-btns {
       display: flex;
       gap: 12px;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .btn-footer-pill {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       color: #FFFFFF;
-      padding: 12px 28px;
-      border-radius: 12px;
-      font-size: 15px;
+      padding: 11px 26px;
+      border-radius: 10px;
+      font-size: 14.5px;
       font-weight: 700;
+      letter-spacing: -0.3px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: default;
       user-select: none;
+      backdrop-filter: blur(4px);
     }
 
     .footer-policy-links {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       font-size: 13.5px;
-      color: #94A3B8;
+      color: rgba(255, 255, 255, 0.65);
       font-weight: 600;
-      margin-bottom: 18px;
+      letter-spacing: -0.3px;
+      margin-bottom: 20px;
     }
 
     .footer-policy-item {
-      color: #94A3B8;
+      color: rgba(255, 255, 255, 0.65);
       cursor: default;
     }
 
     .footer-policy-links .divider {
-      color: #475569;
+      color: rgba(255, 255, 255, 0.3);
       font-size: 11px;
     }
 
     .footer-disclaimer-text {
       font-size: 13px;
-      line-height: 1.65;
-      color: #CBD5E1;
+      line-height: 1.6;
+      color: white;
       margin: 0;
       word-break: keep-all;
+      letter-spacing: -0.3px;
+      font-weight: bold;
     }
 
-    /* 우측 대형 캐릭터 이미지 */
     .footer-right-visual {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
     }
 
     .footer-character-img {
-      width: 250px;
+      width: 290px;
+      max-width: 100%;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.25));
+      filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.28));
     }
 
     .footer-bottom-copyright {
-      margin-top: 36px;
+      margin-top: 32px;
       padding-top: 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 12px;
-      color: #64748B;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.38);
       letter-spacing: -0.2px;
     }
 
     @media (max-width: 900px) {
       .footer-top-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 32px;
+        text-align: left;
       }
 
       .footer-right-visual {
@@ -1188,7 +1189,7 @@
       }
 
       .footer-character-img {
-        width: 200px;
+        width: 220px;
       }
     }
   </style>
@@ -1526,12 +1527,12 @@
     </main>
   </section>
 
-  <!-- ============ NEW FOOTER (하이퍼링크 비활성화) ============ -->
+  <!-- ============ NEW FOOTER (이미지 스타일 및 그라데이션 적용) ============ -->
   <footer class="footer-custom">
     <div class="footer-custom-wrap">
       <div class="footer-top-grid">
 
-        <!-- 좌측 텍스트 및 비활성 버튼 구역 -->
+        <!-- 좌측 텍스트 및 버튼 구역 -->
         <div class="footer-left-content">
           <h2 class="footer-headline">무엇을 도와드릴까요?</h2>
           <p class="footer-subhead">전셈 이용 중 궁금한 점이나 도움이 필요한 내용을 찾아보세요</p>
@@ -1860,7 +1861,7 @@
         {
           title: '보증보험 가입 가능한 매물인지 바로 확인됨',
           detail:
-            '첫 자취라 계약 전에 잘 이용했어요!	진짜 아무것도  몰라서 처음에 막막했는데 근저당이나 권리관계 같은 걸 쉽게 확인할 수 있어서 좋았습니다. 계약 전에 뭐부터 봐야 하는지도 정리돼 있어서 한 번 더 점검하기 좋았어요.',
+            '첫 자취라 계약 전에 잘 이용했어요! 진짜 아무것도  몰라서 처음에 막막했는데 근저당이나 권리관계 같은 걸 쉽게 확인할 수 있어서 좋았습니다. 계약 전에 뭐부터 봐야 하는지도 정리돼 있어서 한 번 더 점검하기 좋았어요.',
           source: '직장인 커뮤니티 후기',
         },
         {
