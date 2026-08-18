@@ -50,6 +50,7 @@
         }
 
         .drop-zone {
+            position: relative;
             border: 2px dashed var(--gray-300, #D7DEE8);
             border-radius: var(--radius-md, 18px);
             padding: 36px 20px;
@@ -61,6 +62,7 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
+            box-sizing: border-box;
         }
 
         .drop-zone:hover {
@@ -90,12 +92,47 @@
             font-size: 14.5px;
             font-weight: 600;
             color: var(--gray-700, #4B5566);
+            word-break: break-all;
+            padding: 0 10px;
         }
 
         .drop-zone.uploaded .drop-text {
-            font-size: 16px;
+            font-size: 15.5px;
             font-weight: 800;
             color: #1C263A;
+        }
+
+        /* 파일 삭제용 우측 상단 X 버튼 */
+        .btn-delete-zone {
+            display: none;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 30px;
+            height: 30px;
+            background: #243B64;
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: bold;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.15s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+            line-height: 1;
+            padding: 0;
+        }
+
+        .drop-zone.uploaded .btn-delete-zone {
+            display: flex;
+        }
+
+        .btn-delete-zone:hover {
+            background: #E11D48;
+            transform: scale(1.1);
         }
 
         /* 배경 없는 깔끔한 보안 안내 텍스트 */
@@ -200,6 +237,11 @@
                     <label class="upload-label">등기부등본</label>
                     <div class="drop-zone" id="zone-registry"
                         onclick="document.getElementById('file-registry').click();">
+
+                        <!-- 우측 상단 삭제 버튼 -->
+                        <button type="button" class="btn-delete-zone" id="btn-del-registry"
+                            onclick="removeFile(event, 'registry')" title="파일 삭제">✕</button>
+
                         <input type="file" id="file-registry" style="display:none;" accept=".pdf,image/*"
                             onchange="checkFiles()">
 
@@ -219,6 +261,11 @@
                     <label class="upload-label">계약서</label>
                     <div class="drop-zone" id="zone-contract"
                         onclick="document.getElementById('file-contract').click();">
+
+                        <!-- 우측 상단 삭제 버튼 -->
+                        <button type="button" class="btn-delete-zone" id="btn-del-contract"
+                            onclick="removeFile(event, 'contract')" title="파일 삭제">✕</button>
+
                         <input type="file" id="file-contract" style="display:none;" accept=".pdf,image/*"
                             onchange="checkFiles()">
 
@@ -268,11 +315,69 @@
                 document.getElementById('text-contract').innerText = contract.name;
             }
 
+            updateSubmitButtonState();
+        }
+
+        // 특정 파일 삭제 처리
+        function removeFile(event, type) {
+            // 부모 drop-zone의 클릭 이벤트(파일 선택창 열림) 방지
+            event.stopPropagation();
+
+            const fileInput = document.getElementById(`file-${type}`);
+            const zone = document.getElementById(`zone-${type}`);
+            const icon = document.getElementById(`icon-${type}`);
+            const img = document.getElementById(`img-${type}`);
+            const text = document.getElementById(`text-${type}`);
+
+            fileInput.value = '';
+            zone.classList.remove('uploaded');
+            icon.style.display = 'block';
+            img.style.display = 'none';
+            text.innerText = '클릭하거나 파일을 끌어다 놓으세요 (이미지, PDF)';
+
+            updateSubmitButtonState();
+        }
+
+        // 진단하기 버튼 활성/비활성화 상태 업데이트
+        function updateSubmitButtonState() {
+            const registry = document.getElementById('file-registry').files[0];
+            const contract = document.getElementById('file-contract').files[0];
+            const submitBtn = document.getElementById('btn-submit');
+
             if (registry || contract) {
                 submitBtn.classList.add('active');
                 submitBtn.removeAttribute('disabled');
+            } else {
+                submitBtn.classList.remove('active');
+                submitBtn.setAttribute('disabled', 'true');
             }
         }
+
+        // 드래그 앤 드롭 지원
+        ['registry', 'contract'].forEach(type => {
+            const zone = document.getElementById(`zone-${type}`);
+            const input = document.getElementById(`file-${type}`);
+
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.style.borderColor = '#243B64';
+            });
+
+            zone.addEventListener('dragleave', () => {
+                if (!zone.classList.contains('uploaded')) {
+                    zone.style.borderColor = '';
+                }
+            });
+
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.style.borderColor = '';
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    input.files = e.dataTransfer.files;
+                    checkFiles();
+                }
+            });
+        });
 
         // 제출 시 유형 식별 후 이동
         function submitAnalysis() {
