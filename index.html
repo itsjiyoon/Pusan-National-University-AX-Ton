@@ -168,7 +168,7 @@
     }
 
     /* ========================================================
-       단계별 보증금 방어 솔루션 (탭 UI & 카드 중앙 정렬)
+       단계별 보증금 방어 솔루션 (탭 UI & 카드 수정)
        ======================================================== */
     .sec-services {
       padding: 80px 0;
@@ -278,8 +278,8 @@
     /* 개별 화이트 라운드 카드 */
     .solution-card {
       background: #FFFFFF;
-      border-radius: 28px;
-      padding: 32px 28px 36px;
+      border-radius: 36px;
+      padding: 40px 32px 36px;
       border: 1px solid #EEF2F6;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
       display: flex;
@@ -289,59 +289,41 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-
-
-    .card-header-row {
+    /* 타이틀 + 아이콘 수평 정렬 헤더 */
+    .card-top-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
+      align-items: flex-start;
+      margin-bottom: 20px;
       width: 100%;
     }
 
-    /* 상단 알약 뱃지 */
-    .badge-sub {
-      background: #F1F5F9;
-      color: #0F172A;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 9999px;
-      letter-spacing: -0.2px;
-      line-height: 1.4;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    /* 상단 우측 원형 아이콘 */
-    .card-emoji-icon {
-      width: 36px;
-      height: 36px;
-      background: #E8EFF8;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-      margin-left: auto;
-      /* 우측 끝으로 밀어내기 */
-    }
-
-    /* 타이틀 & 설명 */
     .card-main-title {
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 800;
       line-height: 1.35;
       color: #0F172A;
-      margin: 0 0 12px;
+      margin: 0;
       letter-spacing: -0.5px;
     }
 
+    .card-emoji-icon {
+      width: 44px;
+      height: 44px;
+      background: #E8EFF8;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
     .card-main-desc {
-      font-size: 14px;
+      font-size: 15px;
       color: #64748B;
-      line-height: 1.55;
+      line-height: 1.6;
       margin: 0;
       word-break: keep-all;
     }
@@ -372,7 +354,6 @@
       align-items: stretch;
     }
 
-    /* 좌측 메인 블루 카드 */
     .entry-main-card {
       background: #243B64;
       border-radius: 28px;
@@ -467,14 +448,12 @@
       font-weight: 500;
     }
 
-    /* 우측 챗봇 래퍼 */
     .entry-chat-slot {
       position: relative;
       height: 480px;
       width: 100%;
     }
 
-    /* 실제 챗봇 카드 UI */
     .entry-chat-card {
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
@@ -490,7 +469,6 @@
       transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
     }
 
-    /* 화면 가득 커지는 모달 확장 상태 */
     .entry-chat-card.expanded {
       position: fixed !important;
       top: 50% !important;
@@ -503,7 +481,6 @@
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25) !important;
     }
 
-    /* 배경 딤드 오버레이 */
     .chat-backdrop {
       position: fixed;
       inset: 0;
@@ -600,7 +577,6 @@
       transform: scale(1.15);
     }
 
-    /* 챗봇 본문 스크롤 영역 */
     .preview-chat-body {
       padding: 0 20px 20px;
       display: flex;
@@ -612,7 +588,6 @@
       box-sizing: border-box;
     }
 
-    /* 확대 상태에서만 보이는 전셈이 웰컴 배너 */
     .chat-welcome-banner {
       width: calc(100% + 40px);
       margin: 0 -20px 16px -20px;
@@ -686,7 +661,6 @@
       border-top-right-radius: 4px;
     }
 
-    /* 생각 중 애니메이션 */
     .thinking-bubble {
       display: flex;
       align-items: center;
@@ -753,7 +727,6 @@
       color: #FFFFFF;
     }
 
-    /* 입력창 영역 */
     .preview-chat-foot {
       padding: 12px 18px;
       border-top: 1px solid #F1F5F9;
@@ -814,6 +787,148 @@
       .diagnosis-entry-grid {
         grid-template-columns: 1fr;
       }
+    }
+
+    /* ========================================================
+       SECTION: NOTICE (헤더 하단 여백 완전 제거 및 초밀착 스타일)
+       ======================================================== */
+    .sec-notice {
+      padding: 30px 0 20px !important;
+      background: #FFFFFF;
+    }
+
+    .notice-box {
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      width: 100%;
+    }
+
+    .notice-header-row {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      margin: 0 0 4px 0 !important;
+      padding: 0 !important;
+      width: 100%;
+    }
+
+    .notice-title-main {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #0F172A !important;
+      letter-spacing: -0.5px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.2 !important;
+    }
+
+    .notice-nav-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .btn-notice-nav {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .btn-notice-nav:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+      transform: translateY(-1px);
+    }
+
+    .btn-notice-nav:active {
+      transform: scale(0.95);
+    }
+
+    .notice-list-viewport {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .notice-list {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease;
+    }
+
+    .notice-list.slide-up {
+      transform: translateY(-14px);
+      opacity: 0;
+    }
+
+    .notice-list.slide-down {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+
+    .notice-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0 !important;
+      border-bottom: 1px dashed #E2E8F0 !important;
+      cursor: default;
+      user-select: none;
+      width: 100%;
+      margin: 0 !important;
+    }
+
+    .notice-item:last-child {
+      border-bottom: none !important;
+    }
+
+    .notice-item-content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: #1E293B;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .notice-item-content .tag-bold {
+      color: #1E3A8A;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .notice-item-date {
+      font-size: 14.5px;
+      color: #64748B;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-left: 24px;
     }
 
     /* ========================================================
@@ -1196,29 +1311,26 @@
         <div class="solution-panel active" id="tab-before">
           <div class="solution-grid">
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">등기부등본 위험요소<br>AI 즉시 분석</h3>
                 <span class="card-emoji-icon">📄</span>
               </div>
-              <h3 class="card-main-title">등기부등본 위험요소<br>AI 즉시 분석</h3>
               <p class="card-main-desc">근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">매물 시세 비교로<br>보증금 위험 확인</h3>
                 <span class="card-emoji-icon">🏡</span>
               </div>
-              <h3 class="card-main-title">매물 시세 비교로<br>보증금 위험 확인</h3>
               <p class="card-main-desc">주변 매매 시세와 전세보증금을 비교해 보증금이 적정한지 확인해드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">전세사기 위험도<br>한눈에 확인</h3>
                 <span class="card-emoji-icon">🚨</span>
               </div>
-              <h3 class="card-main-title">전세사기 위험도<br>한눈에 확인</h3>
               <p class="card-main-desc">주소와 보증금 정보를 바탕으로 계약 전 확인해야 할 위험 요소를 알려드려요.</p>
             </div>
           </div>
@@ -1228,29 +1340,26 @@
         <div class="solution-panel" id="tab-during">
           <div class="solution-grid">
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">계약서 조항<br>AI 꼼꼼하게 확인</h3>
                 <span class="card-emoji-icon">✍️</span>
               </div>
-              <h3 class="card-main-title">계약서 조항<br>AI 꼼꼼하게 확인</h3>
               <p class="card-main-desc">계약서 내용을 분석해 놓치기 쉬운 위험 조항과 확인이 필요한 내용을 알려드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">계약 당일<br>꼭 챙길 것 체크</h3>
                 <span class="card-emoji-icon">✅</span>
               </div>
-              <h3 class="card-main-title">계약 당일<br>꼭 챙길 것 체크</h3>
               <p class="card-main-desc">잔금·전입신고·확정일자 등 계약 과정에서 놓치기 쉬운 내용을 알려드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">집주인·권리관계<br>변경 여부 확인</h3>
                 <span class="card-emoji-icon">🔍</span>
               </div>
-              <h3 class="card-main-title">집주인·권리관계<br>변경 여부 확인</h3>
               <p class="card-main-desc">계약 과정에서 집주인이나 집의 권리관계가 바뀌었는지 다시 확인할 수 있어요.</p>
             </div>
           </div>
@@ -1260,29 +1369,26 @@
         <div class="solution-panel" id="tab-after">
           <div class="solution-grid">
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">보증금 반환<br>체크리스트</h3>
                 <span class="card-emoji-icon">📋</span>
               </div>
-              <h3 class="card-main-title">보증금 반환<br>체크리스트</h3>
               <p class="card-main-desc">계약이 끝나기 전 보증금 반환을 위해 미리 확인해야 할 내용을 알려드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">보증금 반환<br>절차 안내</h3>
                 <span class="card-emoji-icon">🧭</span>
               </div>
-              <h3 class="card-main-title">보증금 반환<br>절차 안내</h3>
               <p class="card-main-desc">집주인에게 보증금을 돌려받는 과정에서 필요한 절차를 쉽게 안내해드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">보증금 미반환 시<br>대응 방법</h3>
                 <span class="card-emoji-icon">⚠️</span>
               </div>
-              <h3 class="card-main-title">보증금 미반환 시<br>대응 방법</h3>
               <p class="card-main-desc">계약이 끝났는데도 보증금을 받지 못했다면 상황에 따라 확인해야 할 절차를 안내해드려요.</p>
             </div>
           </div>
@@ -1292,29 +1398,26 @@
         <div class="solution-panel" id="tab-special">
           <div class="solution-grid">
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">전세사기 방지<br>표준 특약 생성기</h3>
                 <span class="card-emoji-icon">🛡️</span>
               </div>
-              <h3 class="card-main-title">전세사기 방지<br>표준 특약 생성기</h3>
               <p class="card-main-desc">필요한 항목만 선택하면 계약 상황에 맞는 특약 문구를 쉽게 만들어드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">내 계약에 필요한<br>특약 추천</h3>
                 <span class="card-emoji-icon">💡</span>
               </div>
-              <h3 class="card-main-title">내 계약에 필요한<br>특약 추천</h3>
               <p class="card-main-desc">계약 조건을 바탕으로 보증금 보호에 도움이 되는 특약을 추천해드려요.</p>
             </div>
 
             <div class="solution-card">
-              <div class="card-header-row">
-
+              <div class="card-top-row">
+                <h3 class="card-main-title">작성한 특약<br>쉽게 확인하기</h3>
                 <span class="card-emoji-icon">📖</span>
               </div>
-              <h3 class="card-main-title">작성한 특약<br>쉽게 확인하기</h3>
               <p class="card-main-desc">어려운 법률 용어 대신 특약의 의미와 주의할 점을 쉽게 설명해드려요.</p>
             </div>
           </div>
@@ -1472,19 +1575,25 @@
     </div>
   </section>
 
-  <!-- ============ SECTION 4: NOTICE ============ -->
+  <!-- ============ SECTION 4: NOTICE (자동 롤링 & 초밀착 여백) ============ -->
   <section class="sec-notice" id="notice">
     <div class="wrap">
-      <div class="notice-box">
-        <div class="notice-title">뚜둥, 집중해주세요! <span class="arrow">›</span></div>
-        <ul class="notice-list">
-          <li><a href="#"><span class="tag">[속보]</span>"나도 혹시 깡통전세?"… 계약 전 반드시 확인해야 할 위험 신호 3가지</a><span
-              class="date">2026-08-05</span></li>
-          <li><a href="#"><span class="tag">[단독]</span>"집주인이 세금 체납?"… 등기부등본 속 숨은 덫 1초 만에 가려내는 법</a><span
-              class="date">2026-07-22</span></li>
-          <li><a href="#"><span class="tag">[주의]</span>"계약서 쓰기 전 필수 체크"… 2026년 달라진 전세보증보험 가입 요건은?</a><span
-              class="date">2026-07-10</span></li>
-        </ul>
+      <div class="notice-box" id="noticeBox">
+        <div class="notice-header-row">
+          <h2 class="notice-title-main">뚜둥, 집중해주세요!</h2>
+          <div class="notice-nav-btns">
+            <button type="button" class="btn-notice-nav" onclick="handleManualNoticeNav('up')"
+              aria-label="이전 뉴스">▲</button>
+            <button type="button" class="btn-notice-nav" onclick="handleManualNoticeNav('down')"
+              aria-label="다음 뉴스">▼</button>
+          </div>
+        </div>
+
+        <div class="notice-list-viewport">
+          <ul class="notice-list" id="noticeListContainer">
+            <!-- 자바스크립트로 뉴스 렌더링 -->
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -1699,6 +1808,99 @@
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
       });
     }
+
+    /* 뉴스 목록 토글 및 자동 롤링 스크립트 */
+    const allNotices = [
+      { tag: '[속보]', title: '부산 전세사기 누적 피해자 4000명 넘어… 전국 피해의 10%', date: '2026-08-05' },
+      { tag: '[속보]', title: '2026년 6월 전세사기 피해자 3만9000명 넘어… 청년층 피해 여전히 커', date: '2026-07-22' },
+      { tag: '[주의]', title: '"보증보험이면 무조건 안전?"… 전세 계약 전 따져봐야 할 조건은', date: '2026-07-10' },
+      { tag: '[단독]', title: '"집주인이 세금 체납?"… 등기부등본 속 숨은 덫 1초 만에 가려내는 법', date: '2026-06-28' },
+      { tag: '[안내]', title: 'HUG 보증보험 가입 기준 강화… 다가구·빌라 전세 계약 시 주의보', date: '2026-06-15' },
+      { tag: '[속보]', title: '전세 계약 당일 주택담보대출 차단… 주택임대차보호법 개정안 발의', date: '2026-05-30' }
+    ];
+
+    let currentNoticePage = 0;
+    const noticesPerPage = 3;
+    const totalPages = Math.ceil(allNotices.length / noticesPerPage);
+    let isNoticeAnimating = false;
+    let noticeAutoInterval = null;
+
+    function renderNotices(page) {
+      const container = document.getElementById('noticeListContainer');
+      const start = page * noticesPerPage;
+      const visibleNotices = allNotices.slice(start, start + noticesPerPage);
+
+      container.innerHTML = visibleNotices.map(item => `
+        <li class="notice-item">
+          <div class="notice-item-content">
+            <span class="tag-bold">${item.tag}</span>
+            <span>${item.title}</span>
+          </div>
+          <span class="notice-item-date">${item.date}</span>
+        </li>
+      `).join('');
+    }
+
+    function changeNoticePage(direction) {
+      if (isNoticeAnimating) return;
+      isNoticeAnimating = true;
+
+      const container = document.getElementById('noticeListContainer');
+      const animClass = direction === 'up' ? 'slide-up' : 'slide-down';
+
+      container.classList.add(animClass);
+
+      setTimeout(() => {
+        if (direction === 'up') {
+          currentNoticePage = (currentNoticePage + 1) % totalPages;
+        } else {
+          currentNoticePage = (currentNoticePage - 1 + totalPages) % totalPages;
+        }
+        renderNotices(currentNoticePage);
+
+        container.classList.remove(animClass);
+        setTimeout(() => {
+          isNoticeAnimating = false;
+        }, 50);
+      }, 300);
+    }
+
+    /* 수동 버튼 클릭 시 타이머 리셋 */
+    function handleManualNoticeNav(direction) {
+      changeNoticePage(direction);
+      resetNoticeAutoPlay();
+    }
+
+    /* 자동 롤링 (3.5초 주기) */
+    function startNoticeAutoPlay() {
+      if (noticeAutoInterval) clearInterval(noticeAutoInterval);
+      noticeAutoInterval = setInterval(() => {
+        changeNoticePage('up');
+      }, 3500);
+    }
+
+    function stopNoticeAutoPlay() {
+      if (noticeAutoInterval) {
+        clearInterval(noticeAutoInterval);
+        noticeAutoInterval = null;
+      }
+    }
+
+    function resetNoticeAutoPlay() {
+      stopNoticeAutoPlay();
+      startNoticeAutoPlay();
+    }
+
+    // 마우스 호버 시 일시 정지
+    const noticeBoxEl = document.getElementById('noticeBox');
+    if (noticeBoxEl) {
+      noticeBoxEl.addEventListener('mouseenter', stopNoticeAutoPlay);
+      noticeBoxEl.addEventListener('mouseleave', startNoticeAutoPlay);
+    }
+
+    // 초기 뉴스 렌더링 및 자동 롤링 시작
+    renderNotices(0);
+    startNoticeAutoPlay();
   </script>
 
   <!-- 인터랙티브 말풍선 및 뉴스 마키 스크립트 -->
