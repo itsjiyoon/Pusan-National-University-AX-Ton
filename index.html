@@ -56,8 +56,6 @@
       border: 1px solid rgba(255, 255, 255, 0.6);
     }
 
-
-
     /* 카드별 고유 파스텔 배경색 */
     .prevention-card.card-blue {
       background: #EDF5FF;
@@ -140,9 +138,13 @@
       transition: transform 0.3s ease;
     }
 
+    .card-blue .prevention-3d-icon {
+      width: 125px;
+    }
+
     .paper-icon {
+      width: 125px;
       max-width: none;
-      width: 130px;
     }
 
     .prevention-card:hover .prevention-3d-icon {
@@ -166,6 +168,199 @@
     }
 
     /* ========================================================
+       단계별 보증금 방어 솔루션 (탭 UI & 카드 중앙 정렬)
+       ======================================================== */
+    .sec-services {
+      padding: 80px 0;
+      background-color: #F8FAFC;
+    }
+
+    .services-center-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sec-head.text-center {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .sec-head.text-center .sec-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: #2563EB;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .sec-head.text-center h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    /* 상단 탭 버튼 그룹 */
+    .solution-tabs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      width: 100%;
+    }
+
+    .tab-btn {
+      background: rgba(36, 59, 100, 0.16);
+      border: 1.5px solid #E2E8F0;
+      color: #475569;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .tab-btn:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .tab-btn.active {
+      background: #1E293B;
+      color: #FFFFFF;
+      border-color: #1E293B;
+      box-shadow: 0 4px 12px rgba(30, 41, 59, 0.2);
+    }
+
+    /* 탭 패널 컨테이너 */
+    .solution-content-wrap {
+      width: 100%;
+    }
+
+    .solution-panel {
+      display: none;
+      animation: fadeInPanel 0.3s ease forwards;
+    }
+
+    .solution-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInPanel {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 카드 3단 그리드 */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* 개별 화이트 라운드 카드 */
+    .solution-card {
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 32px 28px 36px;
+      border: 1px solid #EEF2F6;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      min-height: 240px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    /* 상단 알약 뱃지 */
+    .badge-sub {
+      background: #F1F5F9;
+      color: #0F172A;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      letter-spacing: -0.2px;
+      line-height: 1.4;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* 상단 우측 원형 아이콘 */
+    .card-emoji-icon {
+      width: 36px;
+      height: 36px;
+      background: #E8EFF8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-left: auto;
+      /* 우측 끝으로 밀어내기 */
+    }
+
+    /* 타이틀 & 설명 */
+    .card-main-title {
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #0F172A;
+      margin: 0 0 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .card-main-desc {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.55;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    @media (max-width: 960px) {
+      .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .solution-tabs {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* ========================================================
        신규 진단 분기 & AI 챗봇 인터랙티브 실시간 대화 섹션
        ======================================================== */
     .sec-diagnosis-entry {
@@ -180,7 +375,7 @@
       align-items: stretch;
     }
 
-    /* 좌측 메인 블루 카드 - 크기 고정 유지 */
+    /* 좌측 메인 블루 카드 */
     .entry-main-card {
       background: #243B64;
       border-radius: 28px;
@@ -275,7 +470,7 @@
       font-weight: 500;
     }
 
-    /* 우측 챗봇 래퍼 (그리드 레이아웃 고정용) */
+    /* 우측 챗봇 래퍼 */
     .entry-chat-slot {
       position: relative;
       height: 480px;
@@ -931,7 +1126,7 @@
             </p>
           </div>
           <div class="prevention-card-graphic">
-            <span class="prevention-3d-icon"><img src="images/paper-icon.png" class="paper-icon"></span>
+            <span class="prevention-3d-icon"><img src="images/paper-icon.png" class="paper-icon" alt="문서 아이콘"></span>
           </div>
         </div>
 
@@ -945,7 +1140,7 @@
             </p>
           </div>
           <div class="prevention-card-graphic">
-            <span class="prevention-3d-icon"><img src="images/checklist-icon.png"></span>
+            <span class="prevention-3d-icon"><img src="images/checklist-icon.png" alt="체크리스트 아이콘"></span>
           </div>
         </div>
 
@@ -959,7 +1154,7 @@
             </p>
           </div>
           <div class="prevention-card-graphic">
-            <span class="prevention-3d-icon"><img src="images/judge-icon.png"></span>
+            <span class="prevention-3d-icon"><img src="images/judge-icon.png" alt="법률 아이콘"></span>
           </div>
         </div>
 
@@ -973,7 +1168,7 @@
             </p>
           </div>
           <div class="prevention-card-graphic">
-            <span class="prevention-3d-icon"><img src="images/ai-icon.png"></span>
+            <span class="prevention-3d-icon"><img src="images/ai-icon.png" alt="AI 아이콘"></span>
           </div>
         </div>
 
@@ -981,42 +1176,153 @@
     </div>
   </section>
 
-  <!-- ============ SECTION 1: SERVICES ============ -->
+  <!-- ============ SECTION 1: SERVICES (단계별 솔루션 탭) ============ -->
   <section class="sec-services" id="services">
-    <div class="wrap">
-      <div class="sec-head">
+    <div class="wrap services-center-wrap">
+      <div class="sec-head text-center">
         <span class="sec-tag">SAFETY SOLUTION</span>
         <h2>단계별 든든 보증금 방어 솔루션</h2>
       </div>
-      <div class="card-scroll">
-        <div class="service-card shield-demo">
-          <span class="badge">계약 전</span>
-          <span class="risk-dot">!</span>
-          <svg class="shield-pop" viewBox="0 0 24 24">
-            <use href="#icon-shield" />
-          </svg>
-          <h3>등기부등본 위험요소<br>AI 즉시 분석</h3>
-          <p>근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
-          <svg class="card-icon" viewBox="0 0 24 24">
-            <use href="#icon-doc" />
-          </svg>
+
+      <!-- 상단 단계별 필터 탭 -->
+      <div class="solution-tabs">
+        <button type="button" class="tab-btn active" onclick="switchSolutionTab('before', this)">계약 전</button>
+        <button type="button" class="tab-btn" onclick="switchSolutionTab('during', this)">계약 중</button>
+        <button type="button" class="tab-btn" onclick="switchSolutionTab('after', this)">계약 만료</button>
+        <button type="button" class="tab-btn" onclick="switchSolutionTab('special', this)">특약 작성</button>
+      </div>
+
+      <!-- 카드 그리드 컨테이너 -->
+      <div class="solution-content-wrap">
+
+        <!-- 1. 계약 전 -->
+        <div class="solution-panel active" id="tab-before">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">📄</span>
+              </div>
+              <h3 class="card-main-title">등기부등본 위험요소<br>AI 즉시 분석</h3>
+              <p class="card-main-desc">근저당·가압류·선순위 채권까지, 계약 전 위험 신호를 놓치지 않게 짚어드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">🏡</span>
+              </div>
+              <h3 class="card-main-title">매물 시세 비교로<br>보증금 위험 확인</h3>
+              <p class="card-main-desc">주변 매매 시세와 전세보증금을 비교해 보증금이 적정한지 확인해드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">🚨</span>
+              </div>
+              <h3 class="card-main-title">전세사기 위험도<br>한눈에 확인</h3>
+              <p class="card-main-desc">주소와 보증금 정보를 바탕으로 계약 전 확인해야 할 위험 요소를 알려드려요.</p>
+            </div>
+          </div>
         </div>
-        <div class="service-card">
-          <span class="badge">계약 중</span>
-          <h3>시세 변동 &amp;<br>집주인 체납 실시간 알림</h3>
-          <p>계약 기간 중에도 시세와 세금 체납 여부를 실시간으로 확인해 드려요.</p>
-          <svg class="card-icon" viewBox="0 0 24 24">
-            <use href="#icon-bell" />
-          </svg>
+
+        <!-- 2. 계약 중 -->
+        <div class="solution-panel" id="tab-during">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">✍️</span>
+              </div>
+              <h3 class="card-main-title">계약서 조항<br>AI 꼼꼼하게 확인</h3>
+              <p class="card-main-desc">계약서 내용을 분석해 놓치기 쉬운 위험 조항과 확인이 필요한 내용을 알려드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">✅</span>
+              </div>
+              <h3 class="card-main-title">계약 당일<br>꼭 챙길 것 체크</h3>
+              <p class="card-main-desc">잔금·전입신고·확정일자 등 계약 과정에서 놓치기 쉬운 내용을 알려드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">🔍</span>
+              </div>
+              <h3 class="card-main-title">집주인·권리관계<br>변경 여부 확인</h3>
+              <p class="card-main-desc">계약 과정에서 집주인이나 집의 권리관계가 바뀌었는지 다시 확인할 수 있어요.</p>
+            </div>
+          </div>
         </div>
-        <div class="service-card">
-          <span class="badge">특약 작성</span>
-          <h3>전세사기 방지<br>표준 특약 생성기</h3>
-          <p>필요한 항목만 선택하면 안전한 특약 조항을 자동으로 완성해 드려요.</p>
-          <svg class="card-icon" viewBox="0 0 24 24">
-            <use href="#icon-house" />
-          </svg>
+
+        <!-- 3. 계약 만료 -->
+        <div class="solution-panel" id="tab-after">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">📋</span>
+              </div>
+              <h3 class="card-main-title">보증금 반환<br>체크리스트</h3>
+              <p class="card-main-desc">계약이 끝나기 전 보증금 반환을 위해 미리 확인해야 할 내용을 알려드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">🧭</span>
+              </div>
+              <h3 class="card-main-title">보증금 반환<br>절차 안내</h3>
+              <p class="card-main-desc">집주인에게 보증금을 돌려받는 과정에서 필요한 절차를 쉽게 안내해드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">⚠️</span>
+              </div>
+              <h3 class="card-main-title">보증금 미반환 시<br>대응 방법</h3>
+              <p class="card-main-desc">계약이 끝났는데도 보증금을 받지 못했다면 상황에 따라 확인해야 할 절차를 안내해드려요.</p>
+            </div>
+          </div>
         </div>
+
+        <!-- 4. 특약 작성 -->
+        <div class="solution-panel" id="tab-special">
+          <div class="solution-grid">
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">🛡️</span>
+              </div>
+              <h3 class="card-main-title">전세사기 방지<br>표준 특약 생성기</h3>
+              <p class="card-main-desc">필요한 항목만 선택하면 계약 상황에 맞는 특약 문구를 쉽게 만들어드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">💡</span>
+              </div>
+              <h3 class="card-main-title">내 계약에 필요한<br>특약 추천</h3>
+              <p class="card-main-desc">계약 조건을 바탕으로 보증금 보호에 도움이 되는 특약을 추천해드려요.</p>
+            </div>
+
+            <div class="solution-card">
+              <div class="card-header-row">
+
+                <span class="card-emoji-icon">📖</span>
+              </div>
+              <h3 class="card-main-title">작성한 특약<br>쉽게 확인하기</h3>
+              <p class="card-main-desc">어려운 법률 용어 대신 특약의 의미와 주의할 점을 쉽게 설명해드려요.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1234,8 +1540,21 @@
     </div>
   </footer>
 
-  <!-- 메인 인터랙티브 챗봇 스크립트 -->
+  <!-- 스크립트 영역 -->
   <script>
+    /* 솔루션 탭 전환 스크립트 */
+    function switchSolutionTab(tabKey, btnElement) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      document.querySelectorAll('.solution-panel').forEach(panel => panel.classList.remove('active'));
+      const targetPanel = document.getElementById('tab-' + tabKey);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    }
+
+    /* 메인 인터랙티브 챗봇 스크립트 */
     const mainChatBody = document.getElementById('mainChatBody');
     const mainMessagesList = document.getElementById('mainMessagesList');
     const mainWelcomeBanner = document.getElementById('mainWelcomeBanner');

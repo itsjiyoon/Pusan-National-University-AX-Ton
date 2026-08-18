@@ -385,6 +385,7 @@ section {
   letter-spacing: 0.3px;
   margin-bottom: 10px;
   display: block;
+  text-align: center;
 }
 
 .sec-head h2 {
@@ -393,6 +394,7 @@ section {
   line-height: 1.4;
   margin: 0;
   letter-spacing: -0.4px;
+  text-align: center;
 }
 
 .sec-head p {
