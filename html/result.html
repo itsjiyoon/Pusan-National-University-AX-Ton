@@ -12,15 +12,56 @@
     <link rel="stylesheet" href="../styles.css">
     <style>
         .result-sec {
-            padding: 40px 0 80px;
+            padding: 40px 24px 80px;
             display: flex;
             justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* 2단 분할 레이아웃 컨테이너 */
+        .split-layout-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 32px;
+            width: 100%;
+            max-width: 720px;
+            transition: max-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .split-layout-wrap.expanded {
+            max-width: 1240px;
         }
 
         .result-container {
             width: 100%;
             max-width: 720px;
+            flex-shrink: 0;
             box-sizing: border-box;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .split-layout-wrap.expanded .result-container {
+            max-width: 580px;
+        }
+
+        /* 우측 쉬운 말 설명 패널 */
+        .explanation-side-panel {
+            flex: 1;
+            min-width: 0;
+            max-width: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(30px);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-sizing: border-box;
+        }
+
+        .split-layout-wrap.expanded .explanation-side-panel {
+            max-width: 600px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
         }
 
         .result-header {
@@ -108,22 +149,62 @@
 
         /* 확인 불가 전용 1열 카드를 위한 공간 */
         .full-width-area {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
-        /* 하단 안내 텍스트 */
+        /* 안내 텍스트 및 우측 토글 버튼 구역 */
+        .ai-guide-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: #F8FAFC;
+            padding: 12px 18px;
+            border-radius: 16px;
+            border: 1px solid #EEF2F6;
+        }
+
         .ai-guide-text {
-            text-align: center;
             font-size: 14px;
             font-weight: 600;
-            color: #7C879A;
-            margin-bottom: 14px;
+            color: #64748B;
+            margin: 0;
+        }
+
+        /* 빨간 박스 위치의 '쉬운 말로 보기' 액션 버튼 */
+        .btn-toggle-explain {
+            background: #FFFFFF;
+            border: 1.5px solid #243B64;
+            color: #243B64;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(36, 59, 100, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .btn-toggle-explain:hover {
+            background: #243B64;
+            color: #FFFFFF;
+            transform: translateY(-1px);
+        }
+
+        .btn-toggle-explain.active {
+            background: #243B64;
+            color: #FFFFFF;
         }
 
         /* 하단 버튼 영역 */
         .result-actions {
             border-top: 1px solid var(--gray-300, #D7DEE8);
-            padding-top: 28px;
+            padding-top: 24px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -189,6 +270,234 @@
             color: var(--blue, #243B64);
         }
 
+        /* ========================================================
+           우측 패널 (diagnosis_tooltip 디자인 & 용어사전 팝업)
+           ======================================================== */
+        .explain-box {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+        }
+
+        .explain-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .explain-head h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1C263A;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.4px;
+        }
+
+        .explain-head p {
+            font-size: 13.5px;
+            color: #64748B;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .btn-close-explain {
+            background: #F1F5F9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            color: #64748B;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+
+        .btn-close-explain:hover {
+            background: #E2E8F0;
+            color: #1E293B;
+        }
+
+        .tooltip-card {
+            background: #FFFFFF;
+            border: 1px solid #ECEEF2;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(20, 24, 40, 0.03);
+        }
+
+        .tooltip-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .tooltip-card-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .tooltip-card-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 800;
+            color: #1C263A;
+        }
+
+        .tooltip-badge-red {
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #FDE9E6;
+            color: #E0503C;
+        }
+
+        .tooltip-badge-green {
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .tooltip-badge-gray {
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .tooltip-plain {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #F8FAFC;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #F1F5F9;
+        }
+
+        .tooltip-plain .emoji {
+            font-size: 18px;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        .tooltip-plain p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.65;
+            color: #1E293B;
+            word-break: keep-all;
+        }
+
+        .tooltip-whybox {
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.55;
+            margin: 0;
+            padding-left: 4px;
+            word-break: keep-all;
+        }
+
+        /* 단어 툴팁 팝업 스타일 */
+        .term {
+            position: relative;
+            display: inline;
+            cursor: help;
+            font-weight: 800;
+            color: #1E3A8A;
+            border-bottom: 1.5px dashed #93C5FD;
+            padding-bottom: 1px;
+        }
+
+        .term .popup {
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 10px);
+            transform: translateX(-50%) translateY(4px);
+            width: 250px;
+            background: #1E2A4A;
+            color: #FFFFFF;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 1.55;
+            border-radius: 12px;
+            padding: 12px 14px;
+            box-shadow: 0 10px 25px rgba(20, 24, 40, 0.25);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            z-index: 50;
+            text-align: left;
+            pointer-events: none;
+            word-break: keep-all;
+        }
+
+        .term .popup .arrow {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #1E2A4A;
+            rotate: 45deg;
+            margin-top: -5px;
+        }
+
+        .term:hover .popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tooltip-card-title .term .popup {
+            bottom: auto;
+            top: calc(100% + 10px);
+            transform: translateX(-50%) translateY(-4px);
+        }
+
+        .tooltip-card-title .term:hover .popup {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tooltip-card-title .term .popup .arrow {
+            top: auto;
+            bottom: 100%;
+            margin-top: 0;
+            margin-bottom: -5px;
+        }
+
+        @media (max-width: 992px) {
+            .split-layout-wrap.expanded {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .split-layout-wrap.expanded .result-container {
+                max-width: 100%;
+            }
+
+            .split-layout-wrap.expanded .explanation-side-panel {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
         @media (max-width: 620px) {
             .result-grid {
                 grid-template-columns: 1fr !important;
@@ -196,6 +505,16 @@
 
             .result-title {
                 font-size: 22px;
+            }
+
+            .ai-guide-row {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .btn-toggle-explain {
+                justify-content: center;
             }
         }
     </style>
@@ -221,7 +540,9 @@
 
     <!-- MAIN RESULT SECTION -->
     <section class="result-sec">
-        <div class="wrap" style="display:flex; justify-content:center;">
+        <div class="split-layout-wrap" id="splitLayoutWrap">
+
+            <!-- 좌측: 진단 결과 컨테이너 -->
             <div class="result-container">
 
                 <!-- 상단 제목 -->
@@ -241,8 +562,15 @@
                 <!-- 1열 가로 전체 카드 영역 (확인 불가 항목 및 5번째 카드 배치용) -->
                 <div class="full-width-area" id="fullWidthArea"></div>
 
-                <div class="ai-guide-text">
-                    ✨ 업로드한 서류를 바탕으로 궁금한 내용을 쉽게 설명해드려요.
+                <!-- 안내 텍스트 & 쉬운 말로 보기 버튼 (빨간 박스 영역) -->
+                <div class="ai-guide-row">
+                    <div class="ai-guide-text">
+                        ✨ 업로드한 서류를 바탕으로 궁금한 내용을 쉽게 설명해드려요.
+                    </div>
+                    <button type="button" class="btn-toggle-explain" id="btnToggleExplain"
+                        onclick="toggleExplanationPanel()">
+                        🔍 쉬운 말로 보기
+                    </button>
                 </div>
 
                 <!-- 하단 버튼 영역 -->
@@ -257,16 +585,81 @@
                 </div>
 
             </div>
+
+            <!-- 우측: 쉬운 말 설명 패널 (diagnosis_tooltip 연동) -->
+            <div class="explanation-side-panel" id="explanationSidePanel">
+                <div class="explain-box">
+                    <div class="explain-head">
+                        <div>
+                            <h2>쉬운 말로 알려드릴게요</h2>
+                            <p>✨ 어려운 법률·부동산 용어는 빼고, 서류의 핵심만 쉽게 설명해요</p>
+                        </div>
+                        <button type="button" class="btn-close-explain" onclick="toggleExplanationPanel()"
+                            title="패널 닫기">✕</button>
+                    </div>
+
+                    <!-- 업로드 상태에 따라 동적 생성되는 툴팁 카드 리스트 -->
+                    <div id="explanationCardsContainer"></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <script>
+        /* 전세계약 용어사전 데이터베이스 */
+        const GLOSSARY = {
+            "근저당권": "금융기관이 집을 담보로 설정하는 대출 기록이에요. 집주인이 돈을 갚지 못하면 집이 경매로 넘어가 매각 대금을 은행이 먼저 가져갈 수 있어요.",
+            "가압류": "채권자가 채무자의 재산을 임시로 처분하지 못하도록 법으로 묶어두는 조치예요. 소송 후 정식 압류로 전환되어 경매가 진행될 수 있어요.",
+            "압류": "세금 체납이나 채무 불이행으로 국가나 채권자가 재산권 행사를 정지시키는 조치예요. 언제든 경매로 넘어갈 수 있는 매우 위험한 상태예요.",
+            "가등기": "소유자의 지위를 다른 사람이 미리 예약해두는 상태예요. 가등기권자가 본등기로 전환하면 세입자의 계약이 즉시 무효가 될 수 있어요.",
+            "경매": "채무를 변제하기 위해 법원이 부동산을 강제 매각하는 절차예요. 선순위 채권이 많으면 보증금을 온전히 돌려받지 못할 수 있어요.",
+            "깡통전세": "근저당권(대출금)과 전세보증금의 합계가 집 시세의 60~80%를 넘어서는 집이에요. 집값 하락 시 보증금 미반환 위험이 큽니다.",
+            "대항력": "전입신고와 실제 거주(점유)를 마치면 다음 날 0시부터 발생하는 권리로, 집주인이 바뀌어도 계속 거주하고 보증금을 요구할 수 있는 법적 지위예요.",
+            "우선변제권": "대항력과 확정일자를 갖춘 세입자가 집이 경매로 넘어갔을 때 후순위 채권자보다 먼저 보증금을 돌려받을 수 있는 권리예요.",
+            "선순위 채권": "내 확정일자보다 앞서 설정된 근저당권이나 전세권 등을 말해요. 경매 시 선순위 권리자가 돈을 먼저 배당받습니다.",
+            "소유권": "등기부등본 갑구에 기재되는 권리로, 집의 진짜 주인임을 증명하는 권리예요. 계약자 신분증과 반드시 일치해야 해요.",
+            "임대인": "집을 빌려주는 사람(집주인)이에요. 등기부등본 갑구의 실제 소유자와 계약자가 일치하는지 확인해야 해요.",
+            "임차인": "돈을 내고 집을 빌려 쓰는 사람(세입자 본인)이에요. 보증금 보호를 위해 전입신고와 확정일자를 당일 처리해야 해요.",
+            "전입신고": "새 주소로 이사한 사실을 관공서에 신고하는 절차로, 신고 '다음 날 0시'부터 대항력이 발생해요.",
+            "확정일자": "계약서가 특정 날짜에 존재했음을 공적으로 증명하는 도장으로, 우선변제권의 순위를 결정하는 핵심 요소예요.",
+            "특약사항": "표준 계약서 외에 보증금 보호를 위해 당사자 간에 특별히 추가하는 합의 조항(예: 대항력 확보 전 담보권 설정 금지)이에요.",
+            "해제 조항": "잔금 전 새로운 권리 변동이 생기거나 전세대출 거절 등 중대한 문제 발생 시 계약금을 돌려받고 취소할 수 있는 안전 조항이에요.",
+            "대리 계약": "집주인 본인이 아닌 대리인과 체결하는 계약으로, 위임장과 인감증명서 및 집주인 본인 신분증 사본 확인이 필수예요.",
+            "채권추심": "채권자가 빚을 갚으라고 독촉하는 절차로, 집주인에게 이 이력이 있다면 재정 상태가 악화되었다는 위험 신호예요.",
+            "담보": "돈을 못 갚을 경우 대신 처분할 수 있도록 맡겨두는 물건(집)이에요.",
+            "권리관계": "이 집을 두고 은행, 집주인, 세입자 사이에 누가 어떤 우선순위 권리를 갖는지 나타내는 법적 관계예요."
+        };
+
+        /* 용어 팝업 HTML 헬퍼 함수 */
+        function t(term, displayText) {
+            const desc = GLOSSARY[term] || "전세계약 관련 중요 법률 용어입니다.";
+            const text = displayText || term;
+            return `<span class="term">${text}<span class="popup"><span class="arrow"></span>${desc}</span></span>`;
+        }
+
+        /* 패널 토글 함수 */
+        function toggleExplanationPanel() {
+            const wrap = document.getElementById('splitLayoutWrap');
+            const btn = document.getElementById('btnToggleExplain');
+            const isExpanded = wrap.classList.toggle('expanded');
+
+            if (isExpanded) {
+                btn.classList.add('active');
+                btn.innerHTML = '✕ 설명 닫기';
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '🔍 쉬운 말로 보기';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const uploadType = sessionStorage.getItem('uploadType') || 'both';
 
             const resultHero = document.getElementById('resultHero');
             const gridArea = document.getElementById('gridArea');
             const fullWidthArea = document.getElementById('fullWidthArea');
+            const explanationContainer = document.getElementById('explanationCardsContainer');
 
             // ----------------------------------------------------
             // 1. 등기부등본 + 계약서 둘 다 업로드했을 때 (both)
@@ -284,7 +677,6 @@
                 `;
 
                 gridArea.innerHTML = `
-                    <!-- 1. 근저당권 설정 여부 -->
                     <div class="result-card" style="background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; min-height:150px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:12px;">
                             <span style="font-size:17px; font-weight:800; color:#1C263A; display:flex; align-items:center; gap:6px;">
@@ -299,7 +691,6 @@
                         </p>
                     </div>
 
-                    <!-- 2. 압류·가압류 여부 -->
                     <div class="result-card" style="background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; min-height:150px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:12px;">
                             <span style="font-size:17px; font-weight:800; color:#1C263A; display:flex; align-items:center; gap:6px;">
@@ -314,7 +705,6 @@
                         </p>
                     </div>
 
-                    <!-- 3. 소유자·임대인 일치 여부 -->
                     <div class="result-card" style="background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; min-height:150px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:12px;">
                             <span style="font-size:17px; font-weight:800; color:#1C263A; display:flex; align-items:center; gap:6px;">
@@ -329,7 +719,6 @@
                         </p>
                     </div>
 
-                    <!-- 4. 전입신고·확정일자 특약 -->
                     <div class="result-card" style="background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; min-height:150px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:12px;">
                             <span style="font-size:17px; font-weight:800; color:#1C263A; display:flex; align-items:center; gap:6px;">
@@ -345,7 +734,6 @@
                     </div>
                 `;
 
-                // 5번째 카드는 가로 전체(좌측 정렬) 배치
                 fullWidthArea.innerHTML = `
                     <div style="max-width:342px; background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; min-height:150px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:12px;">
@@ -359,6 +747,57 @@
                         <p style="font-size:14px; color:#7C879A; margin:0; line-height:1.5; word-break:keep-all;">
                             잔금 전 근저당 등 변동 시 계약 해제 조항이 있어요.
                         </p>
+                    </div>
+                `;
+
+                // 우측 쉬운 말 패널 렌더링
+                explanationContainer.innerHTML = `
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">🏦 ${t("근저당권")} 설정 여부</span>
+                            <span class="tooltip-badge-green">안전</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>등기부등본상에 집을 ${t("담보")}로 잡힌 은행 ${t("선순위 채권", "대출 기록")}이 전혀 없는 깨끗한 상태예요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 나보다 먼저 돈을 받아갈 은행이 없어, 향후 문제가 생겨도 내 보증금을 지키기 매우 유리해요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">⚠️ ${t("압류")}·${t("가압류")} 여부</span>
+                            <span class="tooltip-badge-green">안전</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>${t("임대인")}의 세금 체납이나 빚 때문에 법원에서 집을 묶어둔 흔적이 없어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 ${t("경매")}로 강제 처분될 위험 신호가 없는 안전한 집이에요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">👤 ${t("소유권", "소유자")}·${t("임대인")} 일치 여부</span>
+                            <span class="tooltip-badge-green">안전</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>등기부등본에 적힌 진짜 집주인과 계약서에 도장을 찍는 ${t("임대인")}이 완벽히 일치해요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 가짜 임대인이나 위험한 ${t("대리 계약")}의 소지가 없음을 확인했어요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">📝 ${t("전입신고")}·${t("확정일자")} & ${t("특약사항")}</span>
+                            <span class="tooltip-badge-green">안전</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>계약 당일 ${t("확정일자")}를 받고, ${t("대항력")}이 생기는 익일 0시까지 새 대출을 금지하는 안전 ${t("특약사항")}과 ${t("해제 조항")}이 모두 잘 갖춰져 있어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 법적으로 ${t("우선변제권")} 순위를 완벽하게 보호받을 수 있는 계약 구조예요.</p>
                     </div>
                 `;
 
@@ -407,7 +846,6 @@
                     </div>
                 `;
 
-                // 계약서만 올렸을 때: "등기부등본을 계약서와 함께 업로드하면..."
                 fullWidthArea.innerHTML = `
                     <div style="background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:22px 24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
@@ -422,6 +860,45 @@
                         <p style="font-size:14px; color:#7C879A; margin:0; line-height:1.5; word-break:keep-all;">
                             등기부등본을 계약서와 함께 업로드하면 소유자와 임대인이 같은지 확인할 수 있어요.
                         </p>
+                    </div>
+                `;
+
+                // 우측 쉬운 말 패널 렌더링
+                explanationContainer.innerHTML = `
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">📝 ${t("전입신고")}·${t("확정일자")} ${t("특약사항")}</span>
+                            <span class="tooltip-badge-red">확인 필요</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>${t("전입신고")} 효력은 '다음 날 0시'부터 생겨요. 이 하루의 공백 사이에 ${t("임대인")}이 몰래 대출을 받으면 내 보증금 순위가 뒤로 밀려요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 <b>"임대인은 잔금 지급일 다음 날까지 담보권을 설정하지 않는다"</b>는 특약을 반드시 계약서에 넣어야 안전해요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">📄 ${t("권리관계")} 변동 시 ${t("해제 조항")}</span>
+                            <span class="tooltip-badge-red">확인 필요</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>이사 가기 전 사이에 집에 ${t("근저당권")}이나 ${t("가압류")}가 새로 생겼을 때, 계약을 취소하고 돈을 돌려받는 안전장치가 빠져 있어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 중대한 하자나 권리 변동 시 계약금을 전액 돌려받을 수 있는 ${t("해제 조항")}을 요청하세요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">👤 ${t("소유권", "소유자")}·${t("임대인")} 일치 여부</span>
+                            <span class="tooltip-badge-gray">확인 불가</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>계약서만으로는 계약자가 실제 등기부등본상 집주인인지 검증할 수 없어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 등기부등본을 함께 확인하여 가짜 집주인이나 불법 ${t("대리 계약")}인지 대조해보는 것이 필수예요.</p>
                     </div>
                 `;
 
@@ -470,7 +947,6 @@
                     </div>
                 `;
 
-                // 등기부등본만 올렸을 때: "계약서를 등기부등본과 함께 업로드하면..."
                 fullWidthArea.innerHTML = `
                     <div style="background:#fff; border:1px solid #F1F3F7; border-radius:20px; padding:22px 24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 8px 24px rgba(19,27,46,0.06);">
                         <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
@@ -485,6 +961,45 @@
                         <p style="font-size:14px; color:#7C879A; margin:0; line-height:1.5; word-break:keep-all;">
                             계약서를 등기부등본과 함께 업로드하면 소유자와 임대인이 같은지 확인할 수 있어요.
                         </p>
+                    </div>
+                `;
+
+                // 우측 쉬운 말 패널 렌더링
+                explanationContainer.innerHTML = `
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">🏦 ${t("근저당권")} 설정 여부</span>
+                            <span class="tooltip-badge-red">확인 필요</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>집주인이 이 집을 ${t("담보")}로 대출을 받은 상태예요. 집을 두고 은행이 나보다 앞선 ${t("선순위 채권")}을 가지고 있어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 <b>대출금 + 내 보증금</b> 합계가 집 시세의 70%를 넘으면 ${t("깡통전세")} 위험이 커지니 시세와 반드시 비교해보세요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">⚠️ ${t("압류")}·${t("가압류")} 여부</span>
+                            <span class="tooltip-badge-red">확인 필요</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>법원에서 이 집에 ${t("가압류")} 또는 ${t("압류")}를 걸어둔 이력이 확인되었어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 집주인이 ${t("채권추심")}을 받거나 세금을 못 낸 신호일 수 있어 집이 ${t("경매")}로 넘어갈 위험이 매우 높아요.</p>
+                    </div>
+
+                    <div class="tooltip-card">
+                        <div class="tooltip-card-row">
+                            <span class="tooltip-card-title">👤 ${t("소유권", "소유자")}·${t("임대인")} 일치 여부</span>
+                            <span class="tooltip-badge-gray">확인 불가</span>
+                        </div>
+                        <div class="tooltip-plain">
+                            <span class="emoji">💡</span>
+                            <p>등기부등본의 소유자가 실제 계약서상 ${t("임대인")}과 동일 인물인지 대조할 계약서가 없어요.</p>
+                        </div>
+                        <p class="tooltip-whybox">👉 계약서와 집주인 신분증 원본을 지참해 소유자가 맞는지 반드시 확인해야 해요.</p>
                     </div>
                 `;
             }
