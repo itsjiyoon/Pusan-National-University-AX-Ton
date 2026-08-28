@@ -905,17 +905,142 @@
     }
 
     /* ========================================================
-       SECTION: FRAUD TYPES
+       SECTION: FRAUD TYPES (신규 2단 분기 레이아웃)
        ======================================================== */
     .sec-fraud {
       background-color: #FFFDF5 !important;
-      padding: 70px 0;
+      padding: 80px 0 90px;
     }
 
-    .fraud-card {
-      background: #FFFFFF !important;
-      border: 1px solid rgba(245, 158, 11, 0.15) !important;
-      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.04);
+    .fraud-header-main {
+      text-align: center;
+      margin-bottom: 56px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .fraud-header-main h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0E387A;
+      letter-spacing: -0.6px;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .fraud-header-mascot {
+      width: 54px;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    .fraud-group {
+      margin-bottom: 50px;
+    }
+
+    .fraud-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .fraud-group-head {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .fraud-group-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 8px;
+      letter-spacing: -0.4px;
+    }
+
+    .fraud-group-desc {
+      font-size: 15px;
+      color: #4B5563;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .fraud-grid-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
+
+    .fraud-card-btn {
+      background: #FFFFFF;
+      border: 1px solid rgba(245, 158, 11, 0.18);
+      border-radius: 20px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 16px rgba(217, 119, 6, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-decoration: none;
+      min-height: 110px;
+      box-sizing: border-box;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .fraud-card-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(217, 119, 6, 0.12);
+      border-color: #F59E0B;
+    }
+
+    .fraud-badge-custom {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .fraud-badge-custom.danger {
+      background: #FFEAEA;
+      color: #E23D3D;
+    }
+
+    .fraud-badge-custom.warning {
+      background: #FFF4E5;
+      color: #D97706;
+    }
+
+    .fraud-card-btn p {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1E293B;
+      margin: 0;
+      line-height: 1.45;
+      letter-spacing: -0.3px;
+      word-break: keep-all;
+    }
+
+    @media (max-width: 960px) {
+      .fraud-grid-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .fraud-grid-row {
+        grid-template-columns: 1fr;
+      }
+
+      .fraud-header-main h2 {
+        font-size: 25px;
+      }
+
+      .fraud-group-title {
+        font-size: 20px;
+      }
     }
 
     /* ========================================================
@@ -1769,63 +1894,94 @@
   <!-- ============ SECTION: FRAUD TYPES ============ -->
   <section class="sec-fraud">
     <div class="wrap">
-      <div class="fraud-head">
-        <h2>전세 사기 주요 유형</h2>
-        <div class="fraud-mascot">
-          <img src="images/curious.png" alt="전셈이 캐릭터">
+
+      <!-- 상단 메인 헤더 -->
+      <div class="fraud-header-main">
+        <h2>
+          전세 사기, 어떤 유형이 있을까요?
+          <img src="images/curious.png" alt="물음표 전셈이" class="fraud-header-mascot">
+        </h2>
+      </div>
+
+      <!-- 그룹 1: 대표 사기 (자주 발생하는 사기 유형) -->
+      <div class="fraud-group">
+        <div class="fraud-group-head">
+          <h3 class="fraud-group-title">자주 발생하는 사기 유형</h3>
+        </div>
+
+        <div class="fraud-grid-row">
+          <a href="fraud/01-gantong.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom danger">대표사기</span>
+            <p>깡통전세 사기</p>
+          </a>
+
+          <a href="fraud/05-double-contract.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom danger">대표사기</span>
+            <p>이중계약</p>
+          </a>
+
+          <a href="fraud/06-landlord-change.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom danger">대표사기</span>
+            <p>계약 당일 임대인 변경 및 주택담보대출 실행</p>
+          </a>
+
+          <a href="fraud/10-move-out-fraud.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom danger">대표사기</span>
+            <p>세입자의 전출신고 후 벌어지는 전세사기</p>
+          </a>
+
+          <a href="fraud/08-deposit-nonreturn.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom danger">대표사기</span>
+            <p>임대인의 일방적인 보증금 미반환</p>
+          </a>
+
+          <a href="fraud/12-identity-loan-fraud.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom danger">대표사기</span>
+            <p>명의도용 대출 사기</p>
+          </a>
         </div>
       </div>
 
-      <div class="fraud-grid">
-        <div class="fraud-card">
-          <span class="fraud-badge danger">대표사기</span>
-          <p>깡통전세 사기</p>
+      <!-- 그룹 2: 주의 사기 (이런 경우도 꼭 확인하세요) -->
+      <div class="fraud-group">
+        <div class="fraud-group-head">
+          <h3 class="fraud-group-title">이런 경우도 꼭 확인하세요</h3>
+          <p class="fraud-group-desc">계약 조건이나 권리관계를 꼼꼼히 살펴봐야 하는 사례예요.</p>
         </div>
-        <div class="fraud-card">
-          <span class="fraud-badge warning">주의</span>
-          <p>가짜 임대인과의 계약</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge warning">주의</span>
-          <p>신탁회사의 동의 없는 계약</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge warning">주의</span>
-          <p>월셋집을 전셋집으로 둔갑</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge danger">대표사기</span>
-          <p>이중계약</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge danger">대표사기</span>
-          <p>계약 당일 임대인 변경 및<br>주택담보대출 실행</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge warning">주의</span>
-          <p>선순위 임차보증금 및<br>근저당 허위 고지</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge danger">대표사기</span>
-          <p>임대인의 일방적인<br>보증금 미반환</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge warning">주의</span>
-          <p>당해세 및 임금채권 우선변제</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge danger">대표사기</span>
-          <p>세입자의 전출신고 후<br>벌어지는 전세사기</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge warning">주의</span>
-          <p>선순위 근저당, 신탁등기말소 등<br>특약 불이행</p>
-        </div>
-        <div class="fraud-card">
-          <span class="fraud-badge danger">대표사기</span>
-          <p>명의도용 대출 사기</p>
+
+        <div class="fraud-grid-row">
+          <a href="fraud/02-fake-landlord.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom warning">주의</span>
+            <p>가짜 임대인과의 계약</p>
+          </a>
+
+          <a href="fraud/03-trust-noconsent.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom warning">주의</span>
+            <p>신탁회사의 동의 없는 계약</p>
+          </a>
+
+          <a href="fraud/04-wolse-disguise.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom warning">주의</span>
+            <p>월셋집을 전셋집으로 둔갑</p>
+          </a>
+
+          <a href="fraud/07-false-priority.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom warning">주의</span>
+            <p>선순위 임차보증금 및 근저당 허위 고지</p>
+          </a>
+
+          <a href="fraud/11-special-clause-breach.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom warning">주의</span>
+            <p>선순위 근저당, 신탁등기말소 등 특약 불이행</p>
+          </a>
+
+          <a href="fraud/09-tax-priority.html" class="fraud-card-btn">
+            <span class="fraud-badge-custom warning">주의</span>
+            <p>당해세 및 임금채권 우선변제</p>
+          </a>
         </div>
       </div>
+
     </div>
   </section>
 
