@@ -465,7 +465,7 @@
 
             </div>
 
-            <!-- 추천 질문 칩 -->
+            <!-- 추천 질문 칩 (원본 구조 유지) -->
             <div class="chip-group">
                 <button class="chip-btn" onclick="sendQuickMsg('등기부등본 분석 받기')">등기부등본 분석 받기</button>
                 <button class="chip-btn" onclick="sendQuickMsg('특약 문구 알려줘')">특약 문구 알려줘</button>
@@ -504,6 +504,10 @@
            부동산 및 전세 지식 베이스 (Knowledge Base)
            ======================================================== */
         const KNOWLEDGE_BASE = [
+            {
+                keywords: ["집 먼저", "집부터", "그냥 집 먼저", "집 알아보면", "집 알아보기 전"],
+                reply: "물론 집을 먼저 알아볼 수 있지만, 내 예산과 보증금 보호 가능 여부를 먼저 확인하는 것이 좋아요.\n\n전세집을 알아보기 전에는\n① 내 예산과 대출 가능 여부 확인 → ② 보증금 반환보증 가입 가능 여부 확인 → ③ 매물의 시세와 권리관계 확인 순으로 살펴보는 것을 추천해요.\n\n마음에 드는 매물을 찾았다면 등기부등본을 확인해 근저당권·선순위채권 등의 권리관계를 살펴보는 것도 중요해요.\n\n원하시면 제가 전세집을 알아볼 때 확인해야 할 항목부터 하나씩 같이 살펴드릴게요."
+            },
             {
                 keywords: ["임대인이 뭐", "임대인이란", "임대인 뜻", "임대인?"],
                 reply: "임대인은 집(부동산)을 빌려주는 사람, 즉 집주인을 말해요. 계약서에는 '갑'으로 표시되는 경우가 많아요."
@@ -770,9 +774,10 @@
                     }
 
                     if (matchedItem) {
+                        const formattedReply = escapeHtml(matchedItem.reply).replace(/\n/g, '<br>');
                         replyHtml = `
                             <div style="line-height: 1.6; word-break: keep-all;">
-                                ${escapeHtml(matchedItem.reply)}
+                                ${formattedReply}
                             </div>
                         `;
                     } else {
