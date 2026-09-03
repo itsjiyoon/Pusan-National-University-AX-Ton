@@ -416,26 +416,33 @@
     .entry-main-card {
       background: #243B64;
       border-radius: 28px;
-      padding: 40px 36px 36px;
+      padding: 36px 32px 32px;
       color: #FFFFFF;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      /* 상단-중간-하단 버튼 위치 고정 */
       position: relative;
       overflow: hidden;
       box-shadow: 0 16px 36px rgba(36, 59, 100, 0.16);
       min-height: 480px;
+      /* 전체 카드 높이 고정 */
       box-sizing: border-box;
     }
 
+
+
     .entry-greeting {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 700;
       color: #E2E8F0;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+      /* 왼쪽 정렬 */
       gap: 6px;
+      margin-bottom: 70px;
     }
 
     .entry-mascot {
@@ -447,20 +454,31 @@
     }
 
     .entry-main-card h2 {
-      font-size: 26px;
+
+      font-size: 32px;
+      /* 폰트 크기 확대 */
       font-weight: 800;
-      line-height: 1.38;
-      margin: 0 0 14px;
+      line-height: 1.25;
+      /* 줄간격 촘촘하게 */
+      margin: 0 0 16px;
+      /* 하단 여백 최적화 */
       color: #FFFFFF;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.8px;
+      text-align: left;
+      /* 왼쪽 정렬 */
     }
 
     .entry-main-card p.desc {
-      font-size: 14.5px;
-      line-height: 1.55;
+      font-size: 17px;
+      /* 폰트 크기 확대 */
+      line-height: 1.6;
+      /* 텍스트 높이를 키워 여백 채움 */
       color: #CBD5E1;
-      margin: 0 0 36px;
+      margin: 0;
       word-break: keep-all;
+      letter-spacing: -0.4px;
+      text-align: left;
+      /* 왼쪽 정렬 */
     }
 
     .entry-buttons-grid {
